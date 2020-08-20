@@ -26,7 +26,7 @@ Quick access through questions:
 * How are persistent identifiers stored in the database?
 
 ### 0.1 About this document
-For readability we present examples in turtle serialization, although we recommend JSON-LD as the prefered serialization type.
+For readability we present examples in turtle serialization, although we recommend ??? as the prefered serialization type.
 
 ## 1 Publishing collection information
 ### 1.0 Introduction
@@ -63,7 +63,7 @@ Interesting link:
 * [https://ontola.io/blog/rdf-serialization-formats/]()
 
 ### 1.3 Publishing Linked Data
-Linked Data can be published in several ways. In this part we will discuss four methods ranging in levels of complexity of implementation. 
+Linked Data can be published in several ways. In this part we will discuss four methods ranging in levels of complexity of implementation. Users could prefer one of these methods to obtain the data for their purpose, so the publication-methods should be offered in parallel.
 
 #### 1.3.1 Basic level: Data dumps
 Most of the current collection management systems support XML-based export formats. In many cases a conversion using XSLT Stylesheets is possible to generate a Linked Data dump. The system should support a workflow that can be operated periodically by the system administrator in order to produce the dump. The dump should be described by a dataset description. The link pointing to the dump should be fit for automatic processing and therefore accessible with for instance a ```curl``` command.
