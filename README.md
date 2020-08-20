@@ -11,23 +11,19 @@ This document aims to initiate an open discussion and cooperation with the techn
 
 A large part of the guidelines in this document follows the general practice for publishing [Linked Data](https://en.wikipedia.org/wiki/Linked_data). As stated in the [reference architecture](https://dera.netwerkdigitaalerfgoed.nl/index.php/Linked_Data) (Dutch)Linked Data is regarded a key technology in the cultural heritage domain for integrating the huge amount of information resources within the network. Linked Data is therefore the driver for providing and maintaining coherent digital services within the network.
 
-This document describes:
+Quick access through questions:
 
-* how collection information is published
- * Which data models are recommended? (ref)
- * Which techniques are recommended to provide data to the user through the web? (ref)
-* how [terms] are linked to objects
- * How can I use an internal terminology source? (ref)
- * How can I use an external terminology source? (ref)
-* how a terminology source is published
- * Which data models are recommended? (ref)
- * Which techniques are recommended to provide data to the user through the web? (ref)
-* how dataset descriptions are published
- * Which data models are recommended? (ref)
- * Which techniques are recommended to provide data to the user through the web? (ref)
-* how web addresses are made persistent
- * Which protocols are recommended?
- * How are persistent identifiers stored in the database?
+* [Which data models are recommended?](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines#11-data-model)
+* [Which RDF-serialization is recommended?](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines#12-rdf-serialization)
+* [Which technique is recommended to provide data through the web?](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines#13-publishing-linked-data)
+* How can I use an internal terminology source?
+* How can I use an external terminology source?
+* Which data models are recommended?
+* Which techniques are recommended to provide data to the user through the web?
+* Which data models are recommended?
+* Which techniques are recommended to provide data to the user through the web?
+* Which protocols are recommended?
+* How are persistent identifiers stored in the database?
 
 ### 0.1 About this document
 For readability we present examples in turtle serialization, although we recommend JSON-LD as the prefered serialization type.
@@ -49,23 +45,31 @@ Interesting links:
 * [https://www.contentking.nl/academy/schema-structured-data/]() (Dutch)
 
 #### 1.1.2 Domain data model
-The generic model described above will improve the general visibility of the cultural heritage objects, the terms describing the objects and the datasets in which the objects and terms are grouped. In many cases this will lead to further exploration of these objects. For specific users or communities a deeper understanding of the knowledge in the data will be important. Because of the open structure of Linked Data there is no restriction to simply add another layer of description to the resource. See for [example](example-1.ttl) this object description. So institutions can add extra properties and class definitions to the Linked Data they publish. In general CIDOC-CRM (and its derivative [Linked Art]()) can be appropriate for museums. For archives the RiC-O ontology seems to be promising and for libraries RDA Elements or BIBFRAME could be relevant. It is up to the institutions in the separate domains to agree on the use and implementation of these shared standards. Best practices and information about actual implementations will be shared in the network.  
+The generic model described above will improve the general visibility of the cultural heritage objects, the terms describing the objects and the datasets in which the objects and terms are grouped. In many cases this will lead to further exploration of these objects. For specific users or communities a deeper understanding of the knowledge in the data will be important. Because of the open structure of Linked Data there is no restriction to simply add another layer of description to the resource. See for [example](example-1.ttl) this object description. So institutions can add extra properties and class definitions to the Linked Data they publish. In general [CIDOC-CRM](http://www.cidoc-crm.org/) (and its derivative [Linked Art](https://linked.art/model/)) can be appropriate for museums. For archives the [RiC-O ontology](https://www.ica.org/standards/RiC/RiC-O_v0-1.html) seems to be promising and for libraries [RDA Elements](https://www.rdaregistry.info/Elements/) or [BIBFRAME](https://www.loc.gov/bibframe/) could be relevant. It is up to the institutions in the separate domains to agree on the use and implementation of these shared standards. Best practices and information about actual implementations will be shared in the network.  
 
-### 1.2 RDF serialization
-RDF can be expressed in various 'serializations'. The oldest being RDF/XML, this format is complex and old-fashioned. It could be useful in XML ecosystems. The best readable serialization is 'turtle'. Examples in this document are written in this form. JSON-LD is the youngest format and comprehensible to webdevelopers that are used to JSON. We therefore recommend to use this format as primary serialization.
+### 1.2 RDF serialization (??? under discussion!)
+#### 1.2.1 'Traditional' linked data
+RDF - being the principle to express data in triples - can be formated in various 'serializations'. The oldest being RDF/XML, this format is complex and old-fashioned. It could be very useful though in XML ecosystems. The best readable serialization is 'turtle'. Examples in this document are written in this form.
+
+You could provide more than one serialization and offer the user a choice with 'content negotiation'. (see [1.3.2 Web compliancy level: resolvable URIs](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines#132-web-compliancy-level-resolvable-uris))
 
 In almost all programming languages libraries are available to transform one RDF-serialization into another. Check for libraries in your favorite programming language.
 
+#### 1.2.2 JSON-LD
+JSON-LD is the youngest format and comprehensible to webdevelopers that are used to JSON. The format is more difficult to process in native Linked Data environments. We therefore recommend only to use JSON-LD inline in the landing page of an object. (see [1.3.2 Web compliancy level: resolvable URIs](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines#132-web-compliancy-level-resolvable-uris))
+
 Interesting link:
-* https://ontola.io/blog/rdf-serialization-formats/
+* [https://ontola.io/blog/rdf-serialization-formats/]()
 
 ### 1.3 Publishing Linked Data
-Linked Data can be published in several ways. In this part we will discuss four methods ranging in levels of complexity for implementation. 
+Linked Data can be published in several ways. In this part we will discuss four methods ranging in levels of complexity of implementation. 
 
 #### 1.3.1 Basic level: Data dumps
-Most of the current collection management systems support XML-based export formats. In many cases a conversion using XSLT Stylesheets is possible to generate a Linked Data dump. The system should support a workflow that can be operated periodically by the system administrator in order to produce the dump. The dump should be described by a dataset description. The link pointing to the dump should be fit for automatic processing and therefore accessible with for instance a '''curl''' command.
+Most of the current collection management systems support XML-based export formats. In many cases a conversion using XSLT Stylesheets is possible to generate a Linked Data dump. The system should support a workflow that can be operated periodically by the system administrator in order to produce the dump. The dump should be described by a dataset description. The link pointing to the dump should be fit for automatic processing and therefore accessible with for instance a ```curl``` command.
 
 In some cases this type of conversion cannot be done by the collection management system itself and a separate publication functionality is required. This can be another system within the institution or a system run by a partner in the network (an aggregator or other service provider). An export in CSV format could for instance be converted into RDF with the [LDWizard](https://github.com/netwerk-digitaal-erfgoed/LDWizard-ErfgoedWizard).
+
+??? zip-file with file per object or one file?
 
 #### 1.3.2 Web compliancy level: resolvable URIs
 Although dumps are sufficient to support basic services, proper Linked Data implementations should provide Linked Data per object, in Linked Data terminology called a ‘resource’. Each resource in the collection should have a stable and well-formed [Uniform Resource Identifier](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier) (URI). This URI should be ‘resolvable’. This means that the webserver provides data about the resource in a format depending on the accept-header in the HTTP request. This functionality is called [content negotiation](https://www.w3.org/Protocols/rfc2616/rfc2616-sec12.html) which enables browsers or other applications to ask for a specific language or representation of the available content. For Linked Data this mechanism is used to differentiate between human-readable content (a rendered HTML page) and machine-readable content (in RDF).
