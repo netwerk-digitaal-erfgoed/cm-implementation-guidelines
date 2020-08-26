@@ -18,15 +18,15 @@ Quick access through questions:
 * [Which technique is recommended to provide data through the web?](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines#13-publishing-linked-data)
 * How can I use an internal terminology source?
 * How can I use an external terminology source?
-* Which data models are recommended?
-* Which techniques are recommended to provide data to the user through the web?
-* Which data models are recommended?
-* Which techniques are recommended to provide data to the user through the web?
-* Which protocols are recommended?
+* Which data models are recommended for publishing terminology sources?
+* Which techniques are recommended to provide data through the web?
+* Which data models are recommended for publishing dataset information?
+* Which techniques are recommended to provide data through the web?
+* Which protocols are recommended for persistent identification?
 * How are persistent identifiers stored in the database?
 
 ### 0.1 About this document
-For readability we present examples in turtle serialization, although we recommend ??? as the prefered serialization type.
+RDF can be published in various serializations. For readability we present examples in turtle serialization, although we recommend other serializations in different situations.
 
 ## 1 Publishing collection information
 ### 1.0 Introduction
@@ -38,14 +38,19 @@ Publishing collection information as Linked Data can be done by transformation o
 #### 1.1.1 Generic data model
 The main goal for publishing the object descriptions as Linked Data is to improve the data integration and visibility in the network. Because the heritage network spans institutions from the library, archive and museum domains, a generic data model that can support general visibility on the web is needed. A generic data model for cultural heritage institutions has been defined earlier by Europeana, the Europeana Data Model (EDM). In order to support a broader visibility on the web outside the cultural heritage domain, we have chosen to conform to [Schema.org](https://schema.org/) for this purpose. [Recent investigations](https://github.com/netwerk-digitaal-erfgoed/lod-aggregator) have shown that well-formed schema.org data can be transformed to EDM without significant loss of detail.
 
-In [this](TBD) Google Spreadsheet we develop a guideline for the use of schema.org-elements. Find here basic examples for:
-* a [photo](TBD)
+<!--In [this](TBD) Google Spreadsheet we develop a guideline for the use of schema.org-elements. -->
+
+Find here some basic examples for:
+* a [photo with Dublin Core properties](example-2.ttl)
 
 Interesting links:
 * [https://www.contentking.nl/academy/schema-structured-data/]() (Dutch)
 
 #### 1.1.2 Domain data model
-The generic model described above will improve the general visibility of the cultural heritage objects, the terms describing the objects and the datasets in which the objects and terms are grouped. In many cases this will lead to further exploration of these objects. For specific users or communities a deeper understanding of the knowledge in the data will be important. Because of the open structure of Linked Data there is no restriction to simply add another layer of description to the resource. See for [example](example-1.ttl) this object description. So institutions can add extra properties and class definitions to the Linked Data they publish. In general [CIDOC-CRM](http://www.cidoc-crm.org/) (and its derivative [Linked Art](https://linked.art/model/)) can be appropriate for museums. For archives the [RiC-O ontology](https://www.ica.org/standards/RiC/RiC-O_v0-1.html) seems to be promising and for libraries [RDA Elements](https://www.rdaregistry.info/Elements/) or [BIBFRAME](https://www.loc.gov/bibframe/) could be relevant. It is up to the institutions in the separate domains to agree on the use and implementation of these shared standards. Best practices and information about actual implementations will be shared in the network.  
+The generic model described above will improve the general visibility of the cultural heritage objects, the terms describing the objects and the datasets in which the objects and terms are grouped. In many cases this will lead to further exploration of these objects. For specific users or communities a deeper understanding of the knowledge in the data will be important. Because of the open structure of Linked Data there is no restriction to simply add another layer of description to the resource. See for [example](example-1.ttl) this object description. So institutions can add extra properties and class definitions to the Linked Data they publish. In general [CIDOC-CRM](http://www.cidoc-crm.org/) (and its derivative [Linked Art](https://linked.art/model/)) can be appropriate for museums. For archives the [RiC-O ontology](https://www.ica.org/standards/RiC/RiC-O_v0-1.html) seems to be promising and for libraries [RDA Elements](https://www.rdaregistry.info/Elements/) or [BIBFRAME](https://www.loc.gov/bibframe/) could be relevant. It is up to the institutions in the separate domains to agree on the use and implementation of these shared standards. Best practices and information about actual implementations will be shared in the network.
+
+#### 1.1.3 Rights
+TBD
 
 ### 1.2 RDF serialization
 **Under discussion:**
@@ -55,6 +60,9 @@ RDF - being the principle to express data in triples - can be formated in variou
 You could provide more than one serialization and offer the user a choice with 'content negotiation'. (see [1.3.2 Web compliancy level: resolvable URIs](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines#132-web-compliancy-level-resolvable-uris))
 
 In almost all programming languages libraries are available to transform one RDF-serialization into another. Check for libraries in your favorite programming language.
+
+***Under discussion:***
+If triples are published in both the generic and the specific model they are all included in the response, requested with content negotiation. Example TBD.
 
 #### 1.2.2 JSON-LD
 JSON-LD is the youngest format and comprehensible to webdevelopers that are used to JSON. The format is more difficult to process in native Linked Data environments. We therefore recommend only to use JSON-LD inline in the landing page of an object. (see [1.3.2 Web compliancy level: resolvable URIs](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines#132-web-compliancy-level-resolvable-uris))
@@ -71,7 +79,7 @@ Most of the current collection management systems support XML-based export forma
 In some cases this type of conversion cannot be done by the collection management system itself and a separate publication functionality is required. This can be another system within the institution or a system run by a partner in the network (an aggregator or other service provider). An export in CSV format could for instance be converted into RDF with the [LDWizard](https://github.com/netwerk-digitaal-erfgoed/LDWizard-ErfgoedWizard).
 
 **Under discussion:**
-A dump could be a zip-file containing files for every object or one big file containing all the necessary triples.
+A dump could be a zip-file containing files for every object or one big file containing all the necessary triples. TBD: do we prefer the one or the other?
 
 #### 1.3.2 Web compliancy level: resolvable URIs
 Although dumps are sufficient to support basic services, proper Linked Data implementations should provide Linked Data per object, in Linked Data terminology called a ‘resource’. Each resource in the collection should have a stable and well-formed [Uniform Resource Identifier](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier) (URI). This URI should be ‘resolvable’. This means that the webserver provides data about the resource in a format depending on the accept-header in the HTTP request. This functionality is called [content negotiation](https://www.w3.org/Protocols/rfc2616/rfc2616-sec12.html) which enables browsers or other applications to ask for a specific language or representation of the available content. For Linked Data this mechanism is used to differentiate between human-readable content (a rendered HTML page) and machine-readable content (in RDF).
