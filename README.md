@@ -36,7 +36,7 @@ Publishing collection information as Linked Data can be done by transformation o
 
 ### 1.1 Data model
 #### 1.1.1 Generic data model
-The main goal for publishing the object descriptions as Linked Data is to improve the data integration and visibility in the network. Because the heritage network spans institutions from the library, archive and museum domains, a generic data model that can support general visibility on the web is needed. In order to support a broader visibility on the web outside the cultural heritage domain, we have chosen to conform to [Schema.org](https://schema.org/) for this purpose.
+The main goal for publishing the object descriptions as Linked Data is to improve the data integration and visibility in the network. Because the heritage network spans institutions from the library, archive and museum domains, a generic data model that can support general visibility on the web is needed. **In order to support a broader visibility on the web outside the cultural heritage domain, we have chosen to conform to [Schema.org](https://schema.org/).**
 
 Interesting links:
 * [https://www.contentking.nl/academy/schema-structured-data/]() (Dutch)
@@ -46,7 +46,7 @@ Thanks to Europeana, most institutions and collection management systems are fam
 Interesting links:
 * [https://seopressor.com/blog/dublin-core-vs-schemaorg-metadata-comparison/]()
 
-Find here some basic examples for:
+Some basic examples for:
 * a [photo with Dublin Core properties](example-2.ttl)
 * the same [photo with Schema.org properties](example-3.ttl)
 
@@ -57,22 +57,24 @@ The generic model described above will improve the general visibility of the cul
 TBD
 
 ### 1.2 RDF serialization
-**Under discussion:**
+RDF - being the principle to express data in triples - can be formated in various 'serializations'. Different RDF serialization are useful in different situations.
+
 #### 1.2.1 'Traditional' linked data
-RDF - being the principle to express data in triples - can be formated in various 'serializations'. The oldest being RDF/XML, this format is complex and old-fashioned. It could be very useful though in XML ecosystems. The best readable serialization is 'turtle'. Examples in this document are written in this form.
-
-You could provide more than one serialization and offer the user a choice with 'content negotiation'. (see [1.3.2 Web compliancy level: resolvable URIs](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines#132-web-compliancy-level-resolvable-uris))
-
-In almost all programming languages libraries are available to transform one RDF-serialization into another. Check for libraries in your favorite programming language.
-
-***Under discussion:***
-If triples are published in both the generic and the specific model they are all included in the response, requested with content negotiation. Example TBD.
-
-#### 1.2.2 JSON-LD
-JSON-LD is the youngest format and comprehensible to webdevelopers that are used to JSON. The format is more difficult to process in native Linked Data environments. We therefore recommend only to use JSON-LD inline in the landing page of an object. (see [1.3.2 Web compliancy level: resolvable URIs](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines#132-web-compliancy-level-resolvable-uris))
+The oldest type of serialization is RDF/XML. This format is complex and old-fashioned. It could be very useful though in XML ecosystems. The best readable serialization is 'turtle'. Examples in this document are written in this form. Linked data provided in '[n-triples](https://nl.wikipedia.org/wiki/N-Triples)' format can be processed easily in all linked data tooling.
 
 Interesting link:
 * [https://ontola.io/blog/rdf-serialization-formats/]()
+
+In almost all programming languages libraries are available to transform one RDF-serialization into another. Check for libraries in your favorite programming language.
+
+**Please offer your data in at least n-triples format.** See for example [this photo-example](example-3.nt) that we introduced in turtle format earlier.
+
+If triples are published in both the generic and the specific model they are all included in the same data-file.
+
+You could provide more than one serialization and offer the user a choice with 'content negotiation'. (see [1.3.2 Web compliancy level: resolvable URIs](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines#132-web-compliancy-level-resolvable-uris)).
+
+#### 1.2.2 JSON-LD
+JSON-LD is the youngest format and comprehensible to webdevelopers that are used to JSON. The format is more difficult to process in native Linked Data environments. We therefore recommend only to use JSON-LD inline in the landing page of an object. (see [1.3.2 Web compliancy level: resolvable URIs](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines#132-web-compliancy-level-resolvable-uris))
 
 ### 1.3 Publishing Linked Data
 Linked Data can be published in several ways. In this part we will discuss four methods ranging in levels of complexity of implementation. Users could prefer one of these methods to obtain the data for their purpose, so the publication-methods should be offered in parallel.
