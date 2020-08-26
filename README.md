@@ -36,16 +36,19 @@ Publishing collection information as Linked Data can be done by transformation o
 
 ### 1.1 Data model
 #### 1.1.1 Generic data model
-The main goal for publishing the object descriptions as Linked Data is to improve the data integration and visibility in the network. Because the heritage network spans institutions from the library, archive and museum domains, a generic data model that can support general visibility on the web is needed. A generic data model for cultural heritage institutions has been defined earlier by Europeana, the Europeana Data Model (EDM). In order to support a broader visibility on the web outside the cultural heritage domain, we have chosen to conform to [Schema.org](https://schema.org/) for this purpose. [Recent investigations](https://github.com/netwerk-digitaal-erfgoed/lod-aggregator) have shown that well-formed schema.org data can be transformed to EDM without significant loss of detail.
+The main goal for publishing the object descriptions as Linked Data is to improve the data integration and visibility in the network. Because the heritage network spans institutions from the library, archive and museum domains, a generic data model that can support general visibility on the web is needed. In order to support a broader visibility on the web outside the cultural heritage domain, we have chosen to conform to [Schema.org](https://schema.org/) for this purpose.
 
-<!--In [this](TBD) Google Spreadsheet we develop a guideline for the use of schema.org-elements. -->
+Interesting links:
+* [https://www.contentking.nl/academy/schema-structured-data/]() (Dutch)
+
+Thanks to Europeana, most institutions and collection management systems are familiar with Dublin Core. Based on dc, a generic data model for cultural heritage institutions has been defined, the Europeana Data Model (EDM). [Recent investigations](https://github.com/netwerk-digitaal-erfgoed/lod-aggregator) have shown that well-formed schema.org data can be transformed to EDM without significant loss of detail. Schema.org contains properties that are very similar to Dublin Core properties. A complete mapping between schema.org and Dublin Core can be found [here](https://dcmi.github.io/schema.org/).
+
+Interesting links:
+* [https://seopressor.com/blog/dublin-core-vs-schemaorg-metadata-comparison/]()
 
 Find here some basic examples for:
 * a [photo with Dublin Core properties](example-2.ttl)
 * the same [photo with Schema.org properties](example-3.ttl)
-
-Interesting links:
-* [https://www.contentking.nl/academy/schema-structured-data/]() (Dutch)
 
 #### 1.1.2 Domain data model
 The generic model described above will improve the general visibility of the cultural heritage objects, the terms describing the objects and the datasets in which the objects and terms are grouped. In many cases this will lead to further exploration of these objects. For specific users or communities a deeper understanding of the knowledge in the data will be important. Because of the open structure of Linked Data there is no restriction to simply add another layer of description to the resource. See for [example](example-1.ttl) this object description. So institutions can add extra properties and class definitions to the Linked Data they publish. In general [CIDOC-CRM](http://www.cidoc-crm.org/) (and its derivative [Linked Art](https://linked.art/model/)) can be appropriate for museums. For archives the [RiC-O ontology](https://www.ica.org/standards/RiC/RiC-O_v0-1.html) seems to be promising and for libraries [RDA Elements](https://www.rdaregistry.info/Elements/) or [BIBFRAME](https://www.loc.gov/bibframe/) could be relevant. It is up to the institutions in the separate domains to agree on the use and implementation of these shared standards. Best practices and information about actual implementations will be shared in the network.
