@@ -108,7 +108,7 @@ Although Linked Data in the core of the collection management systems is not an 
 
 Another area that needs further exploration is the handling of multiple layers of object descriptions or enrichments, for example originated from different sources of other institutions, digital humanities research projects or crowdsourcing projects. Keeping track of the provenance of different versions or the ability to maintain and publish different (time) versions of the same resource descriptions (i.e. [Memento](http://timetravel.mementoweb.org/about/), [Web Annotations](https://www.w3.org/TR/annotation-model/)) are other areas where exploration needs to be done. For these topics NDE seeks cooperation with IT partners and with the [CLARIAH-PLUS project](https://www.clariah.nl/), responsible for building research infrastructures in the Digital Humanities domain.
 
-
+A third development is the concept of ['profile negotiation'](https://www.w3.org/TR/dx-prof-conneg/). Additional to content negotiation in profile negotiation a user can request data according to a certain information model, in our case the generic datamodel or the specific datamodel.
 
 ## Connecting sources
 "Connected sources" are sources that refer to each other and use each other's information. This is done using terms. Terms are, for example, subjects, persons or places. Each term has an identifier, a so-called URI. A URI is a unique address that makes unambiguously clear which term is meant. Terms and their URIs are managed in terminology sources, such as thesauri, reference lists or classification systems. Examples are AAT, GeoNames or WW2 Thesaurus.
