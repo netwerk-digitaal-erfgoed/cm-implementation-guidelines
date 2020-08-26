@@ -42,6 +42,7 @@ The main goal for publishing the object descriptions as Linked Data is to improv
 
 Find here some basic examples for:
 * a [photo with Dublin Core properties](example-2.ttl)
+* the same [photo with Schema.org properties](example-3.ttl)
 
 Interesting links:
 * [https://www.contentking.nl/academy/schema-structured-data/]() (Dutch)
