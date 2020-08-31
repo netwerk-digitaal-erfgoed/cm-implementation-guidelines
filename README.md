@@ -39,12 +39,12 @@ Publishing collection information as Linked Data can be done by transformation o
 The main goal for publishing the object descriptions as Linked Data is to improve the data integration and visibility in the network. Because the heritage network spans institutions from the library, archive and museum domains, a generic data model that can support general visibility on the web is needed. **In order to support a broader visibility on the web outside the cultural heritage domain, we have chosen to conform to [Schema.org](https://schema.org/).**
 
 Interesting links:
-* [https://www.contentking.nl/academy/schema-structured-data/]() (Dutch)
+* [https://www.contentking.nl/academy/schema-structured-data/](https://www.contentking.nl/academy/schema-structured-data/) (Dutch)
 
 Thanks to Europeana, most institutions and collection management systems are familiar with Dublin Core. Based on dc, a generic data model for cultural heritage institutions has been defined, the Europeana Data Model (EDM). [Recent investigations](https://github.com/netwerk-digitaal-erfgoed/lod-aggregator) have shown that well-formed schema.org data can be transformed to EDM without significant loss of detail. Schema.org contains properties that are very similar to Dublin Core properties. A complete mapping between schema.org and Dublin Core can be found [here](https://dcmi.github.io/schema.org/).
 
 Interesting links:
-* [https://seopressor.com/blog/dublin-core-vs-schemaorg-metadata-comparison/]()
+* [https://seopressor.com/blog/dublin-core-vs-schemaorg-metadata-comparison/](https://seopressor.com/blog/dublin-core-vs-schemaorg-metadata-comparison/)
 
 Some basic examples for:
 * a [photo with Dublin Core properties](example-2.ttl)
@@ -63,7 +63,7 @@ RDF - being the principle to express data in triples - can be formated in variou
 The oldest type of serialization is RDF/XML. This format is complex and old-fashioned. It could be very useful though in XML ecosystems. The best readable serialization is 'turtle'. Examples in this document are written in this form. Linked data provided in '[n-triples](https://nl.wikipedia.org/wiki/N-Triples)' format can be processed easily in all linked data tooling.
 
 Interesting link:
-* [https://ontola.io/blog/rdf-serialization-formats/]()
+* [https://ontola.io/blog/rdf-serialization-formats/](https://ontola.io/blog/rdf-serialization-formats/)
 
 In almost all programming languages libraries are available to transform one RDF-serialization into another. Check for libraries in your favorite programming language.
 
@@ -110,6 +110,9 @@ Although Linked Data in the core of the collection management systems is not an 
 Another area that needs further exploration is the handling of multiple layers of object descriptions or enrichments, for example originated from different sources of other institutions, digital humanities research projects or crowdsourcing projects. Keeping track of the provenance of different versions or the ability to maintain and publish different (time) versions of the same resource descriptions (i.e. [Memento](http://timetravel.mementoweb.org/about/), [Web Annotations](https://www.w3.org/TR/annotation-model/)) are other areas where exploration needs to be done. For these topics NDE seeks cooperation with IT partners and with the [CLARIAH-PLUS project](https://www.clariah.nl/), responsible for building research infrastructures in the Digital Humanities domain.
 
 A third development is the concept of ['profile negotiation'](https://www.w3.org/TR/dx-prof-conneg/). Additional to content negotiation in profile negotiation a user can request data according to a certain information model, in our case the generic datamodel or the specific datamodel.
+
+-------------
+Here after: markdown to be done.
 
 ## Connecting sources
 "Connected sources" are sources that refer to each other and use each other's information. This is done using terms. Terms are, for example, subjects, persons or places. Each term has an identifier, a so-called URI. A URI is a unique address that makes unambiguously clear which term is meant. Terms and their URIs are managed in terminology sources, such as thesauri, reference lists or classification systems. Examples are AAT, GeoNames or WW2 Thesaurus.
