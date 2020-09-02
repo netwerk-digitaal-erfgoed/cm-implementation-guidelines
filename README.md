@@ -30,9 +30,9 @@ RDF can be published in various serializations. For readability we present examp
 
 ## 1 Publishing collection information
 ### 1.0 Introduction
-The first requirement for institutions to provide usable information is to publish their object descriptions, organised in datasets, as Linked Data. The DERA requires institutions to publish their metadata with an open license (for some institutions this requirement might still be a challenge). The actual access to the digital object itself can be restricted; additional license statements for use and reuse of the objects should be specified in the metadata. The object descriptions should be self-contained in respect to identifiers and metadata. The dataset itself should be described as a separate resource with a unique identifier and additional metadata describing the characteristics of the dataset as a whole. See the section ‘Publishing dataset descriptions’ in this document for more information. 
+The first requirement for institutions to provide usable information is to publish their object descriptions, organised in datasets, as Linked Data. The DERA requires institutions to publish their metadata with an open license (for some institutions this requirement might still be a challenge). The actual access to the digital object itself can be restricted; additional license statements for use and reuse of the objects should be specified in the metadata. The object descriptions should be self-contained in respect to identifiers (namely '[Uniform Resource Identifiers](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier)', URIs) and metadata (namely 'properties' and 'terms'). The dataset itself should be described as a separate resource with a unique identifier and additional metadata describing the characteristics of the dataset as a whole. See the section ‘Publishing dataset descriptions’ in this document for more information. 
 
-Publishing collection information as Linked Data can be done by transformation of the internal data of the collection management system to a Linked Data publishing format as described by the [Resource Description Framework](https://www.w3.org/TR/rdf11-concepts/) (RDF). The primary focus of the guidelines described in this document is to improve the visibility and interoperability of the heritage collections. These guidelines describe how to create interoperability with Linked Data and do not prescribe which techniques are used to store the data, let alone Linked Data technology within the systems. 
+Publishing collection information as Linked Data can be done by transformation of the internal data of the collection management system to a Linked Data publishing format as described by the [Resource Description Framework](https://www.w3.org/TR/rdf11-concepts/) (RDF). The primary focus of the guidelines described in this document is to improve the visibility and interoperability of the heritage collections. These guidelines describe how to create interoperability with Linked Data and do not prescribe which techniques are used to store the data, let alone Linked Data technology within the systems.
 
 ### 1.1 Data model
 #### 1.1.1 Generic data model
@@ -87,7 +87,7 @@ A dump could be either a zip-file containing files for every object or one big f
 In some cases conversion cannot be done by the collection management system itself and a separate publication functionality is required. This can be another system within the institution or a system run by a partner in the network (an aggregator or other service provider). An export in CSV format could for instance be converted into RDF with the [LDWizard](https://github.com/netwerk-digitaal-erfgoed/LDWizard-ErfgoedWizard).
 
 #### 1.3.2 Web compliancy level: resolvable URIs
-Although dumps are sufficient to support basic services, proper Linked Data implementations should provide Linked Data per object, in Linked Data terminology called a ‘resource’. Each resource in the collection should have a stable and well-formed [Uniform Resource Identifier](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier) (URI). This URI should be ‘resolvable’. This means that the webserver provides data about the resource in a format depending on the accept-header in the HTTP request. This functionality is called [content negotiation](https://www.w3.org/Protocols/rfc2616/rfc2616-sec12.html) which enables browsers or other applications to ask for a specific language or representation of the available content. For Linked Data this mechanism is used to differentiate between human-readable content (a rendered HTML page) and machine-readable content (in RDF).
+Although dumps are sufficient to support basic services, proper Linked Data implementations should provide Linked Data per object, in Linked Data terminology called a ‘resource’. Each resource in the collection should have a stable and well-formed URI. This URI should be ‘resolvable’. This means that the webserver provides data about the resource in a format depending on the accept-header in the HTTP request. This functionality is called [content negotiation](https://www.w3.org/Protocols/rfc2616/rfc2616-sec12.html) which enables browsers or other applications to ask for a specific language or representation of the available content. For Linked Data this mechanism is used to differentiate between human-readable content (a rendered HTML page) and machine-readable content (in RDF).
 
 For building real time network services that integrate disparate resources, content negotiation should be in place to serve the Linked Data. In this case creating a dump is no longer necessary as it is possible to describe the dataset as a collection of resolvable URIs.
 
@@ -111,35 +111,37 @@ Another area that needs further exploration is the handling of multiple layers o
 
 A third development is the concept of ['profile negotiation'](https://www.w3.org/TR/dx-prof-conneg/). Additional to content negotiation in profile negotiation a user can request data according to a certain information model, in our case the generic datamodel or the specific datamodel.
 
--------------
-Here after: markdown to be done.
-
-## Connecting sources
-"Connected sources" are sources that refer to each other and use each other's information. This is done using terms. Terms are, for example, subjects, persons or places. Each term has an identifier, a so-called URI. A URI is a unique address that makes unambiguously clear which term is meant. Terms and their URIs are managed in terminology sources, such as thesauri, reference lists or classification systems. Examples are AAT, GeoNames or WW2 Thesaurus.
+## 2 Connecting sources
+"Connected sources" are sources that refer to each other and use each other's information. This is done using terms. Terms are, for example, subjects, persons or places. Each term has a URI as an identifier. Because a URI is a unique webaddress the URI makes unambiguously clear which term is meant. Terms and their URIs are managed in terminology sources, such as thesauri, reference lists or classification systems. Examples are [AAT](https://www.getty.edu/research/tools/vocabularies/aat/), [GeoNames](https://www.geonames.org/) or [WO2 Thesaurus](https://data.niod.nl/WO2_Thesaurus.html) (Dutch).
 
 For connecting sources, it is important that institutions relate URIs of terms to the descriptions of their heritage objects. There are various options for this which are discussed below. The options are increasing in complexity – for example, they require changes to the collection management system – but also provide better functionality.
-### Using your own terminology source
+
+### 2.1 Using your own terminology source
 An institution can create and use its own terminology source. Most of the time a collection management system facilitates the development and maintenance of a thesaurus or set of persons. These sources contain the terms that the collection manager can use when describing heritage objects. This makes it easy to relate terms. A limitation, however, is that the maintenance of ones own source could be cumbersome. Another limitation is that the terms in the source may not be known to users outside the institution. This reduces the ability to connect sources from different institutions.
 
-[alignment van de eigen thesaurus mogelijk maken]
-### Using standardized terminology sources
-#### Manually searching a terminology source
-This is the simplest, low-tech approach to assign the URI of a term to the description of a heritage object. A collection manager goes to the system of a terminology source online and searches for a term, for example painting in AAT. The manager then copies the URI of the term, goes back to her collection management system and pastes the URI in a designated field. This approach requires few changes to the collection management system: a field has to be created in order to store the URI. On the other hand, this approach is cumbersome: a manager has to perform some actions manually.
+In the terminology management module of a collection management system the user should be able to relate the internal term to an external one. One could for instance state that the internal term for 'schilderij' is an exact match with the external term 'paintings' in the AAT. Other types of relations are possible, for instance an internal term 'oil-painting' is a narrower term of the AAT 'paintings' (See: TBD) Of course this external term is defined with the proper URI, and stored as such. The process of relating terms form one (internal) terminology source with another (external) one, is called _alignment_.
+
+If a terminology source is developed and used instead of a standardized one, the terminology source apparently has an added value to the field. For that reason the collection management system must be able to publish the terminology source, with alignments, as Linked Data (See: TBD).
+
+### 2.2 Using standardized terminology sources
+Using terms that are not connected to the network of internationally standardized terminology sources reduces the ability to connect sources from different institutions. We recommend to use as much standardized terms as possible.
+
+#### 2.2.1 Manually searching a terminology source
+This is the simplest, low-tech approach to assign the URI of a term to the description of an heritage object. A collection manager goes to the online system of a terminology source and searches for a term, for example 'paintings' in AAT. The manager then copies the URI of the term, goes back to her collection management system and pastes the URI in a designated field. This approach requires few changes to the collection management system: a field has to be created in order to store the URI. On the other hand, this approach is cumbersome: a manager has to perform some actions manually.
+
 #### Adding terms in bulk
 Instead of adding a term to an object description one-by-one, the curator could export the data from her system and add the terms and its URIs in bulk. This could be done with applications like Open Refine. For this approach, the collection management system must be able to export the data, for instance in CSV format, and import the new data with its additional link to the term.
+
 #### Importing a terminology source
 An institution can import one or more terminology sources into its collection management system, such as AAT and/or WW2 Thesaurus. This makes it easy to use terms: the collection manager can search for terms in her management system, without having to switch to the system of the source, as is the case when searching terms manually. A limitation is that the manager does not use current data: an import takes place periodically – for example: once a day or month – so that changes to the terminology source are not immediately visible.
+
 #### Searching a terminology source in real time
 An institution can query a terminology source in real time in its collection management system. A collection manager first enters a search query in a search field. Next, her management system – on the background – queries the terminology source, retrieves the terms that correspond to the query and presents them to the manager. The manager then chooses the desired term and the management system stores the URI of the chosen term. This ensures that the institution works with current data. However, the implementation of this approach in the management system can entail some difficulties: a connection must be established with the source – or multiple connections, if the institution wants to use multiple sources.
+
 #### Using the Network of Terms
 An institution can use the Network of Terms. The Network of Terms is a search engine for terms: it searches one or more terminology sources in real time. The Network of Terms can be used in a collection management system. A collection manager first enters a search query in a search field. Next, her management system – on the background – queries the Network of Terms, retrieves the terms that correspond to the query and presents them to the manager. The manager then chooses the desired term and the management system stores the URI of the chosen term. This makes it easier to use terminology sources: you only need to connect to the Network of Terms.
 
-
-
-
-
-
-## Publishing terminology sources
+## 2.3 Publishing terminology sources
 "Published terminology sources" are sources that are important to the cooperating institutions in the Dutch Digital Heritage Network. It enables collection managers to find and use terms in the sources more easily when describing their heritage objects. And that makes digital heritage easier to find for users.
 
 A terminology source can only be used if it meets a few conditions. Are you the manager of a source and are you considering making it available to the network? Then take the following aspects into account.
