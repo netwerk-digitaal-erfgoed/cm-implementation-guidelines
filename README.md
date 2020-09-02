@@ -143,6 +143,9 @@ An institution can query a terminology source in real time in its collection man
 #### 2.2.5 Using the Network of Terms
 An institution can use the [Network of Terms](http://demo.netwerkdigitaalerfgoed.nl/termennetwerk/en/faq). The Network of Terms is a search engine for terms: it searches one or more terminology sources in real time. The Network of Terms can be used in a collection management system. A collection manager first enters a search query in a search field. Next, her management system – on the background – queries the Network of Terms, retrieves the terms that correspond to the query and presents them to the manager. The manager then chooses the desired term and the management system stores the URI of the chosen term. This makes it easier to use multiple terminology sources: you only need to connect to the Network of Terms.
 
+#### 2.2.6 Indexing data from the terminology source
+If (the URI of) a term is stored, collection managers might be interested in related data in the collection management system, for instance alternative labels, pseudonyms, or labels in different languages. This helps the user of the collection management system to retrieve data from her system. As long as the web of data is not as decentralized as we'd wish (see 1.3.3), collection management systems could offer obtaining the needed data via resolving the URI (see 1.3.2) and store and index the extra data in the database.
+
 ## 2.3 Publishing terminology sources
 "Published terminology sources" are sources that are important to the cooperating institutions in the Dutch Digital Heritage Network. It enables collection managers to find and use terms in the sources more easily when describing their heritage objects. And that makes digital heritage easier to find for users.
 
