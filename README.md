@@ -16,9 +16,9 @@ Quick access through questions:
 * [Which data models are recommended?](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines#11-data-model)
 * [Which RDF-serialization is recommended?](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines#12-rdf-serialization)
 * [Which technique is recommended to provide data through the web?](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines#13-publishing-linked-data)
-* How can I use an internal terminology source?
-* How can I use an external terminology source?
-* Which data models are recommended for publishing terminology sources?
+* [How can I use an internal terminology source?](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines/#21-using-your-own-terminology-source)
+* [How can I use an external terminology source?](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines/#22-using-standardized-terminology-sources)
+* [Which processes and data models are recommended for publishing terminology sources?](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines/#23-publishing-terminology-sources)
 * Which techniques are recommended to provide data through the web?
 * Which data models are recommended for publishing dataset information?
 * Which techniques are recommended to provide data through the web?
@@ -30,7 +30,7 @@ RDF can be published in various serializations. For readability we present examp
 
 ## 1 Publishing collection information
 ### 1.0 Introduction
-The first requirement for institutions to provide usable information is to publish their object descriptions, organised in datasets, as Linked Data. The DERA requires institutions to publish their metadata with an open license (for some institutions this requirement might still be a challenge). The actual access to the digital object itself can be restricted; additional license statements for use and reuse of the objects should be specified in the metadata. The object descriptions should be self-contained in respect to identifiers (namely '[Uniform Resource Identifiers](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier)', URIs) and metadata (namely 'properties' and 'terms'). The dataset itself should be described as a separate resource with a unique identifier and additional metadata describing the characteristics of the dataset as a whole. See the section ‘Publishing dataset descriptions’ in this document for more information. 
+The first requirement for institutions to provide usable information is to publish their object descriptions, organised in datasets, as Linked Data. The DERA requires institutions to publish their metadata with an open license (for some institutions this requirement might still be a challenge). The actual access to the digital object itself can be restricted; additional license statements for use and reuse of the objects should be specified in the metadata. The object descriptions should be self-contained in respect to identifiers (namely '[Uniform Resource Identifiers](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier)', URIs) and metadata (namely 'properties' and 'terms'). The dataset itself should be described as a separate resource with a unique identifier and additional metadata describing the characteristics of the dataset as a whole. See the section 3 in this document for more information. 
 
 Publishing collection information as Linked Data can be done by transformation of the internal data of the collection management system to a Linked Data publishing format as described by the [Resource Description Framework](https://www.w3.org/TR/rdf11-concepts/) (RDF). The primary focus of the guidelines described in this document is to improve the visibility and interoperability of the heritage collections. These guidelines describe how to create interoperability with Linked Data and do not prescribe which techniques are used to store the data, let alone Linked Data technology within the systems.
 
@@ -71,10 +71,10 @@ In almost all programming languages libraries are available to transform one RDF
 
 If triples are published in both the generic and the specific model they are all included in the same data-file.
 
-You could provide more than one serialization and offer the user a choice with 'content negotiation'. (see [1.3.2 Web compliancy level: resolvable URIs](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines#132-web-compliancy-level-resolvable-uris)).
+You could provide more than one serialization and offer the user a choice with 'content negotiation'. (see [1.3.2](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines#132-web-compliancy-level-resolvable-uris)).
 
 #### 1.2.2 JSON-LD
-JSON-LD is the youngest format and comprehensible to webdevelopers that are used to JSON. The format is more difficult to process in native Linked Data environments. We therefore recommend only to use JSON-LD inline in the landing page of an object. (see [1.3.2 Web compliancy level: resolvable URIs](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines#132-web-compliancy-level-resolvable-uris))
+JSON-LD is the youngest format and comprehensible to webdevelopers that are used to JSON. The format is more difficult to process in native Linked Data environments. We therefore recommend only to use JSON-LD inline in the landing page of an object. (see [1.3.2](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines#132-web-compliancy-level-resolvable-uris))
 
 ### 1.3 Publishing Linked Data
 Linked Data can be published in several ways. In this part we will discuss four methods ranging in levels of complexity of implementation. Users could prefer one of these methods to obtain the data for their purpose, so the publication-methods should be offered in parallel.
@@ -144,43 +144,48 @@ An institution can query a terminology source in real time in its collection man
 An institution can use the [Network of Terms](http://demo.netwerkdigitaalerfgoed.nl/termennetwerk/en/faq). The Network of Terms is a search engine for terms: it searches one or more terminology sources in real time. The Network of Terms can be used in a collection management system. A collection manager first enters a search query in a search field. Next, her management system – on the background – queries the Network of Terms, retrieves the terms that correspond to the query and presents them to the manager. The manager then chooses the desired term and the management system stores the URI of the chosen term. This makes it easier to use multiple terminology sources: you only need to connect to the Network of Terms.
 
 #### 2.2.6 Indexing data from the terminology source
-If (the URI of) a term is stored, collection managers might be interested in related data in the collection management system, for instance alternative labels, pseudonyms, or labels in different languages. This helps the user of the collection management system to retrieve data from her system. As long as the web of data is not as decentralized as we'd wish (see 1.3.3), collection management systems could offer obtaining the needed data via resolving the URI (see 1.3.2) and store and index the extra data in the database.
+If (the URI of) a term is stored, collection managers might be interested in related data in the collection management system, for instance alternative labels, pseudonyms, or labels in different languages. This helps the user of the collection management system to retrieve data from her system. As long as the web of data is not as decentralized as we'd wish (see 1.3.3), collection management systems could offer obtaining the needed data via resolving the URI (see [1.3.2]()) and store and index the extra data in the database.
 
 ## 2.3 Publishing terminology sources
 "Published terminology sources" are sources that are important to the cooperating institutions in the Dutch Digital Heritage Network. It enables collection managers to find and use terms in the sources more easily when describing their heritage objects. And that makes digital heritage easier to find for users.
 
 A terminology source can only be used if it meets a few conditions. Are you the manager of a source and are you considering making it available to the network? Then take the following aspects into account.
-Authority
+
+### 2.3.1 Authority
 Terms are not just ordinary words: they are official notations. The manager of a terminology source guarantees their quality. For example: terms must be accurate and current. Another example: the manager ensures that her terms are permanently available and can be used for a long time. This makes a terminology source an authority on which other institutions can build.
-Technology
-A terminology source is used by both humans and machines. For example, institutions' collection management systems must be able to connect to the source. To make this possible, the source must meet certain technological requirements. These requirements follow the Linked Data principles and best practices. This means, for example, that every term in the source gets a sustainable URI; when dereferencing this URI, metadata about the term is returned. This metadata must be expressed according to a specific RDF metadata model, such as SKOS or Schema.org. In addition, terms in the source must be searchable through a SPARQL endpoint.
-Cooperation
-A terminology source is used by institutions. There is a good chance that these institutions do not use one, but several sources. In order to increase the ease of use of sources, collaboration between source managers and collection managers is essential. For example about the way in which collection managers can propose changes to terms to sources: this should follow a uniform process. Another example: it can happen that two sources define the same term (such as painting). The sources should then jointly agree that these terms have the same meaning and refer to each other's terms – this clarifies the relationship between both terms for collection managers.
 
+### 2.3.2 Technology
+A terminology source is used by both humans and machines. For example, institutions' collection management systems must be able to connect to the source. To make this possible, the source must meet certain technological requirements. These requirements follow the Linked Data principles and best practices. This means, for example, that every term in the source gets a sustainable URI; when dereferencing this URI, metadata about the term is returned. **This metadata must be expressed according to a specific RDF metadata model, preferably [Simple Knowledgde Organization System SKOS](https://www.w3.org/2009/08/skos-reference/skos.html) or Schema.org.** SKOS contains various types of relations, eg. skos:exactMatch, skos:closeMatch or skos:broader to store an alignment between your terminology source and standardized terms.
 
+In addition, terms in the source must be searchable through a SPARQL endpoint. This enables a connection to the Network of Terms. 
 
-## Publishing dataset descriptions
+### 2.3.3 Cooperation
+A terminology source is used by institutions. There is a good chance that these institutions do not use one, but several sources. In order to increase the ease of use of sources, collaboration between source managers and collection managers is essential. For example about the way in which collection managers can propose changes to terms to sources: this should follow a uniform process. Another example: it can happen that two sources define the same term (such as painting). The sources should then jointly agree that these terms have the same meaning and refer to each other's terms – this clarifies the relationship between both terms for collection managers. The collection management system should support these processes.
+
+---
+
+## 3 Publishing dataset descriptions
 
 To increase the findability of datasets of heritage institutions, it is important to publish the dataset descriptions according to a well documented, machine-readable model. When rich dataset descriptions are used, published not only as HTML (for humans) but also as meaningful metadata (for the machine), the findability and use of datasets that heritage institutions make available, will improve.
+
 ### Publication model for dataset descriptions
 The NDE has drafted a publication model which is based on schema.org. Schema.org is a joint initiative of three major search engines: Bing, Google and Yahoo with the aim of setting up a shared scheme to structure data. Vocabularies from schema.org are developed through an open community process. For datasets, the class https://schema.org/Dataset has been developed. This class is based on W3C DCAT work and benefits from collaboration around the DCAT, ADMS and VoID vocabularies.
 
 See [https://github.com/netwerk-digitaal-erfgoed/project-organisations-datasets/tree/master/publication-model](https://github.com/netwerk-digitaal-erfgoed/project-organisations-datasets/tree/master/publication-model) for the the complete specification of the publication model.
 
 https://netwerk-digitaal-erfgoed.github.io/requirements-datasets/
+
 ### How to publish dataset descriptions
 For good findability, every dataset description must be accessible via the Internet, must be legible for humans and machines, and use the publication model. The translation of the publication model to a format that can be published and reconstructed later (so that it can be used again) is called serialization (or encoding). The serialization of dataset descriptions can take several forms, JSON-LD is preferred.
 
 Most (automated) users expect to find the metadata in the page itself (inline). Spiders of search engines such as Google might not follow linked JSON-LD files. Even if the linked files (via Javascript) are "injected" into the page, most spiders do not pick up on this. There are more serializations of RDF, such as RDF/XML and Turtle. Spiders of search engines such as Google currently only support microdata, RDFa and JSON-LD. Because search engine findability is an important driver, the use of inline JSON-LD is recommended. However, this does not prevent the additional publication of the dataset description in other serialization formats or a (content negotiation based) separate resource.
-### Spreading the knowledge about datasets
 
+### Spreading the knowledge about datasets
 The choice for schema.org as a basis for the publication model for dataset descriptions comes with the benefit that this model is known (and used) by big search engines. By adding the dataset description pages to the websites sitemap, search engines are likely to pick up the dataset description and make them available in tools like [Google Dataset Search](https://datasetsearch.research.google.com/).
 
 By registering the datasets with the NDE Register, the network of Dutch heritage institutions can easily find relevant datasets to link with. More generic (open) dataset registers, like data.overheid.nl, can also be used to promote the datasets of the institutions. 
 
-
-
-## Duurzame identifiers aangebracht
+## 4 Duurzame identifiers aangebracht
 De webadressen voor objecten op een website van een erfgoedinstelling kunnen om allerlei redenen in de toekomst veranderen. Daarom worden handles geïntroduceerd voor objecten en termen, zodat de verwijzingen die gebruikers maken ook in de toekomst kunnen volgen naar de website en de data, waar deze zich op dat moment ook bevindt.
 
 ## duurzame identifiers geborgd:
