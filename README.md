@@ -94,7 +94,7 @@ Although dumps are sufficient to support basic services, proper Linked Data impl
 
 For building real time network services that integrate disparate resources, content negotiation should be in place to serve the Linked Data. In this case creating a dump is no longer necessary as it is possible to describe the dataset as a collection of resolvable URIs.
 
-To improve the overall discoverability on the web it is recommended to add the Schema.org Linked Data format to the landing page of the object on the website. [Google recommends](https://developers.google.com/search/docs/guides/intro-structured-data) doing this by including the Linked Data as [JSON-LD](https://json-ld.org/) in the page.
+To improve the overall discoverability on the web it is recommended to add the Schema.org Linked Data format to the landing page of the object on the website. [Google recommends](https://developers.google.com/search/docs/guides/intro-structured-data) doing this by including the Linked Data as [JSON-LD](https://json-ld.org/) in the page. The json-ld file could be provided separately from the webpage and including with a JavaScript-function. See this [example](http://cclod.netwerkdigitaalerfgoed.nl/test.html). 
 
 #### 1.3.3 Advanced level: queryable Linked Data
 Instead of building large centralized services NDE envisions a distributed network of empowered organizations that share and reuse their digital information directly. This means that organizations, data providers or service providers, can easily query and combine data from several sources in the network. This satifies two needs.
