@@ -1,0 +1,12 @@
+<https://verhalenwiki.nl/id/3656> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://schema.org/CreativeWork> .
+<https://verhalenwiki.nl/id/3656> <http://www.w3.org/2000/01/rdf-schema#label> "Papieren etiket met tekst 'Prize - Medal Geneva, The produce of Holland'" .
+<https://verhalenwiki.nl/id/3656> <http://schema.org/url> "http://verhalenwiki.nl/index.php?title=Toon_object&identifier=3656" .
+<https://verhalenwiki.nl/id/3656> <http://schema.org/isPartOf> "Nationaal Jenevermuseum Schiedam, Gekroonde Brandersketel" .
+<https://verhalenwiki.nl/id/3656> <http://schema.org/isPartOf> "etiketten-jenever/gin" .
+<https://verhalenwiki.nl/id/3656> <http://schema.org/genre> "Etiket" .
+<https://verhalenwiki.nl/id/3656> <http://schema.org/creator> "Distilleerderij Henkes" .
+<https://verhalenwiki.nl/id/3656> <http://schema.org/size> "9 x 5.4 cm" .
+<https://verhalenwiki.nl/id/3656> <http://schema.org/identifier> "05555" .
+<https://verhalenwiki.nl/id/3656> <http://schema.org/contentLocation> "Schiedam" .
+<https://verhalenwiki.nl/id/3656> <http://schema.org/material> "Papier" .
+<https://verhalenwiki.nl/id/3656> <http://schema.org/about> "J.H. Henkes" .

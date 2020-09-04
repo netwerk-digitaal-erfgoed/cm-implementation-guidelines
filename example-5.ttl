@@ -1,0 +1,38 @@
+@base <https://literatuurmuseum.nl/id/> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema:  <http://schema.org/> .
+
+# Example of the most generic rdf:type CreativeWork and its properties
+<987654321>
+	rdf:type schema:CreativeWork ;
+	rdfs:label "Pijp van Harry Mulisch" ;
+	schema:genre "pijp" ;
+	schema:size "15 cm" ;
+	schema:identifier "987654321" ;
+	schema:material "hout" ;
+	schema:dateCreated "1950-1960" .
+
+# Less generic rdf:type but with more precise properties for size
+<123456789>
+	rdf:type schema:VisualArtwork ;
+	rdfs:label "Wim Bijmoer, Het fluitketeltje en andere versjes, 1950" ;
+	schema:url "https://literatuurmuseum.nl/verhalen/annie-mg-schmidt/de-versjes#&gid=2&pid=1" ;
+	schema:genre "Boekomslag" ; # vind hiervoor geen AAT-term
+	schema:creator <http://data.rkd.nl/artists/8342> ;
+	schema:height <123456789#height> ;
+	schema:width <123456789#width> ;
+	schema:identifier "H7-41a" ;
+	schema:material <https://data.cultureelerfgoed.nl/term/id/cht/2d28d9aa-77e8-40ab-b0fe-f04d99f57955> ; # papier
+	schema:dateCreated "1950" .
+
+<123456789#height>
+	schema:value 14.4 ;
+	schema:unitCode "cm" .
+
+<123456789#width>
+	schema:value 7.8 ;
+	schema:unitCode "cm" .
+
+
+

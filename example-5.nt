@@ -1,0 +1,21 @@
+<https://literatuurmuseum.nl/id/987654321> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://schema.org/CreativeWork> .
+<https://literatuurmuseum.nl/id/987654321> <http://www.w3.org/2000/01/rdf-schema#label> "Pijp van Harry Mulisch" .
+<https://literatuurmuseum.nl/id/987654321> <http://schema.org/genre> "pijp" .
+<https://literatuurmuseum.nl/id/987654321> <http://schema.org/size> "15 cm" .
+<https://literatuurmuseum.nl/id/987654321> <http://schema.org/identifier> "987654321" .
+<https://literatuurmuseum.nl/id/987654321> <http://schema.org/material> "hout" .
+<https://literatuurmuseum.nl/id/987654321> <http://schema.org/dateCreated> "1950-1960" .
+<https://literatuurmuseum.nl/id/123456789> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://schema.org/VisualArtwork> .
+<https://literatuurmuseum.nl/id/123456789> <http://www.w3.org/2000/01/rdf-schema#label> "Wim Bijmoer, Het fluitketeltje en andere versjes, 1950" .
+<https://literatuurmuseum.nl/id/123456789> <http://schema.org/url> "https://literatuurmuseum.nl/verhalen/annie-mg-schmidt/de-versjes#&gid=2&pid=1" .
+<https://literatuurmuseum.nl/id/123456789> <http://schema.org/genre> "Boekomslag" .
+<https://literatuurmuseum.nl/id/123456789> <http://schema.org/creator> <http://data.rkd.nl/artists/8342> .
+<https://literatuurmuseum.nl/id/123456789> <http://schema.org/height> <https://literatuurmuseum.nl/id/123456789#height> .
+<https://literatuurmuseum.nl/id/123456789> <http://schema.org/width> <https://literatuurmuseum.nl/id/123456789#width> .
+<https://literatuurmuseum.nl/id/123456789> <http://schema.org/identifier> "H7-41a" .
+<https://literatuurmuseum.nl/id/123456789> <http://schema.org/material> <https://data.cultureelerfgoed.nl/term/id/cht/2d28d9aa-77e8-40ab-b0fe-f04d99f57955> .
+<https://literatuurmuseum.nl/id/123456789> <http://schema.org/dateCreated> "1950" .
+<https://literatuurmuseum.nl/id/123456789#height> <http://schema.org/value> "14.4"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<https://literatuurmuseum.nl/id/123456789#height> <http://schema.org/unitCode> "cm" .
+<https://literatuurmuseum.nl/id/123456789#width> <http://schema.org/value> "7.8"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<https://literatuurmuseum.nl/id/123456789#width> <http://schema.org/unitCode> "cm" .
