@@ -48,7 +48,9 @@ Interesting links:
 
 Some basic examples for:
 * a [photo with Dublin Core properties](example-2.ttl)
-* the same [photo with Schema.org properties](example-3.ttl)
+* the same [photo with schema.org properties](example-3.ttl)
+* a [museum object with schema.org properties](example-4.ttl)
+* a [two museum objects with schema.org properties](example-5.ttl), showing different rdf:types
 
 #### 1.1.2 Domain data model
 The generic model described above will improve the general visibility of the cultural heritage objects, the terms describing the objects and the datasets in which the objects and terms are grouped. In many cases this will lead to further exploration of these objects. For specific users or communities a deeper understanding of the knowledge in the data will be important. Because of the open structure of Linked Data there is no restriction to simply add another layer of description to the resource. See for [example](example-1.ttl) this object description. So institutions can add extra properties and class definitions to the Linked Data they publish. In general [CIDOC-CRM](http://www.cidoc-crm.org/) (and its derivative [Linked Art](https://linked.art/model/)) can be appropriate for museums. For archives the [RiC-O ontology](https://www.ica.org/standards/RiC/RiC-O_v0-1.html) seems to be promising and for libraries [RDA Elements](https://www.rdaregistry.info/Elements/) or [BIBFRAME](https://www.loc.gov/bibframe/) could be relevant. It is up to the institutions in the separate domains to agree on the use and implementation of these shared standards. Best practices and information about actual implementations will be shared in the network.
@@ -68,7 +70,7 @@ Interesting link:
 
 In almost all programming languages libraries are available to transform one RDF-serialization into another. Check for libraries in your favorite programming language.
 
-**Please offer your data in at least n-triples format.** See for example [this photo-example](example-3.nt) that we introduced in turtle format earlier.
+**Please offer your data in at least n-triples format.** See for example [this photo-example](nt-examples/example-3.nt) that we introduced in turtle format earlier.
 
 If triples are published in both the generic and the specific model they are all included in the same data-file.
 
