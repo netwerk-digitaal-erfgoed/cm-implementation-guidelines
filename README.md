@@ -13,7 +13,7 @@ This document aims to initiate an open discussion and cooperation with the techn
 ### 0.2 Overview
 A large part of the guidelines in this document follows the general practice for publishing [Linked Data](https://en.wikipedia.org/wiki/Linked_data). As stated in the [reference architecture](https://dera.netwerkdigitaalerfgoed.nl/index.php/Linked_Data) (Dutch) Linked Data is regarded a key technology in the cultural heritage domain for integrating the huge amount of information resources within the network. Linked Data is therefore the driver for providing and maintaining coherent digital services within the network.
 
-The object descriptions should be self-contained in respect to persistent identifiers (see [section 4](#4-adding-persistent-identifiers), '[Uniform Resource Identifiers](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier)', URIs) and metadata. (see [section 1](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines/#1-publishing-collection-information)). This metadata should contain as much terms as possible (see [section 2](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines/#2-connecting-sources)). The dataset itself should be described as a separate resource with a unique identifier and additional metadata describing the characteristics of the dataset as a whole (see [section 3](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines/#3-publishing-dataset-descriptions)).
+The object descriptions should be self-contained in respect to persistent identifiers (see [section 4](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines/#4-adding-persistent-identifiers), '[Uniform Resource Identifiers](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier)', URIs) and metadata. (see [section 1](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines/#1-publishing-collection-information)). This metadata should contain as much terms as possible (see [section 2](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines/#2-connecting-sources)). The dataset itself should be described as a separate resource with a unique identifier and additional metadata describing the characteristics of the dataset as a whole (see [section 3](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines/#3-publishing-dataset-descriptions)).
 
 ### 0.3 Quick access through questions
 * [Which data models are recommended?](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines#11-data-model)
@@ -184,7 +184,7 @@ The NDE has drafted a publication model which is based on schema.org. For datase
 ### 3.2 How to publish dataset descriptions
 For good findability, every dataset description must be accessible via the Internet, must be legible for humans and machines, and use the publication model. The serialization of dataset descriptions can take several serializations, JSON-LD is preferred.
 
-A user can obtain a dataset description with a sustainable URI as described in section 4 and published as a resolvable URI as described in [section 1.3.2](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines#132-web-compliancy-level-resolvable-uris).
+A user can obtain a dataset description with a sustainable URI as described in [section 4](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines/#4-adding-persistent-identifiers) and published as a resolvable URI as described in [section 1.3.2](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines#132-web-compliancy-level-resolvable-uris).
 
 Most (automated) users expect to find the metadata in the page itself (inline). Spiders of search engines such as Google might not follow linked JSON-LD files. Even if the linked files (via Javascript) are "injected" into the page, most spiders do not pick up on this. There are more serializations of RDF, such as RDF/XML and Turtle. Spiders of search engines such as Google currently only support microdata, RDFa and JSON-LD. Because search engine findability is an important driver, the use of inline JSON-LD is recommended. However, this does not prevent the additional publication of the dataset description in other serialization formats or a (content negotiation based) separate resource.
 
@@ -198,6 +198,7 @@ TBD
 
 * Please inform yourselves about 'persistent identifiers' on [this website](https://www.pidwijzer.nl/en).
 * URIs are webaddresses.
+* Everything (eg. heritage objects, terms, datasets) needs a persistent URI.
 
 <!--## duurzame identifiers geborgd:
 * (wereldwijde) unieke identifiers
