@@ -56,8 +56,14 @@ Some basic examples for:
 The generic model described above will improve the general visibility of the cultural heritage objects, the terms describing the objects and the datasets in which the objects and terms are grouped. In many cases this will lead to further exploration of these objects. For specific users or communities a deeper understanding of the knowledge in the data will be important. Because of the open structure of Linked Data there is no restriction to simply add another layer of description to the resource. See for [example](example-1.ttl) this object description. So institutions can add extra properties and class definitions to the Linked Data they publish. In general [CIDOC-CRM](http://www.cidoc-crm.org/) (and its derivative [Linked Art](https://linked.art/model/)) can be appropriate for museums. For archives the [RiC-O ontology](https://www.ica.org/standards/RiC/RiC-O_v0-1.html) seems to be promising and for libraries [RDA Elements](https://www.rdaregistry.info/Elements/) or [BIBFRAME](https://www.loc.gov/bibframe/) could be relevant. It is up to the institutions in the separate domains to agree on the use and implementation of these shared standards. Best practices and information about actual implementations will be shared in the network.
 
 #### 1.1.3 Rights
-TBD
 The DERA requires institutions to publish their metadata with an open license (for some institutions this requirement might still be a challenge). The actual access to the digital object itself can be restricted; additional license statements for use and reuse of the objects should be specified in the metadata. 
+
+TBD:
+* use schema:license
+* differentiate license for 
+	* dataset
+	* object metadata
+	* metadata reproduction
 
 ### 1.2 RDF serialization
 RDF - being the principle to express data in triples - can be formated in various 'serializations'. Different RDF serialization are useful in different situations.
@@ -167,15 +173,13 @@ In addition, terms in the source must be searchable through a SPARQL endpoint. T
 ### 2.3.3 Cooperation
 A terminology source is used by institutions. There is a good chance that these institutions do not use one, but several sources. In order to increase the ease of use of sources, collaboration between source managers and collection managers is essential. For example about the way in which collection managers can propose changes to terms to sources: this should follow a uniform process. Another example: it can happen that two sources define the same term (such as painting). The sources should then jointly agree that these terms have the same meaning and refer to each other's terms – this clarifies the relationship between both terms for collection managers. The collection management system should support these processes.
 
-
 ## 3 Publishing dataset descriptions
-
-To increase the findability of datasets of heritage institutions, it is important to publish the dataset descriptions according to a well documented, machine-readable model. When rich dataset descriptions are used, published not only as HTML (for humans) but also as meaningful metadata (for the machine), the findability and use of datasets that heritage institutions make available, will improve.  Publishing dataset descriptions should obey [these requirements][](https://netwerk-digitaal-erfgoed.github.io/requirements-datasets/), which contains a more elaborate description of the publishing process.
+To increase the findability of datasets of heritage institutions, it is important to publish the dataset descriptions according to a well documented, machine-readable model. When rich dataset descriptions are used, published not only as HTML (for humans) but also as meaningful metadata (for the machine), the findability and use of datasets that heritage institutions make available, will improve.  Publishing dataset descriptions should obey [these requirements](https://netwerk-digitaal-erfgoed.github.io/requirements-datasets/), which contains a more elaborate description of the publishing process.
 
 ### 3.1 Publication model for dataset descriptions
 The NDE has drafted a publication model which is based on schema.org. For datasets, the class https://schema.org/Dataset has been developed. This class is based on W3C DCAT work and benefits from collaboration around the DCAT, ADMS and VoID vocabularies.
 
-See [https://github.com/netwerk-digitaal-erfgoed/project-organisations-datasets/tree/master/publication-model](https://github.com/netwerk-digitaal-erfgoed/project-organisations-datasets/tree/master/publication-model) for the the complete specification of the publication model.
+<!--TBD See [https://github.com/netwerk-digitaal-erfgoed/project-organisations-datasets/tree/master/publication-model](https://github.com/netwerk-digitaal-erfgoed/project-organisations-datasets/tree/master/publication-model) for the the complete specification of the publication model.-->
 
 ### 3.2 How to publish dataset descriptions
 For good findability, every dataset description must be accessible via the Internet, must be legible for humans and machines, and use the publication model. The serialization of dataset descriptions can take several serializations, JSON-LD is preferred.
