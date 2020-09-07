@@ -36,7 +36,7 @@ Publishing collection information as Linked Data can be done by transformation o
 
 ### 1.1 Data model
 #### 1.1.1 Generic data model
-The main goal for publishing the object descriptions as Linked Data is to improve the data integration and visibility in the network. Because the heritage network spans institutions from the library, archive and museum domains, a generic data model that can support general visibility on the web is needed. **In order to support a broader visibility on the web outside the cultural heritage domain, we have chosen to conform to [Schema.org](https://schema.org/).**
+The main goal for publishing the object descriptions as Linked Data is to improve the data integration and visibility in the network. Because the heritage network spans institutions from the library, archive and museum domains, a generic data model that can support general visibility on the web is needed. **In order to support a broader visibility on the web outside the cultural heritage domain, we have chosen to conform to [Schema.org](https://schema.org/).** Schema.org is a joint initiative of three major search engines: Bing, Google and Yahoo with the aim of setting up a shared scheme to structure data. Vocabularies from schema.org are developed through an open community process.
 
 Interesting links:
 * [https://www.contentking.nl/academy/schema-structured-data/](https://www.contentking.nl/academy/schema-structured-data/) (Dutch)
@@ -152,7 +152,7 @@ If (the URI of) a term is stored, collection managers might be interested in rel
 ## 2.3 Publishing terminology sources
 "Published terminology sources" are sources that are important to the cooperating institutions in the Dutch Digital Heritage Network. It enables collection managers to find and use terms in the sources more easily when describing their heritage objects. And that makes digital heritage found easier by data-users. Publishing terminology sources should obey [these requirements](https://netwerk-digitaal-erfgoed.github.io/requirements-terminologiebronnen/) (Dutch).
 
-A terminology source is considered a dataset, with sustainable URIs as described in section 4, described according to the guidelines in section [3](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines/#3-publishing-dataset-descriptions), and published as dump, with resolvable URIs and in a SPARQL query as described in section [1](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines/#1-publishing-collection-information).
+A terminology source is considered a dataset, with sustainable URIs as described in section 4, described according to the guidelines in [section 3](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines/#3-publishing-dataset-descriptions), and published as dump, with resolvable URIs and in a SPARQL query as described in [section 1](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines/#1-publishing-collection-information).
 
 A terminology source can only be used if it meets a few conditions. Are you the manager of a source and are you considering making it available to the network? Then take the following aspects into account.
 
@@ -167,23 +167,24 @@ In addition, terms in the source must be searchable through a SPARQL endpoint. T
 ### 2.3.3 Cooperation
 A terminology source is used by institutions. There is a good chance that these institutions do not use one, but several sources. In order to increase the ease of use of sources, collaboration between source managers and collection managers is essential. For example about the way in which collection managers can propose changes to terms to sources: this should follow a uniform process. Another example: it can happen that two sources define the same term (such as painting). The sources should then jointly agree that these terms have the same meaning and refer to each other's terms – this clarifies the relationship between both terms for collection managers. The collection management system should support these processes.
 
----
 
 ## 3 Publishing dataset descriptions
 
-To increase the findability of datasets of heritage institutions, it is important to publish the dataset descriptions according to a well documented, machine-readable model. When rich dataset descriptions are used, published not only as HTML (for humans) but also as meaningful metadata (for the machine), the findability and use of datasets that heritage institutions make available, will improve. Publishing dataset descriptions should obey [these requirements][](https://netwerk-digitaal-erfgoed.github.io/requirements-datasets/).
+To increase the findability of datasets of heritage institutions, it is important to publish the dataset descriptions according to a well documented, machine-readable model. When rich dataset descriptions are used, published not only as HTML (for humans) but also as meaningful metadata (for the machine), the findability and use of datasets that heritage institutions make available, will improve.  Publishing dataset descriptions should obey [these requirements][](https://netwerk-digitaal-erfgoed.github.io/requirements-datasets/), which contains a more elaborate description of the publishing process.
 
-### Publication model for dataset descriptions
-The NDE has drafted a publication model which is based on schema.org. Schema.org is a joint initiative of three major search engines: Bing, Google and Yahoo with the aim of setting up a shared scheme to structure data. Vocabularies from schema.org are developed through an open community process. For datasets, the class https://schema.org/Dataset has been developed. This class is based on W3C DCAT work and benefits from collaboration around the DCAT, ADMS and VoID vocabularies.
+### 3.1 Publication model for dataset descriptions
+The NDE has drafted a publication model which is based on schema.org. For datasets, the class https://schema.org/Dataset has been developed. This class is based on W3C DCAT work and benefits from collaboration around the DCAT, ADMS and VoID vocabularies.
 
 See [https://github.com/netwerk-digitaal-erfgoed/project-organisations-datasets/tree/master/publication-model](https://github.com/netwerk-digitaal-erfgoed/project-organisations-datasets/tree/master/publication-model) for the the complete specification of the publication model.
 
-### How to publish dataset descriptions
-For good findability, every dataset description must be accessible via the Internet, must be legible for humans and machines, and use the publication model. The translation of the publication model to a format that can be published and reconstructed later (so that it can be used again) is called serialization (or encoding). The serialization of dataset descriptions can take several forms, JSON-LD is preferred.
+### 3.2 How to publish dataset descriptions
+For good findability, every dataset description must be accessible via the Internet, must be legible for humans and machines, and use the publication model. The serialization of dataset descriptions can take several serializations, JSON-LD is preferred.
+
+A user can obtain a dataset description with a sustainable URI as described in section 4 and published as a resolvable URI as described in [section 1.3.2](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines#132-web-compliancy-level-resolvable-uris).
 
 Most (automated) users expect to find the metadata in the page itself (inline). Spiders of search engines such as Google might not follow linked JSON-LD files. Even if the linked files (via Javascript) are "injected" into the page, most spiders do not pick up on this. There are more serializations of RDF, such as RDF/XML and Turtle. Spiders of search engines such as Google currently only support microdata, RDFa and JSON-LD. Because search engine findability is an important driver, the use of inline JSON-LD is recommended. However, this does not prevent the additional publication of the dataset description in other serialization formats or a (content negotiation based) separate resource.
 
-### Spreading the knowledge about datasets
+### 3.3 Spreading the knowledge about datasets
 The choice for schema.org as a basis for the publication model for dataset descriptions comes with the benefit that this model is known (and used) by big search engines. By adding the dataset description pages to the websites sitemap, search engines are likely to pick up the dataset description and make them available in tools like [Google Dataset Search](https://datasetsearch.research.google.com/).
 
 By registering the datasets with the NDE Register, the network of Dutch heritage institutions can easily find relevant datasets to link with. More generic (open) dataset registers, like data.overheid.nl, can also be used to promote the datasets of the institutions. 
