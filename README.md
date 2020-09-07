@@ -13,7 +13,7 @@ This document aims to initiate an open discussion and cooperation with the techn
 ### 0.2 Overview
 A large part of the guidelines in this document follows the general practice for publishing [Linked Data](https://en.wikipedia.org/wiki/Linked_data). As stated in the [reference architecture](https://dera.netwerkdigitaalerfgoed.nl/index.php/Linked_Data) (Dutch) Linked Data is regarded a key technology in the cultural heritage domain for integrating the huge amount of information resources within the network. Linked Data is therefore the driver for providing and maintaining coherent digital services within the network.
 
-The object descriptions should be self-contained in respect to identifiers (namely '[Uniform Resource Identifiers](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier)', URIs) and metadata. (see [section 1](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines/#1-publishing-collection-information)). This metadata should contain as much terms as possible (see [section 2](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines/#2-connecting-sources)). The dataset itself should be described as a separate resource with a unique identifier and additional metadata describing the characteristics of the dataset as a whole (see [section 3](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines/#3-publishing-dataset-descriptions)).
+The object descriptions should be self-contained in respect to persistent identifiers (see [section 4](#4-adding-persistent-identifiers), '[Uniform Resource Identifiers](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier)', URIs) and metadata. (see [section 1](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines/#1-publishing-collection-information)). This metadata should contain as much terms as possible (see [section 2](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines/#2-connecting-sources)). The dataset itself should be described as a separate resource with a unique identifier and additional metadata describing the characteristics of the dataset as a whole (see [section 3](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines/#3-publishing-dataset-descriptions)).
 
 ### 0.3 Quick access through questions
 * [Which data models are recommended?](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines#11-data-model)
@@ -22,11 +22,11 @@ The object descriptions should be self-contained in respect to identifiers (name
 * [How can I use an internal terminology source?](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines/#21-using-your-own-terminology-source)
 * [How can I use an external terminology source?](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines/#22-using-standardized-terminology-sources)
 * [Which processes and data models are recommended for publishing terminology sources?](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines/#23-publishing-terminology-sources)
-* Which techniques are recommended to provide data through the web?
-* Which data models are recommended for publishing dataset information?
-* Which techniques are recommended to provide data through the web?
-* Which protocols are recommended for persistent identification?
+* [Which data models are recommended for publishing dataset information?](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines#31-publication-model-for-dataset-descriptions)
+* [Which techniques are recommended to provide datasetdescriptions through the web?](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines#32-how-to-publish-dataset-descriptions)
+* [How do I promote my datasets?](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines#33-spreading-the-knowledge-about-datasets)
 * How are persistent identifiers stored in the database?
+* Which protocols are recommended for persistent identification?
 
 ### 0.4 About this document
 RDF can be published in various serializations. For readability we present examples in turtle serialization, although we recommend other serializations in different situations.
@@ -80,10 +80,10 @@ In almost all programming languages libraries are available to transform one RDF
 
 If triples are published in both the generic and the specific model they are all included in the same data-file.
 
-You could provide more than one serialization and offer the user a choice with 'content negotiation'. (see [1.3.2](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines#132-web-compliancy-level-resolvable-uris)).
+You could provide more than one serialization and offer the user a choice with 'content negotiation'. (see [section 1.3.2](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines#132-web-compliancy-level-resolvable-uris)).
 
 #### 1.2.2 JSON-LD
-JSON-LD is the youngest format and comprehensible to webdevelopers that are used to JSON. The format is more difficult to process in native Linked Data environments. We therefore recommend only to use JSON-LD inline in the landing page of an object. (see [1.3.2](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines#132-web-compliancy-level-resolvable-uris))
+JSON-LD is the youngest format and comprehensible to webdevelopers that are used to JSON. The format is more difficult to process in native Linked Data environments. We therefore recommend only to use JSON-LD inline in the landing page of an object. (see [section 1.3.2](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines#132-web-compliancy-level-resolvable-uris))
 
 ### 1.3 Publishing Linked Data
 Linked Data can be published in several ways. In this part we will discuss four methods ranging in levels of complexity of implementation. Users could prefer one of these methods to obtain the data for their purpose, so the publication-methods should be offered in parallel.
@@ -128,9 +128,9 @@ For connecting sources, it is important that institutions relate URIs of terms t
 ### 2.1 Using your own terminology source
 An institution can create and use its own terminology source. Most of the time a collection management system facilitates the development and maintenance of a thesaurus or set of persons. These sources contain the terms that the collection manager can use when describing heritage objects. This makes it easy to relate terms. A limitation, however, is that the maintenance of ones own source could be cumbersome. Another limitation is that the terms in the source may not be known to users outside the institution. This reduces the ability to connect sources from different institutions.
 
-In the terminology management module of a collection management system the user should be able to relate the internal term to an external one. One could for instance state that the internal term for 'schilderij' is an exact match with the external term 'paintings' in the AAT. Other types of relations are possible, for instance an internal term 'oil-painting' is a narrower term of the AAT 'paintings' (see: [2.3.2](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines/#232-technology-and-datamodel)) Of course this external term is defined with the proper URI, and stored as such. The process of relating terms form one (internal) terminology source with another (external) one, is called _alignment_.
+In the terminology management module of a collection management system the user should be able to relate the internal term to an external one. One could for instance state that the internal term for 'schilderij' is an exact match with the external term 'paintings' in the AAT. Other types of relations are possible, for instance an internal term 'oil-painting' is a narrower term of the AAT 'paintings' (see: [section 2.3.2](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines/#232-technology-and-datamodel)) Of course this external term is defined with the proper URI, and stored as such. The process of relating terms form one (internal) terminology source with another (external) one, is called _alignment_.
 
-If a terminology source is developed and used instead of a standardized one, the terminology source apparently has an added value to the field. For that reason the collection management system must be able to publish the terminology source, with alignments, as Linked Data (see: [2.3](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines/#23-publishing-terminology-sources)).
+If a terminology source is developed and used instead of a standardized one, the terminology source apparently has an added value to the field. For that reason the collection management system must be able to publish the terminology source, with alignments, as Linked Data (see: [section 2.3](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines/#23-publishing-terminology-sources)).
 
 ### 2.2 Using standardized terminology sources
 Using terms that are not connected to the network of internationally standardized terminology sources reduces the ability to connect sources from different institutions. We recommend to use as much standardized terms as possible.
@@ -144,7 +144,7 @@ Instead of adding a (URI of a) term to an object description one-by-one, the cur
 The addition of a term can be based on an existing field containing only a string of the data, for instance 'schilderij'. By using search-and-replace kind of tricks the additional link could be added. This type of work is called _reconciliation_.
 
 #### 2.2.3 Importing a terminology source
-An institution can import one or more terminology sources into its collection management system, such as AAT and/or WW2 Thesaurus. This makes it easy to use terms: the collection manager can search for terms in her management system, without having to switch to the system of the source, as is the case when searching terms manually (see [2.2.1](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines/#221-manually-searching-a-terminology-source)). A limitation is that the manager does not use current data: an import takes place periodically – for example: once a day or month – so that changes to the terminology source are not immediately visible.
+An institution can import one or more terminology sources into its collection management system, such as AAT and/or WW2 Thesaurus. This makes it easy to use terms: the collection manager can search for terms in her management system, without having to switch to the system of the source, as is the case when searching terms manually (see [section 2.2.1](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines/#221-manually-searching-a-terminology-source)). A limitation is that the manager does not use current data: an import takes place periodically – for example: once a day or month – so that changes to the terminology source are not immediately visible.
 
 #### 2.2.4 Searching a terminology source in real time
 An institution can query a terminology source in real time in its collection management system. A collection manager first enters a search query in a search field. Next, her management system – on the background – queries the terminology source, retrieves the terms that correspond to the query and presents them to the manager. The manager then chooses the desired term and the management system stores the URI of the chosen term. This ensures that the institution works with current data. However, the implementation of this approach in the management system can entail some difficulties: a connection must be established with the source – or multiple connections, if the institution wants to use multiple sources.
@@ -153,12 +153,12 @@ An institution can query a terminology source in real time in its collection man
 An institution can use the [Network of Terms](http://demo.netwerkdigitaalerfgoed.nl/termennetwerk/en/faq). The Network of Terms is a search engine for terms: it searches one or more terminology sources in real time. The Network of Terms can be used in a collection management system. A collection manager first enters a search query in a search field. Next, her management system – on the background – queries the Network of Terms, retrieves the terms that correspond to the query and presents them to the manager. The manager then chooses the desired term and the management system stores the URI of the chosen term. This makes it easier to use multiple terminology sources: you only need to connect to the Network of Terms.
 
 #### 2.2.6 Indexing data from the terminology source
-If (the URI of) a term is stored, collection managers might be interested in related data in the collection management system, for instance alternative labels, pseudonyms, or labels in different languages. This helps the user of the collection management system to retrieve data from her system. As long as the web of data is not as decentralized as we'd wish (see [1.3.3](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines/#133-advanced-level-queryable-linked-data)), collection management systems could offer obtaining the needed data via resolving the URI (see [1.3.2](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines/#132-web-compliancy-level-resolvable-uris)) and store and index the extra data in the database. The related data must be synchronized periodically and the collection management interface must enable to force the synchonization. A collection manager that helps the editors of the standardized source to add or improve data, can than see her results quickly.
+If (the URI of) a term is stored, collection managers might be interested in related data in the collection management system, for instance alternative labels, pseudonyms, or labels in different languages. This helps the user of the collection management system to retrieve data from her system. As long as the web of data is not as decentralized as we'd wish (see [section 1.3.3](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines/#133-advanced-level-queryable-linked-data)), collection management systems could offer obtaining the needed data via resolving the URI (see [section 1.3.2](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines/#132-web-compliancy-level-resolvable-uris)) and store and index the extra data in the database. The related data must be synchronized periodically and the collection management interface must enable to force the synchonization. A collection manager that helps the editors of the standardized source to add or improve data, can than see her results quickly.
 
 ## 2.3 Publishing terminology sources
 "Published terminology sources" are sources that are important to the cooperating institutions in the Dutch Digital Heritage Network. It enables collection managers to find and use terms in the sources more easily when describing their heritage objects. And that makes digital heritage found easier by data-users. Publishing terminology sources should obey [these requirements](https://netwerk-digitaal-erfgoed.github.io/requirements-terminologiebronnen/) (Dutch).
 
-A terminology source is considered a dataset, with sustainable URIs as described in section 4, described according to the guidelines in [section 3](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines/#3-publishing-dataset-descriptions), and published as dump, with resolvable URIs and in a SPARQL query as described in [section 1](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines/#1-publishing-collection-information).
+A terminology source is considered a dataset, with sustainable URIs as described in [section 4](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines/#4-adding-persistent-identifiers), described according to the guidelines in [section 3](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines/#3-publishing-dataset-descriptions), and published as dump, with resolvable URIs and in a SPARQL query as described in [section 1](https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines/#1-publishing-collection-information).
 
 A terminology source can only be used if it meets a few conditions. Are you the manager of a source and are you considering making it available to the network? Then take the following aspects into account.
 
@@ -193,14 +193,17 @@ The choice for schema.org as a basis for the publication model for dataset descr
 
 By registering the datasets with the NDE Register, the network of Dutch heritage institutions can easily find relevant datasets to link with. More generic (open) dataset registers, like data.overheid.nl, can also be used to promote the datasets of the institutions. 
 
-## 4 Duurzame identifiers aangebracht
-De webadressen voor objecten op een website van een erfgoedinstelling kunnen om allerlei redenen in de toekomst veranderen. Daarom worden handles geïntroduceerd voor objecten en termen, zodat de verwijzingen die gebruikers maken ook in de toekomst kunnen volgen naar de website en de data, waar deze zich op dat moment ook bevindt.
+## 4 Adding persistent identifiers
+TBD
 
-## duurzame identifiers geborgd:
+* Please inform yourselves about 'persistent identifiers' on [this website](https://www.pidwijzer.nl/en).
+* URIs are webaddresses.
+
+<!--## duurzame identifiers geborgd:
 * (wereldwijde) unieke identifiers
 * procesondersteuning (obv. beleid)
 * koppeling externe providers (handle, doi)  
-* scope voor duurzame identifiers: objecten, beschrijvingen, termen, versies
+* scope voor duurzame identifiers: objecten, beschrijvingen, termen, versies -->
 
 
 
