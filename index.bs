@@ -12,5 +12,3 @@ Introduction {#intro}
 =====================
 
 Introduction here.
-
-test
