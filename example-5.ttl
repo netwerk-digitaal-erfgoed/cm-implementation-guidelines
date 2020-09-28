@@ -2,6 +2,7 @@
 @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema:  <http://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 # Example of the most generic rdf:type CreativeWork and its properties
 <987654321>
@@ -24,7 +25,7 @@
 	schema:width <123456789#width> ;
 	schema:identifier "H7-41a" ;
 	schema:material <https://data.cultureelerfgoed.nl/term/id/cht/2d28d9aa-77e8-40ab-b0fe-f04d99f57955> ; # papier
-	schema:dateCreated "1950" .
+	schema:dateCreated "1950"^^xsd:gYear .
 
 <123456789#height>
 	schema:value 14.4 ;

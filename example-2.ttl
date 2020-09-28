@@ -3,12 +3,13 @@
 @prefix dc:   <http://purl.org/dc/elements/1.1/> .
 @prefix dct:  <http://purl.org/dc/terms/> .
 @prefix base: <https://waterlandsarchief.nl/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 base:E3F80C9066F411E3980DD363D87AD76F
 	rdf:type dct:PhysicalResource ;
 	dc:type	"foto" ;
 	rdfs:label "Op de scheepswerf van Jan ..." ;
-	dct:modified "11-06-2019 14:29:08" ;
+	dct:modified "2019-06-11T14:29:08"^^xsd:dateTime ;
 	dc:identifier "WAT006002296" ;
 	dct:isPartOf base:24F34E6A66A149CCB69874B7FEA05F41 ;
 	dct:spatial "Volendam" ;
