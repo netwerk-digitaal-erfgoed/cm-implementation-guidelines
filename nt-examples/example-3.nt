@@ -1,13 +1,3 @@
 <https://waterlandsarchief.nl/id/E3F80C9066F411E3980DD363D87AD76F> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://schema.org/CreativeWork> .
 <https://waterlandsarchief.nl/id/E3F80C9066F411E3980DD363D87AD76F> <http://schema.org/genre> "foto" .
 <https://waterlandsarchief.nl/id/E3F80C9066F411E3980DD363D87AD76F> <http://www.w3.org/2000/01/rdf-schema#label> "Op de scheepswerf van Jan ..." .
-<https://waterlandsarchief.nl/id/E3F80C9066F411E3980DD363D87AD76F> <http://schema.org/dateModified> "11-06-2019 14:29:08" .
-<https://waterlandsarchief.nl/id/E3F80C9066F411E3980DD363D87AD76F> <http://schema.org/identifier> "WAT006002296" .
-<https://waterlandsarchief.nl/id/E3F80C9066F411E3980DD363D87AD76F> <http://schema.org/isPartOf> <https://waterlandsarchief.nl/id/24F34E6A66A149CCB69874B7FEA05F41> .
-<https://waterlandsarchief.nl/id/E3F80C9066F411E3980DD363D87AD76F> <http://schema.org/contentLocation> "Volendam" .
-<https://waterlandsarchief.nl/id/E3F80C9066F411E3980DD363D87AD76F> <http://schema.org/contentLocation> "Haven" .
-<https://waterlandsarchief.nl/id/E3F80C9066F411E3980DD363D87AD76F> <http://schema.org/dateCreated> "ca. 1935" .
-<https://waterlandsarchief.nl/id/E3F80C9066F411E3980DD363D87AD76F> <http://schema.org/isPartOf> "Fotoclub Volendams Verleden" .
-<https://waterlandsarchief.nl/id/E3F80C9066F411E3980DD363D87AD76F> <http://schema.org/about> "Landbouw/Visserij" .
-<https://waterlandsarchief.nl/id/E3F80C9066F411E3980DD363D87AD76F> <http://schema.org/genre> "Foto's" .
-<https://waterlandsarchief.nl/id/E3F80C9066F411E3980DD363D87AD76F> <http://schema.org/about> "Visserij" .
