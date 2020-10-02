@@ -34,6 +34,10 @@ RDF can be published in various serializations. For readability we present examp
 ## 1 Publishing collection information
 Publishing collection information as Linked Data can be done by transformation of the internal data of the collection management system to a Linked Data publishing format as described by the [Resource Description Framework](https://www.w3.org/TR/rdf11-concepts/) (RDF). The primary focus of the guidelines described in this document is to improve the visibility and interoperability of the heritage collections. These guidelines describe how to create interoperability with Linked Data and do not prescribe which techniques are used to store the data, let alone Linked Data technology within the systems.
 
+Learn the basics of Linked Data 
+* [in this book](http://linkeddatabook.com/editions/1.0/)
+* [in this online course](https://open.hpi.de/courses/semanticweb2016)
+
 ### 1.1 Data model
 #### 1.1.1 Generic data model
 The main goal for publishing the object descriptions as Linked Data is to improve the data integration and visibility in the network. Because the heritage network spans institutions from the library, archive and museum domains, a generic data model that can support general visibility on the web is needed. **In order to support a broader visibility on the web outside the cultural heritage domain, we have chosen to conform to [Schema.org](https://schema.org/).** Schema.org is a joint initiative of three major search engines: Bing, Google and Yahoo with the aim of setting up a shared scheme to structure data. Vocabularies from schema.org are developed through an open community process.
