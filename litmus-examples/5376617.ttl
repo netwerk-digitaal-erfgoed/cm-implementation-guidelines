@@ -1,0 +1,26 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix atlantis: <urn:atlantis> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <http://schema.org/> .
+
+<http://data.bibliotheken.nl/id/thes/p068579292>
+    a schema:Person ;
+    rdfs:label "Blaman, Anna" .
+
+<http://data.bibliotheken.nl/id/thes/p06876314X>
+    a schema:Person ;
+    rdfs:label "Citroen, Paul (1896-1983)" .
+
+<https://hdl.handle.net/21.12129/5376617>
+    schema:about <http://data.bibliotheken.nl/id/thes/p068579292> ;
+    schema:creator <http://data.bibliotheken.nl/id/thes/p06876314X> ;
+    schema:dateCreated "1950" ;
+    schema:description "Met opdracht: 'Voor Anna Blaman van Paul Citroen', Landschap, zonder titel [Eenzaam avontuur]" ;
+    schema:genre "Schilderij" ;
+    schema:identifier "242959830" ;
+    schema:material "1 schilderij, houtskool met waterverf" ;
+    schema:size "26 x 36 cm" ;
+    schema:url "https://LITtest.hosting.deventit.net/detail.php?id=5376617" ;
+    a schema:CreativeWork ;
+    rdfs:label "test titel BR" .
+
