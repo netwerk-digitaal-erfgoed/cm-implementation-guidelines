@@ -9,6 +9,11 @@
 		<schema:size>26 x 36 cm</schema:size>
 		<schema:genre>Schilderij</schema:genre>
 		<schema:material>1 schilderij, houtskool met waterverf</schema:material>
+		<schema:about>
+			<schema:Person rdf:about="http://data.bibliotheken.nl/id/thes/p068579292">
+				<rdfs:label>Blaman, Anna</rdfs:label>
+			</schema:Person>
+		</schema:about>
 		<schema:creator>
 			<schema:Person rdf:about="http://data.bibliotheken.nl/id/thes/p06876314X">
 				<rdfs:label>Citroen, Paul (1896-1983)</rdfs:label>
