@@ -17,10 +17,10 @@
         <rdfs:label>Reve, Gerard (1923-2006)</rdfs:label>
       </schema:Person>
     </schema:about>
-    <!--schema:isPartOf>
-      <schema:ArchiveComponent rdf:about="">
-        <rdfs:label></rdfs:label>
+    <schema:isPartOf>
+      <schema:ArchiveComponent rdf:about="https://hdl.handle.net/21.12129/5370020">
+        <rdfs:label>Reve, G.K. van het</rdfs:label>
       </schema:ArchiveComponent>
-    </schema:isPartOf-->
+    </schema:isPartOf>
 </rdf:Description>
 </rdf:RDF>
