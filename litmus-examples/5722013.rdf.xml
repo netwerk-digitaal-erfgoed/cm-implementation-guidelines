@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:schema="http://schema.org/" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:schema="http://schema.org/" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:skos="http://www.w3.org/2004/02/skos/core#">
 
 <rdf:Description rdf:about="https://hdl.handle.net/21.12129/5722013" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdfs:label>Reve, Gerard (1923-2006)</rdfs:label>
   <rdf:type rdf:resource="http://schema.org/Person" />
-  <skos:exactMatch rdf:resource="http://data.bibliotheken.nl/id/thes/p068256671">
+  <skos:exactMatch rdf:resource="http://data.bibliotheken.nl/id/thes/p068256671"/>
 </rdf:Description>
 </rdf:RDF>
