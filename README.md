@@ -201,16 +201,18 @@ By registering the datasets with the NDE Register, the network of Dutch heritage
 
 ## 4 Adding persistent identifiers
 TBD
+Everything (eg. heritage objects, terms, datasets) needs a persistent URI, unique in the world.
 
+### 4.1 Persistent Identifiers
 * Please inform yourselves about 'persistent identifiers' on [this website](https://www.pidwijzer.nl/en).
-* URIs are webaddresses.
-* Everything (eg. heritage objects, terms, datasets) needs a persistent URI.
+* Handle
 
-<!--## duurzame identifiers geborgd:
-* (wereldwijde) unieke identifiers
-* procesondersteuning (obv. beleid)
-* koppeling externe providers (handle, doi)  
-* scope voor duurzame identifiers: objecten, beschrijvingen, termen, versies -->
+### 4.2 Uniform Resource Identifiers
+URIs are webaddresses. URI-strategies:
+* [CONCEPT Nationale URI-Strategie voor Linked Data van de Nederlandse overheid](https://www.pldn.nl/wiki/Concept_URI-strategie) (dutch)
+* [URI-beleid voor Linked Data /[van de KB/]](doc/URI-beleidLinkedData_1.1.2.pdf) (dutch)
+* [Duurzaam vindbaar op het web: URI-strategie Nationaal Archief; het gebruik van Handles en URI’s](doc/URI-strategie-Nationaal-Archief_v1_1_INTERN.pdf) (dutch)
+
 
 
 
