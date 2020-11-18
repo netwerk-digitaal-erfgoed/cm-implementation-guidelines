@@ -210,7 +210,7 @@ Everything (eg. heritage objects, terms, datasets) needs a persistent URI, uniqu
 ### 4.2 Uniform Resource Identifiers
 URIs are webaddresses. URI-strategies:
 * [CONCEPT Nationale URI-Strategie voor Linked Data van de Nederlandse overheid](https://www.pldn.nl/wiki/Concept_URI-strategie) (dutch)
-* [URI-beleid voor Linked Data /[van de KB/]](doc/URI-beleidLinkedData_1.1.2.pdf) (dutch)
+* [URI-beleid voor Linked Data [van de KB]](doc/URI-beleidLinkedData_1.1.2.pdf) (dutch)
 * [Duurzaam vindbaar op het web: URI-strategie Nationaal Archief; het gebruik van Handles en URI’s](doc/URI-strategie-Nationaal-Archief_v1_1_INTERN.pdf) (dutch)
 
 
