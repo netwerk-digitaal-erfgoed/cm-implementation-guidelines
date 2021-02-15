@@ -1,7 +1,7 @@
-name: Publish
+name: QA
 
 on:
-  push:
+  pull_request:
     branches:
       - master
 
@@ -14,10 +14,3 @@ jobs:
 
       - name: Output Bikeshed to HTML
         uses: netwerk-digitaal-erfgoed/bikeshed-action@v1
-
-      - name: Publish HTML to GitHub Pages
-        if: success()
-        uses: peaceiris/actions-gh-pages@v3.7.0-8
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./
