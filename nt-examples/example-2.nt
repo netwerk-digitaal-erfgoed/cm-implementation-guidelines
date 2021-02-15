@@ -1,0 +1,13 @@
+<https://waterlandsarchief.nl/id/E3F80C9066F411E3980DD363D87AD76F> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/dc/terms/PhysicalResource> .
+<https://waterlandsarchief.nl/id/E3F80C9066F411E3980DD363D87AD76F> <http://purl.org/dc/elements/1.1/type> "foto" .
+<https://waterlandsarchief.nl/id/E3F80C9066F411E3980DD363D87AD76F> <http://www.w3.org/2000/01/rdf-schema#label> "Op de scheepswerf van Jan ..." .
+<https://waterlandsarchief.nl/id/E3F80C9066F411E3980DD363D87AD76F> <http://purl.org/dc/terms/modified> "2019-06-11T14:29:08"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<https://waterlandsarchief.nl/id/E3F80C9066F411E3980DD363D87AD76F> <http://purl.org/dc/elements/1.1/identifier> "WAT006002296" .
+<https://waterlandsarchief.nl/id/E3F80C9066F411E3980DD363D87AD76F> <http://purl.org/dc/terms/isPartOf> <https://waterlandsarchief.nl/id/24F34E6A66A149CCB69874B7FEA05F41> .
+<https://waterlandsarchief.nl/id/E3F80C9066F411E3980DD363D87AD76F> <http://purl.org/dc/terms/spatial> "Volendam" .
+<https://waterlandsarchief.nl/id/E3F80C9066F411E3980DD363D87AD76F> <http://purl.org/dc/terms/spatial> "Haven" .
+<https://waterlandsarchief.nl/id/E3F80C9066F411E3980DD363D87AD76F> <http://purl.org/dc/elements/1.1/date> "ca. 1935" .
+<https://waterlandsarchief.nl/id/E3F80C9066F411E3980DD363D87AD76F> <http://purl.org/dc/terms/isPartOf> "Fotoclub Volendams Verleden" .
+<https://waterlandsarchief.nl/id/E3F80C9066F411E3980DD363D87AD76F> <http://purl.org/dc/elements/1.1/subject> "Landbouw/Visserij" .
+<https://waterlandsarchief.nl/id/E3F80C9066F411E3980DD363D87AD76F> <http://purl.org/dc/elements/1.1/type> "Foto's" .
+<https://waterlandsarchief.nl/id/E3F80C9066F411E3980DD363D87AD76F> <http://purl.org/dc/elements/1.1/subject> "Visserij" .

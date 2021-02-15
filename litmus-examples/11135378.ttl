@@ -1,0 +1,14 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix schema: <http://schema.org/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<http://data.bibliotheken.nl/id/thes/p068256671>
+    a schema:Person ;
+    rdfs:label "Reve, Gerard (1923-2006)" .
+
+<https://hdl.handle.net/21.12129/11135378>
+    schema:about <http://data.bibliotheken.nl/id/thes/p068256671> ;
+    schema:url "https://LITtest.hosting.deventit.net/detail.php?id=11135378" ;
+    a schema:ArchiveComponent ;
+    rdfs:label "De avonden : een winterverhaal / G.K. van het Reve" .
+

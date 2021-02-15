@@ -1,0 +1,1987 @@
+<!doctype html><html lang="en">
+ <head>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  <title>Implementation guidelines for NDE alignment of cultural heritage data management and publication infrastructure</title>
+  <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+<style data-fill-with="stylesheet">/******************************************************************************
+ *                   Style sheet for the W3C specifications                   *
+ *
+ * Special classes handled by this style sheet include:
+ *
+ * Indices
+ *   - .toc for the Table of Contents (<ol class="toc">)
+ *     + <span class="secno"> for the section numbers
+ *   - #toc for the Table of Contents (<nav id="toc">)
+ *   - ul.index for Indices (<a href="#ref">term</a><span>, in §N.M</span>)
+ *   - table.index for Index Tables (e.g. for properties or elements)
+ *
+ * Structural Markup
+ *   - table.data for general data tables
+ *     -> use 'scope' attribute, <colgroup>, <thead>, and <tbody> for best results !
+ *     -> use <table class='complex data'> for extra-complex tables
+ *     -> use <td class='long'> for paragraph-length cell content
+ *     -> use <td class='pre'> when manual line breaks/indentation would help readability
+ *   - dl.switch for switch statements
+ *   - ol.algorithm for algorithms (helps to visualize nesting)
+ *   - .figure and .caption (HTML4) and figure and figcaption (HTML5)
+ *     -> .sidefigure for right-floated figures
+ *   - ins/del
+ *
+ * Code
+ *   - pre and code
+ *
+ * Special Sections
+ *   - .note       for informative notes             (div, p, span, aside, details)
+ *   - .example    for informative examples          (div, p, pre, span)
+ *   - .issue      for issues                        (div, p, span)
+ *   - .assertion  for assertions                    (div, p, span)
+ *   - .advisement for loud normative statements     (div, p, strong)
+ *   - .annoying-warning for spec obsoletion notices (div, aside, details)
+ *
+ * Definition Boxes
+ *   - pre.def   for WebIDL definitions
+ *   - table.def for tables that define other entities (e.g. CSS properties)
+ *   - dl.def    for definition lists that define other entitles (e.g. HTML elements)
+ *
+ * Numbering
+ *   - .secno for section numbers in .toc and headings (<span class='secno'>3.2</span>)
+ *   - .marker for source-inserted example/figure/issue numbers (<span class='marker'>Issue 4</span>)
+ *   - ::before styled for CSS-generated issue/example/figure numbers:
+ *     -> Documents wishing to use this only need to add
+ *        figcaption::before,
+ *        .caption::before { content: "Figure "  counter(figure) " ";  }
+ *        .example::before { content: "Example " counter(example) " "; }
+ *        .issue::before   { content: "Issue "   counter(issue) " ";   }
+ *
+ * Header Stuff (ignore, just don't conflict with these classes)
+ *   - .head for the header
+ *   - .copyright for the copyright
+ *
+ * Miscellaneous
+ *   - .overlarge for things that should be as wide as possible, even if
+ *     that overflows the body text area. This can be used on an item or
+ *     on its container, depending on the effect desired.
+ *     Note that this styling basically doesn't help at all when printing,
+ *     since A4 paper isn't much wider than the max-width here.
+ *     It's better to design things to fit into a narrower measure if possible.
+ *   - js-added ToC jump links (see fixup.js)
+ *
+ ******************************************************************************/
+
+/******************************************************************************/
+/*                                   Body                                     */
+/******************************************************************************/
+
+	body {
+		counter-reset: example figure issue;
+
+		/* Layout */
+		max-width: 50em;               /* limit line length to 50em for readability   */
+		margin: 0 auto;                /* center text within page                     */
+		padding: 1.6em 1.5em 2em 50px; /* assume 16px font size for downlevel clients */
+		padding: 1.6em 1.5em 2em calc(26px + 1.5em); /* leave space for status flag     */
+
+		/* Typography */
+		line-height: 1.5;
+		font-family: sans-serif;
+		widows: 2;
+		orphans: 2;
+		word-wrap: break-word;
+		overflow-wrap: break-word;
+		hyphens: auto;
+
+		/* Colors */
+		color: black;
+		background: white top left fixed no-repeat;
+		background-size: 25px auto;
+	}
+
+
+/******************************************************************************/
+/*                         Front Matter & Navigation                          */
+/******************************************************************************/
+
+/** Header ********************************************************************/
+
+	div.head { margin-bottom: 1em }
+	div.head hr { border-style: solid; }
+
+	div.head h1 {
+		font-weight: bold;
+		margin: 0 0 .1em;
+		font-size: 220%;
+	}
+
+	div.head h2 { margin-bottom: 1.5em;}
+
+/** W3C Logo ******************************************************************/
+
+	.head .logo {
+		float: right;
+		margin: 0.4rem 0 0.2rem .4rem;
+	}
+
+	.head img[src*="logos/W3C"] {
+		display: block;
+		border: solid #1a5e9a;
+		border-width: .65rem .7rem .6rem;
+		border-radius: .4rem;
+		background: #1a5e9a;
+		color: white;
+		font-weight: bold;
+	}
+
+	.head a:hover > img[src*="logos/W3C"],
+	.head a:focus > img[src*="logos/W3C"] {
+		opacity: .8;
+	}
+
+	.head a:active > img[src*="logos/W3C"] {
+		background: #c00;
+		border-color: #c00;
+	}
+
+	/* see also additional rules in Link Styling section */
+
+/** Copyright *****************************************************************/
+
+	p.copyright,
+	p.copyright small { font-size: small }
+
+/** Back to Top / ToC Toggle **************************************************/
+
+	@media print {
+		#toc-nav {
+			display: none;
+		}
+	}
+	@media not print {
+		#toc-nav {
+			position: fixed;
+			z-index: 2;
+			bottom: 0; left: 0;
+			margin: 0;
+			min-width: 1.33em;
+			border-top-right-radius: 2rem;
+			box-shadow: 0 0 2px;
+			font-size: 1.5em;
+			color: black;
+		}
+		#toc-nav > a {
+			display: block;
+			white-space: nowrap;
+
+			height: 1.33em;
+			padding: .1em 0.3em;
+			margin: 0;
+
+			background: white;
+			box-shadow: 0 0 2px;
+			border: none;
+			border-top-right-radius: 1.33em;
+			background: white;
+		}
+		#toc-nav > #toc-jump {
+			padding-bottom: 2em;
+			margin-bottom: -1.9em;
+		}
+
+		#toc-nav > a:hover,
+		#toc-nav > a:focus {
+			background: #f8f8f8;
+		}
+		#toc-nav > a:not(:hover):not(:focus) {
+			color: #707070;
+		}
+
+		/* statusbar gets in the way on keyboard focus; remove once browsers fix */
+		#toc-nav > a[href="#toc"]:not(:hover):focus:last-child {
+			padding-bottom: 1.5rem;
+		}
+
+		#toc-nav:not(:hover) > a:not(:focus) > span + span {
+			/* Ideally this uses :focus-within on #toc-nav */
+			display: none;
+		}
+		#toc-nav > a > span + span {
+			padding-right: 0.2em;
+		}
+
+		#toc-toggle-inline {
+			vertical-align: 0.05em;
+			font-size: 80%;
+			color: gray;
+			color: hsla(203,20%,40%,.7);
+			border-style: none;
+			background: transparent;
+			position: relative;
+		}
+		#toc-toggle-inline:hover:not(:active),
+		#toc-toggle-inline:focus:not(:active) {
+			text-shadow: 1px 1px silver;
+			top: -1px;
+			left: -1px;
+		}
+
+		#toc-nav :active {
+			color: #C00;
+		}
+	}
+
+/** ToC Sidebar ***************************************************************/
+
+	/* Floating sidebar */
+	@media screen {
+		body.toc-sidebar #toc {
+			position: fixed;
+			top: 0; bottom: 0;
+			left: 0;
+			width: 23.5em;
+			max-width: 80%;
+			max-width: calc(100% - 2em - 26px);
+			overflow: auto;
+			padding: 0 1em;
+			padding-left: 42px;
+			padding-left: calc(1em + 26px);
+			background: inherit;
+			background-color: #f7f8f9;
+			z-index: 1;
+			box-shadow: -.1em 0 .25em rgba(0,0,0,.1) inset;
+		}
+		body.toc-sidebar #toc h2 {
+			margin-top: .8rem;
+			font-variant: small-caps;
+			font-variant: all-small-caps;
+			text-transform: lowercase;
+			font-weight: bold;
+			color: gray;
+			color: hsla(203,20%,40%,.7);
+		}
+		body.toc-sidebar #toc-jump:not(:focus) {
+			width: 0;
+			height: 0;
+			padding: 0;
+			position: absolute;
+			overflow: hidden;
+		}
+	}
+	/* Hide main scroller when only the ToC is visible anyway */
+	@media screen and (max-width: 28em) {
+		body.toc-sidebar {
+			overflow: hidden;
+		}
+	}
+
+	/* Sidebar with its own space */
+	@media screen and (min-width: 78em) {
+		body:not(.toc-inline) #toc {
+			position: fixed;
+			top: 0; bottom: 0;
+			left: 0;
+			width: 23.5em;
+			overflow: auto;
+			padding: 0 1em;
+			padding-left: 42px;
+			padding-left: calc(1em + 26px);
+			background: inherit;
+			background-color: #f7f8f9;
+			z-index: 1;
+			box-shadow: -.1em 0 .25em rgba(0,0,0,.1) inset;
+		}
+		body:not(.toc-inline) #toc h2 {
+			margin-top: .8rem;
+			font-variant: small-caps;
+			font-variant: all-small-caps;
+			text-transform: lowercase;
+			font-weight: bold;
+			color: gray;
+			color: hsla(203,20%,40%,.7);
+		}
+
+		body:not(.toc-inline) {
+			padding-left: 29em;
+		}
+		/* See also Overflow section at the bottom */
+
+		body:not(.toc-inline) #toc-jump:not(:focus) {
+			width: 0;
+			height: 0;
+			padding: 0;
+			position: absolute;
+			overflow: hidden;
+		}
+	}
+	@media screen and (min-width: 90em) {
+		body:not(.toc-inline) {
+			margin: 0 4em;
+		}
+	}
+
+/******************************************************************************/
+/*                                Sectioning                                  */
+/******************************************************************************/
+
+/** Headings ******************************************************************/
+
+	h1, h2, h3, h4, h5, h6, dt {
+		page-break-after: avoid;
+		page-break-inside: avoid;
+		font: 100% sans-serif;   /* Reset all font styling to clear out UA styles */
+		font-family: inherit;    /* Inherit the font family. */
+		line-height: 1.2;        /* Keep wrapped headings compact */
+		hyphens: manual;         /* Hyphenated headings look weird */
+	}
+
+	h2, h3, h4, h5, h6 {
+		margin-top: 3rem;
+	}
+
+	h1, h2, h3 {
+		color: #005A9C;
+		background: transparent;
+	}
+
+	h1 { font-size: 170%; }
+	h2 { font-size: 140%; }
+	h3 { font-size: 120%; }
+	h4 { font-weight: bold; }
+	h5 { font-style: italic; }
+	h6 { font-variant: small-caps; }
+	dt { font-weight: bold; }
+
+/** Subheadings ***************************************************************/
+
+	h1 + h2,
+	#subtitle {
+		/* #subtitle is a subtitle in an H2 under the H1 */
+		margin-top: 0;
+	}
+	h2 + h3,
+	h3 + h4,
+	h4 + h5,
+	h5 + h6 {
+		margin-top: 1.2em; /* = 1 x line-height */
+	}
+
+/** Section divider ***********************************************************/
+
+	:not(.head) > hr {
+		font-size: 1.5em;
+		text-align: center;
+		margin: 1em auto;
+		height: auto;
+		border: transparent solid 0;
+		background: transparent;
+	}
+	:not(.head) > hr::before {
+		content: "\2727\2003\2003\2727\2003\2003\2727";
+	}
+
+/******************************************************************************/
+/*                            Paragraphs and Lists                            */
+/******************************************************************************/
+
+	p {
+		margin: 1em 0;
+	}
+
+	dd > p:first-child,
+	li > p:first-child {
+		margin-top: 0;
+	}
+
+	ul, ol {
+		margin-left: 0;
+		padding-left: 2em;
+	}
+
+	li {
+		margin: 0.25em 0 0.5em;
+		padding: 0;
+	}
+
+	dl dd {
+		margin: 0 0 .5em 2em;
+	}
+
+	.head dd + dd { /* compact for header */
+		margin-top: -.5em;
+	}
+
+	/* Style for algorithms */
+	ol.algorithm ol:not(.algorithm),
+	.algorithm > ol ol:not(.algorithm) {
+	 border-left: 0.5em solid #DEF;
+	}
+
+	/* Put nice boxes around each algorithm. */
+	[data-algorithm]:not(.heading) {
+	  padding: .5em;
+	  border: thin solid #ddd; border-radius: .5em;
+	  margin: .5em calc(-0.5em - 1px);
+	}
+	[data-algorithm]:not(.heading) > :first-child {
+	  margin-top: 0;
+	}
+	[data-algorithm]:not(.heading) > :last-child {
+	  margin-bottom: 0;
+	}
+
+	/* Style for switch/case <dl>s */
+	dl.switch > dd > ol.only,
+	dl.switch > dd > .only > ol {
+	 margin-left: 0;
+	}
+	dl.switch > dd > ol.algorithm,
+	dl.switch > dd > .algorithm > ol {
+	 margin-left: -2em;
+	}
+	dl.switch {
+	 padding-left: 2em;
+	}
+	dl.switch > dt {
+	 text-indent: -1.5em;
+	 margin-top: 1em;
+	}
+	dl.switch > dt + dt {
+	 margin-top: 0;
+	}
+	dl.switch > dt::before {
+	 content: '\21AA';
+	 padding: 0 0.5em 0 0;
+	 display: inline-block;
+	 width: 1em;
+	 text-align: right;
+	 line-height: 0.5em;
+	}
+
+/** Terminology Markup ********************************************************/
+
+
+/******************************************************************************/
+/*                                 Inline Markup                              */
+/******************************************************************************/
+
+/** Terminology Markup ********************************************************/
+	dfn   { /* Defining instance */
+		font-weight: bolder;
+	}
+	a > i { /* Instance of term */
+		font-style: normal;
+	}
+	dt dfn code, code.idl {
+		font-size: medium;
+	}
+	dfn var {
+		font-style: normal;
+	}
+
+/** Change Marking ************************************************************/
+
+	del { color: red;  text-decoration: line-through; }
+	ins { color: #080; text-decoration: underline;    }
+
+/** Miscellaneous improvements to inline formatting ***************************/
+
+	sup {
+		vertical-align: super;
+		font-size: 80%
+	}
+
+/******************************************************************************/
+/*                                    Code                                    */
+/******************************************************************************/
+
+/** General monospace/pre rules ***********************************************/
+
+	pre, code, samp {
+		font-family: Menlo, Consolas, "DejaVu Sans Mono", Monaco, monospace;
+		font-size: .9em;
+		page-break-inside: avoid;
+		hyphens: none;
+		text-transform: none;
+	}
+	pre code,
+	code code {
+		font-size: 100%;
+	}
+
+	pre {
+		margin-top: 1em;
+		margin-bottom: 1em;
+		overflow: auto;
+	}
+
+/** Inline Code fragments *****************************************************/
+
+  /* Do something nice. */
+
+/******************************************************************************/
+/*                                    Links                                   */
+/******************************************************************************/
+
+/** General Hyperlinks ********************************************************/
+
+	/* We hyperlink a lot, so make it less intrusive */
+	a[href] {
+		color: #034575;
+		text-decoration: none;
+		border-bottom: 1px solid #707070;
+		/* Need a bit of extending for it to look okay */
+		padding: 0 1px 0;
+		margin: 0 -1px 0;
+	}
+	a:visited {
+		border-bottom-color: #BBB;
+	}
+
+	/* Use distinguishing colors when user is interacting with the link */
+	a[href]:focus,
+	a[href]:hover {
+		background: #f8f8f8;
+		background: rgba(75%, 75%, 75%, .25);
+		border-bottom-width: 3px;
+		margin-bottom: -2px;
+	}
+	a[href]:active {
+		color: #C00;
+		border-color: #C00;
+	}
+
+	/* Backout above styling for W3C logo */
+	.head .logo,
+	.head .logo a {
+		border: none;
+		text-decoration: none;
+		background: transparent;
+	}
+
+/******************************************************************************/
+/*                                    Images                                  */
+/******************************************************************************/
+
+	img {
+		border-style: none;
+	}
+
+	/* For autogen numbers, add
+	   .caption::before, figcaption::before { content: "Figure " counter(figure) ". "; }
+	*/
+
+	figure, .figure, .sidefigure {
+		page-break-inside: avoid;
+		text-align: center;
+		margin: 2.5em 0;
+	}
+	.figure img,    .sidefigure img,    figure img,
+	.figure object, .sidefigure object, figure object {
+		max-width: 100%;
+		margin: auto;
+	}
+	.figure pre, .sidefigure pre, figure pre {
+		text-align: left;
+		display: table;
+		margin: 1em auto;
+	}
+	.figure table, figure table {
+		margin: auto;
+	}
+	@media screen and (min-width: 20em) {
+		.sidefigure {
+			float: right;
+			width: 50%;
+			margin: 0 0 0.5em 0.5em
+		}
+	}
+	.caption, figcaption, caption {
+		font-style: italic;
+		font-size: 90%;
+	}
+	.caption::before, figcaption::before, figcaption > .marker {
+		font-weight: bold;
+	}
+	.caption, figcaption {
+		counter-increment: figure;
+	}
+
+	/* DL list is indented 2em, but figure inside it is not */
+	dd > .figure, dd > figure { margin-left: -2em }
+
+/******************************************************************************/
+/*                             Colored Boxes                                  */
+/******************************************************************************/
+
+	.issue, .note, .example, .assertion, .advisement, blockquote {
+		padding: .5em;
+		border: .5em;
+		border-left-style: solid;
+		page-break-inside: avoid;
+	}
+	span.issue, span.note {
+		padding: .1em .5em .15em;
+		border-right-style: solid;
+	}
+
+	.issue,
+	.note,
+	.example,
+	.advisement,
+	.assertion,
+	blockquote {
+		margin: 1em auto;
+	}
+	.note  > p:first-child,
+	.issue > p:first-child,
+	blockquote > :first-child {
+		margin-top: 0;
+	}
+	blockquote > :last-child {
+		margin-bottom: 0;
+	}
+
+/** Blockquotes ***************************************************************/
+
+	blockquote {
+		border-color: silver;
+	}
+
+/** Open issue ****************************************************************/
+
+	.issue {
+		border-color: #E05252;
+		background: #FBE9E9;
+		counter-increment: issue;
+		overflow: auto;
+	}
+	.issue::before, .issue > .marker {
+		text-transform: uppercase;
+		color: #AE1E1E;
+		padding-right: 1em;
+		text-transform: uppercase;
+	}
+	/* Add .issue::before { content: "Issue " counter(issue) " "; } for autogen numbers,
+	   or use class="marker" to mark up the issue number in source. */
+
+/** Example *******************************************************************/
+
+	.example {
+		border-color: #E0CB52;
+		background: #FCFAEE;
+		counter-increment: example;
+		overflow: auto;
+		clear: both;
+	}
+	.example::before, .example > .marker {
+		text-transform: uppercase;
+		color: #827017;
+		min-width: 7.5em;
+		display: block;
+	}
+	/* Add .example::before { content: "Example " counter(example) " "; } for autogen numbers,
+	   or use class="marker" to mark up the example number in source. */
+
+/** Non-normative Note ********************************************************/
+
+	.note {
+		border-color: #52E052;
+		background: #E9FBE9;
+		overflow: auto;
+	}
+
+	.note::before, .note > .marker,
+	details.note > summary::before,
+	details.note > summary > .marker {
+		text-transform: uppercase;
+		display: block;
+		color: hsl(120, 70%, 30%);
+	}
+	/* Add .note::before { content: "Note"; } for autogen label,
+	   or use class="marker" to mark up the label in source. */
+
+	details.note > summary {
+		display: block;
+		color: hsl(120, 70%, 30%);
+	}
+	details.note[open] > summary {
+		border-bottom: 1px silver solid;
+	}
+
+/** Assertion Box *************************************************************/
+	/*  for assertions in algorithms */
+
+	.assertion {
+		border-color: #AAA;
+		background: #EEE;
+	}
+
+/** Advisement Box ************************************************************/
+	/*  for attention-grabbing normative statements */
+
+	.advisement {
+		border-color: orange;
+		border-style: none solid;
+		background: #FFEECC;
+	}
+	strong.advisement {
+		display: block;
+		text-align: center;
+	}
+	.advisement > .marker {
+		color: #B35F00;
+	}
+
+/** Spec Obsoletion Notice ****************************************************/
+	/* obnoxious obsoletion notice for older/abandoned specs. */
+
+	details {
+		display: block;
+	}
+	summary {
+		font-weight: bolder;
+	}
+
+	.annoying-warning:not(details),
+	details.annoying-warning:not([open]) > summary,
+	details.annoying-warning[open] {
+		background: #fdd;
+		color: red;
+		font-weight: bold;
+		padding: .75em 1em;
+		border: thick red;
+		border-style: solid;
+		border-radius: 1em;
+	}
+	.annoying-warning :last-child {
+		margin-bottom: 0;
+	}
+
+@media not print {
+	details.annoying-warning[open] {
+		position: fixed;
+		left: 1em;
+		right: 1em;
+		bottom: 1em;
+		z-index: 1000;
+	}
+}
+
+	details.annoying-warning:not([open]) > summary {
+		text-align: center;
+	}
+
+/** Entity Definition Boxes ***************************************************/
+
+	.def {
+		padding: .5em 1em;
+		background: #DEF;
+		margin: 1.2em 0;
+		border-left: 0.5em solid #8CCBF2;
+	}
+
+/******************************************************************************/
+/*                                    Tables                                  */
+/******************************************************************************/
+
+	th, td {
+		text-align: left;
+		text-align: start;
+	}
+
+/** Property/Descriptor Definition Tables *************************************/
+
+	table.def {
+		/* inherits .def box styling, see above */
+		width: 100%;
+		border-spacing: 0;
+	}
+
+	table.def td,
+	table.def th {
+		padding: 0.5em;
+		vertical-align: baseline;
+		border-bottom: 1px solid #bbd7e9;
+	}
+
+	table.def > tbody > tr:last-child th,
+	table.def > tbody > tr:last-child td {
+		border-bottom: 0;
+	}
+
+	table.def th {
+		font-style: italic;
+		font-weight: normal;
+		padding-left: 1em;
+		width: 3em;
+	}
+
+	/* For when values are extra-complex and need formatting for readability */
+	table td.pre {
+		white-space: pre-wrap;
+	}
+
+	/* A footnote at the bottom of a def table */
+	table.def           td.footnote {
+		padding-top: 0.6em;
+	}
+	table.def           td.footnote::before {
+		content: " ";
+		display: block;
+		height: 0.6em;
+		width: 4em;
+		border-top: thin solid;
+	}
+
+/** Data tables (and properly marked-up index tables) *************************/
+	/*
+		 <table class="data"> highlights structural relationships in a table
+		 when correct markup is used (e.g. thead/tbody, th vs. td, scope attribute)
+
+		 Use class="complex data" for particularly complicated tables --
+		 (This will draw more lines: busier, but clearer.)
+
+		 Use class="long" on table cells with paragraph-like contents
+		 (This will adjust text alignment accordingly.)
+		 Alternately use class="longlastcol" on tables, to have the last column assume "long".
+	*/
+
+	table {
+		word-wrap: normal;
+		overflow-wrap: normal;
+		hyphens: manual;
+	}
+
+	table.data,
+	table.index {
+		margin: 1em auto;
+		border-collapse: collapse;
+		border: hidden;
+		width: 100%;
+	}
+	table.data caption,
+	table.index caption {
+		max-width: 50em;
+		margin: 0 auto 1em;
+	}
+
+	table.data td,  table.data th,
+	table.index td, table.index th {
+		padding: 0.5em 1em;
+		border-width: 1px;
+		border-color: silver;
+		border-top-style: solid;
+	}
+
+	table.data thead td:empty {
+		padding: 0;
+		border: 0;
+	}
+
+	table.data  thead,
+	table.index thead,
+	table.data  tbody,
+	table.index tbody {
+		border-bottom: 2px solid;
+	}
+
+	table.data colgroup,
+	table.index colgroup {
+		border-left: 2px solid;
+	}
+
+	table.data  tbody th:first-child,
+	table.index tbody th:first-child  {
+		border-right: 2px solid;
+		border-top: 1px solid silver;
+		padding-right: 1em;
+	}
+
+	table.data th[colspan],
+	table.data td[colspan] {
+		text-align: center;
+	}
+
+	table.complex.data th,
+	table.complex.data td {
+		border: 1px solid silver;
+		text-align: center;
+	}
+
+	table.data.longlastcol td:last-child,
+	table.data td.long {
+	 vertical-align: baseline;
+	 text-align: left;
+	}
+
+	table.data img {
+		vertical-align: middle;
+	}
+
+
+/*
+Alternate table alignment rules
+
+	table.data,
+	table.index {
+		text-align: center;
+	}
+
+	table.data  thead th[scope="row"],
+	table.index thead th[scope="row"] {
+		text-align: right;
+	}
+
+	table.data  tbody th:first-child,
+	table.index tbody th:first-child  {
+		text-align: right;
+	}
+
+Possible extra rowspan handling
+
+	table.data  tbody th[rowspan]:not([rowspan='1']),
+	table.index tbody th[rowspan]:not([rowspan='1']),
+	table.data  tbody td[rowspan]:not([rowspan='1']),
+	table.index tbody td[rowspan]:not([rowspan='1']) {
+		border-left: 1px solid silver;
+	}
+
+	table.data  tbody th[rowspan]:first-child,
+	table.index tbody th[rowspan]:first-child,
+	table.data  tbody td[rowspan]:first-child,
+	table.index tbody td[rowspan]:first-child{
+		border-left: 0;
+		border-right: 1px solid silver;
+	}
+*/
+
+/******************************************************************************/
+/*                                  Indices                                   */
+/******************************************************************************/
+
+
+/** Table of Contents *********************************************************/
+
+	.toc a {
+		/* More spacing; use padding to make it part of the click target. */
+		padding-top: 0.1rem;
+		/* Larger, more consistently-sized click target */
+		display: block;
+		/* Reverse color scheme */
+		color: black;
+		border-color: #3980B5;
+		border-bottom-width: 3px !important;
+		margin-bottom: 0px !important;
+	}
+	.toc a:visited {
+		border-color: #054572;
+	}
+	.toc a:not(:focus):not(:hover) {
+		/* Allow colors to cascade through from link styling */
+		border-bottom-color: transparent;
+	}
+
+	.toc, .toc ol, .toc ul, .toc li {
+		list-style: none; /* Numbers must be inlined into source */
+		/* because generated content isn't search/selectable and markers can't do multilevel yet */
+		margin:  0;
+		padding: 0;
+		line-height: 1.1rem; /* consistent spacing */
+	}
+
+	/* ToC not indented until third level, but font style & margins show hierarchy */
+	.toc > li             { font-weight: bold;   }
+	.toc > li li          { font-weight: normal; }
+	.toc > li li li       { font-size:   95%;    }
+	.toc > li li li li    { font-size:   90%;    }
+	.toc > li li li li .secno { font-size: 85%; }
+	.toc > li li li li li { font-size:   85%;    }
+	.toc > li li li li li .secno { font-size: 100%; }
+
+	/* @supports not (display:grid) { */
+		.toc > li             { margin: 1.5rem 0;    }
+		.toc > li li          { margin: 0.3rem 0;    }
+		.toc > li li li       { margin-left: 2rem;   }
+
+		/* Section numbers in a column of their own */
+		.toc .secno {
+			float: left;
+			width: 4rem;
+			white-space: nowrap;
+		}
+
+		.toc li {
+			clear: both;
+		}
+
+		:not(li) > .toc              { margin-left:  5rem; }
+		.toc .secno                  { margin-left: -5rem; }
+		.toc > li li li .secno       { margin-left: -7rem; }
+		.toc > li li li li .secno    { margin-left: -9rem; }
+		.toc > li li li li li .secno { margin-left: -11rem; }
+
+		/* Tighten up indentation in narrow ToCs */
+		@media (max-width: 30em) {
+			:not(li) > .toc              { margin-left:  4rem; }
+			.toc .secno                  { margin-left: -4rem; }
+			.toc > li li li              { margin-left:  1rem; }
+			.toc > li li li .secno       { margin-left: -5rem; }
+			.toc > li li li li .secno    { margin-left: -6rem; }
+			.toc > li li li li li .secno { margin-left: -7rem; }
+		}
+	/* } */
+
+	@supports (display:grid) and (display:contents) {
+		/* Use #toc over .toc to override non-@supports rules. */
+		#toc {
+			display: grid;
+			align-content: start;
+			grid-template-columns: auto 1fr;
+			grid-column-gap: 1rem;
+			column-gap: 1rem;
+			grid-row-gap: .6rem;
+			row-gap: .6rem;
+		}
+		#toc h2 {
+			grid-column: 1 / -1;
+			margin-bottom: 0;
+		}
+		#toc ol,
+		#toc li,
+		#toc a {
+			display: contents;
+			/* Switch <a> to subgrid when supported */
+		}
+		#toc span {
+			margin: 0;
+		}
+		#toc > .toc > li > a > span {
+			/* The spans of the top-level list,
+			   comprising the first items of each top-level section. */
+			margin-top: 1.1rem;
+		}
+		#toc#toc .secno { /* Ugh, need more specificity to override base.css */
+			grid-column: 1;
+			width: auto;
+			margin-left: 0;
+		}
+		#toc .content {
+			grid-column: 2;
+			width: auto;
+			margin-right: 1rem;
+		}
+		#toc .content:hover {
+			background: rgba(75%, 75%, 75%, .25);
+			border-bottom: 3px solid #054572;
+			margin-bottom: -3px;
+		}
+		#toc li li li .content {
+			margin-left: 1rem;
+		}
+		#toc li li li li .content {
+			margin-left: 2rem;
+		}
+	}
+
+
+/** Index *********************************************************************/
+
+	/* Index Lists: Layout */
+	ul.index       { margin-left: 0; columns: 15em; text-indent: 1em hanging; }
+	ul.index li    { margin-left: 0; list-style: none; break-inside: avoid; }
+	ul.index li li { margin-left: 1em }
+	ul.index dl    { margin-top: 0; }
+	ul.index dt    { margin: .2em 0 .2em 20px;}
+	ul.index dd    { margin: .2em 0 .2em 40px;}
+	/* Index Lists: Typography */
+	ul.index ul,
+	ul.index dl { font-size: smaller; }
+	@media not print {
+		ul.index li span {
+			white-space: nowrap;
+			color: transparent; }
+		ul.index li a:hover + span,
+		ul.index li a:focus + span {
+			color: #707070;
+		}
+	}
+
+/** Index Tables *****************************************************/
+	/* See also the data table styling section, which this effectively subclasses */
+
+	table.index {
+		font-size: small;
+		border-collapse: collapse;
+		border-spacing: 0;
+		text-align: left;
+		margin: 1em 0;
+	}
+
+	table.index td,
+	table.index th {
+		padding: 0.4em;
+	}
+
+	table.index tr:hover td:not([rowspan]),
+	table.index tr:hover th:not([rowspan]) {
+		background: #f7f8f9;
+	}
+
+	/* The link in the first column in the property table (formerly a TD) */
+	table.index th:first-child a {
+		font-weight: bold;
+	}
+
+/******************************************************************************/
+/*                                    Print                                   */
+/******************************************************************************/
+
+	@media print {
+		/* Pages have their own margins. */
+		html {
+			margin: 0;
+		}
+		/* Serif for print. */
+		body {
+			font-family: serif;
+		}
+	}
+	@page {
+		margin: 1.5cm 1.1cm;
+	}
+
+/******************************************************************************/
+/*                                    Legacy                                  */
+/******************************************************************************/
+
+	/* This rule is inherited from past style sheets. No idea what it's for. */
+	.hide { display: none }
+
+
+
+/******************************************************************************/
+/*                             Overflow Control                               */
+/******************************************************************************/
+
+	.figure .caption, .sidefigure .caption, figcaption {
+		/* in case figure is overlarge, limit caption to 50em */
+		max-width: 50rem;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.overlarge {
+		/* Magic to create good table positioning:
+		   "content column" is 50ems wide at max; less on smaller screens.
+		   Extra space (after ToC + content) is empty on the right.
+
+		   1. When table < content column, centers table in column.
+		   2. When content < table < available, left-aligns.
+		   3. When table > available, fills available + scroll bar.
+		*/
+		display: grid;
+		grid-template-columns: minmax(0, 50em);
+	}
+	.overlarge > table {
+		/* limit preferred width of table */
+		max-width: 50em;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	@media (min-width: 55em) {
+		.overlarge {
+			margin-right: calc(13px + 26.5rem - 50vw);
+			max-width: none;
+		}
+	}
+	@media screen and (min-width: 78em) {
+		body:not(.toc-inline) .overlarge {
+			/* 30.5em body padding 50em content area */
+			margin-right: calc(40em - 50vw) !important;
+		}
+	}
+	@media screen and (min-width: 90em) {
+		body:not(.toc-inline) .overlarge {
+			/* 4em html margin 30.5em body padding 50em content area */
+			margin-right: calc(84.5em - 100vw) !important;
+		}
+	}
+
+	@media not print {
+		.overlarge {
+			overflow-x: auto;
+			/* See Lea Verou's explanation background-attachment:
+			 * http://lea.verou.me/2012/04/background-attachment-local/
+			 *
+			background: top left  / 4em 100% linear-gradient(to right,  #ffffff, rgba(255, 255, 255, 0)) local,
+			            top right / 4em 100% linear-gradient(to left, #ffffff, rgba(255, 255, 255, 0)) local,
+			            top left  / 1em 100% linear-gradient(to right,  #c3c3c5, rgba(195, 195, 197, 0)) scroll,
+			            top right / 1em 100% linear-gradient(to left, #c3c3c5, rgba(195, 195, 197, 0)) scroll,
+			            white;
+			background-repeat: no-repeat;
+			*/
+		}
+	}
+</style>
+  <meta content="Bikeshed version 5f7b0e20, updated Tue Aug 18 15:46:28 2020 -0700" name="generator">
+  <link href="https://netwerk-digitaal-erfgoed.github.io/cm-implementation-guidelines/" rel="canonical">
+  <meta content="72d8c625e147c7ffff6dc23308057d132a4d90c4" name="document-revision">
+<style>/* style-autolinks */
+
+.css.css, .property.property, .descriptor.descriptor {
+    color: #005a9c;
+    font-size: inherit;
+    font-family: inherit;
+}
+.css::before, .property::before, .descriptor::before {
+    content: "‘";
+}
+.css::after, .property::after, .descriptor::after {
+    content: "’";
+}
+.property, .descriptor {
+    /* Don't wrap property and descriptor names */
+    white-space: nowrap;
+}
+.type { /* CSS value <type> */
+    font-style: italic;
+}
+pre .property::before, pre .property::after {
+    content: "";
+}
+[data-link-type="property"]::before,
+[data-link-type="propdesc"]::before,
+[data-link-type="descriptor"]::before,
+[data-link-type="value"]::before,
+[data-link-type="function"]::before,
+[data-link-type="at-rule"]::before,
+[data-link-type="selector"]::before,
+[data-link-type="maybe"]::before {
+    content: "‘";
+}
+[data-link-type="property"]::after,
+[data-link-type="propdesc"]::after,
+[data-link-type="descriptor"]::after,
+[data-link-type="value"]::after,
+[data-link-type="function"]::after,
+[data-link-type="at-rule"]::after,
+[data-link-type="selector"]::after,
+[data-link-type="maybe"]::after {
+    content: "’";
+}
+
+[data-link-type].production::before,
+[data-link-type].production::after,
+.prod [data-link-type]::before,
+.prod [data-link-type]::after {
+    content: "";
+}
+
+[data-link-type=element],
+[data-link-type=element-attr] {
+    font-family: Menlo, Consolas, "DejaVu Sans Mono", monospace;
+    font-size: .9em;
+}
+[data-link-type=element]::before { content: "<" }
+[data-link-type=element]::after  { content: ">" }
+
+[data-link-type=biblio] {
+    white-space: pre;
+}</style>
+<style>/* style-counters */
+
+body {
+    counter-reset: example figure issue;
+}
+.issue {
+    counter-increment: issue;
+}
+.issue:not(.no-marker)::before {
+    content: "Issue " counter(issue);
+}
+
+.example {
+    counter-increment: example;
+}
+.example:not(.no-marker)::before {
+    content: "Example " counter(example);
+}
+.invalid.example:not(.no-marker)::before,
+.illegal.example:not(.no-marker)::before {
+    content: "Invalid Example" counter(example);
+}
+
+figcaption {
+    counter-increment: figure;
+}
+figcaption:not(.no-marker)::before {
+    content: "Figure " counter(figure) " ";
+}</style>
+<style>/* style-md-lists */
+
+/* This is a weird hack for me not yet following the commonmark spec
+   regarding paragraph and lists. */
+[data-md] > :first-child {
+    margin-top: 0;
+}
+[data-md] > :last-child {
+    margin-bottom: 0;
+}</style>
+<style>/* style-selflinks */
+
+.heading, .issue, .note, .example, li, dt {
+    position: relative;
+}
+a.self-link {
+    position: absolute;
+    top: 0;
+    left: calc(-1 * (3.5rem - 26px));
+    width: calc(3.5rem - 26px);
+    height: 2em;
+    text-align: center;
+    border: none;
+    transition: opacity .2s;
+    opacity: .5;
+}
+a.self-link:hover {
+    opacity: 1;
+}
+.heading > a.self-link {
+    font-size: 83%;
+}
+li > a.self-link {
+    left: calc(-1 * (3.5rem - 26px) - 2em);
+}
+dfn > a.self-link {
+    top: auto;
+    left: auto;
+    opacity: 0;
+    width: 1.5em;
+    height: 1.5em;
+    background: gray;
+    color: white;
+    font-style: normal;
+    transition: opacity .2s, background-color .2s, color .2s;
+}
+dfn:hover > a.self-link {
+    opacity: 1;
+}
+dfn > a.self-link:hover {
+    color: black;
+}
+
+a.self-link::before            { content: "¶"; }
+.heading > a.self-link::before { content: "§"; }
+dfn > a.self-link::before      { content: "#"; }</style>
+ <body class="h-entry">
+  <div class="head">
+   <p data-fill-with="logo"></p>
+   <h1 class="p-name no-ref" id="title">Implementation guidelines for NDE alignment of cultural heritage data management and publication infrastructure</h1>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Living Standard, <time class="dt-updated" datetime="2021-02-15">15 February 2021</time></span></h2>
+   <div data-fill-with="spec-metadata">
+    <dl>
+     <dt>This version:
+     <dd><a class="u-url" href="https://netwerk-digitaal-erfgoed.github.io/cm-implementation-guidelines/">https://netwerk-digitaal-erfgoed.github.io/cm-implementation-guidelines/</a>
+     <dt>Issue Tracking:
+     <dd><a href="https://github.com/netwerk-digitaal-erfgoed/cm-implementation-guidelines/issues/">GitHub</a>
+     <dt class="editor">Editors:
+     <dd class="editor p-author h-card vcard"><span class="p-name fn"></span>
+     <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:sjors@sjorsdevalk.nl">Sjors de Valk</a> (<a class="p-org org" href="https://www.netwerkdigitaalerfgoed.nl/en">Dutch Digital Heritage Network</a>)
+     <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:ivo@zandhuis.nl">Ivo Zandhuis</a> (<a class="p-org org" href="https://www.netwerkdigitaalerfgoed.nl/en">Dutch Digital Heritage Network</a>)
+    </dl>
+   </div>
+   <div data-fill-with="warning"></div>
+   <p class="copyright" data-fill-with="copyright"><a href="http://creativecommons.org/publicdomain/zero/1.0/" rel="license"><img alt="CC0" src="https://licensebuttons.net/p/zero/1.0/80x15.png"></a> To the extent possible under law, the editors have waived all copyright
+and related or neighboring rights to this work.
+In addition, as of 15 February 2021,
+the editors have made this specification available under the <a href="http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0" rel="license">Open Web Foundation Agreement Version 1.0</a>,
+which is available at http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.
+Parts of this work may be from another specification document.  If so, those parts are instead covered by the license of that specification document. </p>
+   <hr title="Separator for header">
+  </div>
+  <div class="p-summary" data-fill-with="abstract">
+   <h2 class="no-num no-toc no-ref heading settled" id="abstract"><span class="content">Abstract</span></h2>
+   <p>This document describes how IT suppliers can help the Dutch cultural heritage institutions to become more compliant with the principles for cooperation in the Dutch Digital Heritage Network (NDE).</p>
+  </div>
+  <div data-fill-with="at-risk"></div>
+  <nav data-fill-with="table-of-contents" id="toc">
+   <h2 class="no-num no-toc no-ref" id="contents">Table of Contents</h2>
+   <ol class="toc" role="directory">
+    <li>
+     <a href="#intro"><span class="secno">1</span> <span class="content">Introduction</span></a>
+     <ol class="toc">
+      <li><a href="#relation-with-other-documentation"><span class="secno">1.1</span> <span class="content">Relation with other documentation</span></a>
+      <li><a href="#overview"><span class="secno">1.2</span> <span class="content">Overview</span></a>
+      <li><a href="#quick-access-through-questions"><span class="secno">1.3</span> <span class="content">Quick access through questions</span></a>
+      <li><a href="#about-this-document"><span class="secno">1.4</span> <span class="content">About this document</span></a>
+     </ol>
+    <li>
+     <a href="#publishing-collection-information"><span class="secno">2</span> <span class="content">Publishing collection information</span></a>
+     <ol class="toc">
+      <li>
+       <a href="#data-model"><span class="secno">2.1</span> <span class="content">Data model</span></a>
+       <ol class="toc">
+        <li><a href="#generic-data-model"><span class="secno">2.1.1</span> <span class="content">Generic data model</span></a>
+        <li><a href="#domain-data-model"><span class="secno">2.1.2</span> <span class="content">Domain data model</span></a>
+        <li><a href="#rights"><span class="secno">2.1.3</span> <span class="content">Rights</span></a>
+       </ol>
+      <li>
+       <a href="#rdf-serialization"><span class="secno">2.2</span> <span class="content">RDF serialization</span></a>
+       <ol class="toc">
+        <li><a href="#traditional-linked-data"><span class="secno">2.2.1</span> <span class="content">'Traditional' linked data</span></a>
+        <li><a href="#json-ld"><span class="secno">2.2.2</span> <span class="content">JSON-LD</span></a>
+       </ol>
+      <li>
+       <a href="#publishing-linked-data"><span class="secno">2.3</span> <span class="content">Publishing Linked Data</span></a>
+       <ol class="toc">
+        <li><a href="#basic-level-data-dumps"><span class="secno">2.3.1</span> <span class="content">Basic level: Data dumps</span></a>
+        <li><a href="#web-compliancy-level-resolvable-uris"><span class="secno">2.3.2</span> <span class="content">Web compliancy level: resolvable URIs</span></a>
+        <li><a href="#advanced-level-queryable-linked-data"><span class="secno">2.3.3</span> <span class="content">Advanced level: queryable Linked Data</span></a>
+        <li><a href="#other-considerations-for-linked-data-publication"><span class="secno">2.3.4</span> <span class="content">Other considerations for Linked Data publication</span></a>
+       </ol>
+     </ol>
+    <li>
+     <a href="#connecting-sources"><span class="secno">3</span> <span class="content">Connecting sources</span></a>
+     <ol class="toc">
+      <li><a href="#using-your-own-terminology-source"><span class="secno">3.1</span> <span class="content">Using your own terminology source</span></a>
+      <li>
+       <a href="#using-standardized-terminology-sources"><span class="secno">3.2</span> <span class="content">Using standardized terminology sources</span></a>
+       <ol class="toc">
+        <li><a href="#manually-searching-a-terminology-source"><span class="secno">3.2.1</span> <span class="content">Manually searching a terminology source</span></a>
+        <li><a href="#adding-terms-in-bulk"><span class="secno">3.2.2</span> <span class="content">Adding terms in bulk</span></a>
+        <li><a href="#importing-a-terminology-source"><span class="secno">3.2.3</span> <span class="content">Importing a terminology source</span></a>
+        <li><a href="#searching-a-terminology-source-in-real-time"><span class="secno">3.2.4</span> <span class="content">Searching a terminology source in real time</span></a>
+        <li><a href="#using-the-network-of-terms"><span class="secno">3.2.5</span> <span class="content">Using the Network of Terms</span></a>
+        <li><a href="#indexing-data-from-the-terminology-source"><span class="secno">3.2.6</span> <span class="content">Indexing data from the terminology source</span></a>
+       </ol>
+      <li>
+       <a href="#publishing-terminology-sources"><span class="secno">3.3</span> <span class="content">Publishing terminology sources</span></a>
+       <ol class="toc">
+        <li><a href="#authority"><span class="secno">3.3.1</span> <span class="content">Authority</span></a>
+        <li><a href="#technology-and-datamodel"><span class="secno">3.3.2</span> <span class="content">Technology and datamodel</span></a>
+        <li><a href="#cooperation"><span class="secno">3.3.3</span> <span class="content">Cooperation</span></a>
+       </ol>
+     </ol>
+    <li>
+     <a href="#publishing-dataset-descriptions"><span class="secno">4</span> <span class="content">Publishing dataset descriptions</span></a>
+     <ol class="toc">
+      <li><a href="#publication-model-for-dataset-descriptions"><span class="secno">4.1</span> <span class="content">Publication model for dataset descriptions</span></a>
+      <li><a href="#how-to-publish-dataset-descriptions"><span class="secno">4.2</span> <span class="content">How to publish dataset descriptions</span></a>
+      <li><a href="#spreading-the-knowledge-about-datasets"><span class="secno">4.3</span> <span class="content">Spreading the knowledge about datasets</span></a>
+     </ol>
+    <li>
+     <a href="#adding-persistent-identifiers"><span class="secno">5</span> <span class="content">Adding persistent identifiers</span></a>
+     <ol class="toc">
+      <li><a href="#persistent-identifiers"><span class="secno">5.1</span> <span class="content">Persistent Identifiers</span></a>
+      <li><a href="#uniform-resource-identifiers"><span class="secno">5.2</span> <span class="content">Uniform Resource Identifiers</span></a>
+     </ol>
+    <li><a href="#conformance"><span class="secno"></span> <span class="content"> Conformance</span></a>
+    <li>
+     <a href="#references"><span class="secno"></span> <span class="content">References</span></a>
+     <ol class="toc">
+      <li><a href="#normative"><span class="secno"></span> <span class="content">Normative References</span></a>
+     </ol>
+   </ol>
+  </nav>
+  <main>
+   <h2 class="heading settled" data-level="1" id="intro"><span class="secno">1. </span><span class="content">Introduction</span><a class="self-link" href="#intro"></a></h2>
+   <p>This document describes how IT suppliers can help the Dutch cultural heritage institutions to become more compliant with the principles
+for cooperation in the Dutch Digital Heritage Network (NDE). It is and will be constructed in full cooperation with suppliers.
+We ask IT suppliers of data management and publication software to implement the guidelines outlined in this document in their software products.
+This will help the Dutch heritage institutions in making their information accessible to services and users on the web.</p>
+   <p>The goal of cooperation in the network is to increase the social value of the cultural heritage information by improving its visibility,
+usability and sustainability. A crucial part of this challenge is to improve the capabilities of institutions to share their information
+in the network and to integrate digital heritage information from various sources to build relevant services for their audiences.</p>
+   <h3 class="heading settled" data-level="1.1" id="relation-with-other-documentation"><span class="secno">1.1. </span><span class="content">Relation with other documentation</span><a class="self-link" href="#relation-with-other-documentation"></a></h3>
+   <p>This document builds upon the <a href="https://github.com/netwerk-digitaal-erfgoed/high-level-design">high-level functional design</a> for the
+network of cultural heritage information created earlier in the NDE program. In the high level design we define terms, building blocks and functions.
+The design in itself is based on the <a href="https://dera.netwerkdigitaalerfgoed.nl/">Dutch digital heritage reference architecture (DERA)</a>,
+the <a href="https://www.netwerkdigitaalerfgoed.nl/en/about-us/national-digital-heritage-strategy/">National Digital Heritage Strategy</a> and
+the <a href="https://www.netwerkdigitaalerfgoed.nl/wp-content/uploads/2018/02/NDE_PositionPaper_NetworkHeritageInformation-EN-v2.pdf">NDE position paper</a>.</p>
+   <p>This document aims to initiate an open discussion and cooperation with the technical partners in the network. The final goal is to document
+practical solutions that are within reach of the various IT systems used by the institutions and developed by the IT suppliers actively
+cooperating with NDE. Where appropriate, formal specifications of these solutions will be proposed to the Architecture Board of the DERA
+to become part of the long term agreements within the cultural heritage domain.</p>
+   <h3 class="heading settled" data-level="1.2" id="overview"><span class="secno">1.2. </span><span class="content">Overview</span><a class="self-link" href="#overview"></a></h3>
+   <p>A large part of the guidelines in this document follows the general practice for publishing <a href="https://en.wikipedia.org/wiki/Linked_data">Linked Data</a>.
+As stated in the <a href="https://dera.netwerkdigitaalerfgoed.nl/index.php/Linked_Data">reference architecture</a> (Dutch) Linked Data is regarded a
+key technology in the cultural heritage domain for integrating the huge amount of information resources within the network. Linked Data is
+therefore the driver for providing and maintaining coherent digital services within the network.</p>
+   <p>The object descriptions should be self-contained in respect to persistent identifiers
+(see <a href="#adding-persistent-identifiers">section 5</a>,
+'<a href="https://en.wikipedia.org/wiki/Uniform_Resource_Identifier">Uniform Resource Identifiers</a>', URIs) and metadata.
+(see <a href="#publishing-collection-information">section 2</a>).
+This metadata should contain as much terms as possible (see <a href="#connecting-sources">section 3</a>).
+The dataset itself should be described as a separate resource with a unique identifier and additional metadata describing the characteristics
+of the dataset as a whole (see <a href="#publishing-dataset-descriptions">section 4</a>).</p>
+   <h3 class="heading settled" data-level="1.3" id="quick-access-through-questions"><span class="secno">1.3. </span><span class="content">Quick access through questions</span><a class="self-link" href="#quick-access-through-questions"></a></h3>
+   <ul>
+    <li data-md>
+     <p><a href="#data-model">Which data models are recommended?</a></p>
+    <li data-md>
+     <p><a href="#rdf-serialization">Which RDF-serialization is recommended?</a></p>
+    <li data-md>
+     <p><a href="#publishing-linked-data">Which technique is recommended to provide data through the web?</a></p>
+    <li data-md>
+     <p><a href="#using-your-own-terminology-source">How can I use an internal terminology source?</a></p>
+    <li data-md>
+     <p><a href="#using-standardized-terminology-sources">How can I use an external terminology source?</a></p>
+    <li data-md>
+     <p><a href="#publishing-terminology-sources">Which processes and data models are recommended for publishing terminology sources?</a></p>
+    <li data-md>
+     <p><a href="#publication-model-for-dataset-descriptions">Which data models are recommended for publishing dataset information?</a></p>
+    <li data-md>
+     <p><a href="#how-to-publish-dataset-descriptions">Which techniques are recommended to provide datasetdescriptions through the web?</a></p>
+    <li data-md>
+     <p><a href="#spreading-the-knowledge-about-datasets">How do I promote my datasets?</a></p>
+    <li data-md>
+     <p>How are persistent identifiers stored in the database?</p>
+    <li data-md>
+     <p>Which protocols are recommended for persistent identification?</p>
+   </ul>
+   <h3 class="heading settled" data-level="1.4" id="about-this-document"><span class="secno">1.4. </span><span class="content">About this document</span><a class="self-link" href="#about-this-document"></a></h3>
+   <p>RDF can be published in various serializations. For readability we present examples in Turtle serialization,
+although we recommend other serializations in different situations.</p>
+   <h2 class="heading settled" data-level="2" id="publishing-collection-information"><span class="secno">2. </span><span class="content">Publishing collection information</span><a class="self-link" href="#publishing-collection-information"></a></h2>
+   <p>Publishing collection information as Linked Data can be done by transformation of the internal data of the collection management system
+to a Linked Data publishing format as described by the <a href="https://www.w3.org/TR/rdf11-concepts/">Resource Description Framework</a> (RDF).
+The primary focus of the guidelines described in this document is to improve the visibility and interoperability of the heritage collections.
+These guidelines describe how to create interoperability with Linked Data and do not prescribe which techniques are used to store the data,
+let alone Linked Data technology within the systems.</p>
+   <p>Learn the basics of Linked Data</p>
+   <ul>
+    <li data-md>
+     <p><a href="http://linkeddatabook.com/editions/1.0/">in this book</a></p>
+    <li data-md>
+     <p><a href="https://open.hpi.de/courses/semanticweb2016">in this online course</a></p>
+   </ul>
+   <h3 class="heading settled" data-level="2.1" id="data-model"><span class="secno">2.1. </span><span class="content">Data model</span><a class="self-link" href="#data-model"></a></h3>
+   <h4 class="heading settled" data-level="2.1.1" id="generic-data-model"><span class="secno">2.1.1. </span><span class="content">Generic data model</span><a class="self-link" href="#generic-data-model"></a></h4>
+   <p>The main goal for publishing the object descriptions as Linked Data is to improve the data integration and visibility in the network.
+Because the heritage network spans institutions from the library, archive and museum domains, a generic data model that can support
+general visibility on the web is needed. **In order to support a broader visibility on the web outside the cultural heritage domain,
+we have chosen to conform to <a href="https://schema.org/">Schema.org</a>.** Schema.org is a joint initiative of three major search engines:
+Bing, Google and Yahoo with the aim of setting up a shared scheme to structure data. Vocabularies from schema.org are developed through an open community process.</p>
+   <p>Interesting links:</p>
+   <ul>
+    <li data-md>
+     <p><a href="https://www.contentking.nl/academy/schema-structured-data/">https://www.contentking.nl/academy/schema-structured-data/</a> (Dutch)</p>
+   </ul>
+   <p>Thanks to Europeana, most institutions and collection management systems are familiar with Dublin Core. Based on dc, a generic data model
+for cultural heritage institutions has been defined, the Europeana Data Model (EDM). <a href="https://github.com/netwerk-digitaal-erfgoed/lod-aggregator">Recent investigations</a> have shown that well-formed schema.org data can be transformed to EDM without significant loss of detail. Schema.org contains properties
+that are very similar to Dublin Core properties. A complete mapping between schema.org and Dublin Core can be found <a href="https://dcmi.github.io/schema.org/">here</a>.</p>
+   <p>Interesting links:</p>
+   <ul>
+    <li data-md>
+     <p><a href="https://seopressor.com/blog/dublin-core-vs-schemaorg-metadata-comparison/">https://seopressor.com/blog/dublin-core-vs-schemaorg-metadata-comparison/</a></p>
+   </ul>
+   <p>Some basic examples for:</p>
+   <ul>
+    <li data-md>
+     <p>a <a href="example-2.ttl">photo with Dublin Core properties</a></p>
+    <li data-md>
+     <p>the same <a href="example-3.ttl">photo with schema.org properties</a></p>
+    <li data-md>
+     <p>a <a href="example-4.ttl">museum object with schema.org properties</a></p>
+    <li data-md>
+     <p>a <a href="example-5.ttl">two museum objects with schema.org properties</a>, showing different rdf:types</p>
+   </ul>
+   <h4 class="heading settled" data-level="2.1.2" id="domain-data-model"><span class="secno">2.1.2. </span><span class="content">Domain data model</span><a class="self-link" href="#domain-data-model"></a></h4>
+   <p>The generic model described above will improve the general visibility of the cultural heritage objects, the terms describing the objects
+and the datasets in which the objects and terms are grouped. In many cases this will lead to further exploration of these objects.
+For specific users or communities a deeper understanding of the knowledge in the data will be important. Because of the open structure
+of Linked Data there is no restriction to simply add another layer of description to the resource. See for <a href="example-1.ttl">example</a> this object description. So institutions can add extra properties and class definitions to the Linked Data they publish.
+In general <a href="http://www.cidoc-crm.org/">CIDOC-CRM</a> (and its derivative <a href="https://linked.art/model/">Linked Art</a>) can be appropriate for museums.
+For archives the <a href="https://www.ica.org/standards/RiC/RiC-O_v0-1.html">RiC-O ontology</a> seems to be promising and for
+libraries <a href="https://www.rdaregistry.info/Elements/">RDA Elements</a> or <a href="https://www.loc.gov/bibframe/">BIBFRAME</a> could be relevant.
+It is up to the institutions in the separate domains to agree on the use and implementation of these shared standards.
+Best practices and information about actual implementations will be shared in the network.</p>
+   <p>See <a href="https://github.com/albertmeronyo/awesome-humanities-ontologies">Awesome Humanities Ontologies</a> for more options.</p>
+   <h4 class="heading settled" data-level="2.1.3" id="rights"><span class="secno">2.1.3. </span><span class="content">Rights</span><a class="self-link" href="#rights"></a></h4>
+   <p>The DERA requires institutions to publish their metadata with an open license (for some institutions this requirement might still be a challenge).
+The actual access to the digital object itself can be restricted; additional license statements for use and reuse of the objects should be specified in the metadata.</p>
+   <p>TBD:</p>
+   <ul>
+    <li data-md>
+     <p>use schema:license</p>
+    <li data-md>
+     <p>differentiate license for</p>
+     <ul>
+      <li data-md>
+       <p>dataset</p>
+      <li data-md>
+       <p>object metadata</p>
+      <li data-md>
+       <p>metadata reproduction</p>
+     </ul>
+   </ul>
+   <h3 class="heading settled" data-level="2.2" id="rdf-serialization"><span class="secno">2.2. </span><span class="content">RDF serialization</span><a class="self-link" href="#rdf-serialization"></a></h3>
+   <p>RDF - being the principle to express data in triples - can be formated in various serializations. Different RDF serialization are useful in different situations.</p>
+   <h4 class="heading settled" data-level="2.2.1" id="traditional-linked-data"><span class="secno">2.2.1. </span><span class="content">'Traditional' linked data</span><a class="self-link" href="#traditional-linked-data"></a></h4>
+   <p>The oldest type of serialization is RDF/XML. This format is complex and old-fashioned. It could be very useful though in XML ecosystems.
+The best readable serialization is Turtle. Examples in this document are written in this form. Linked data provided
+in '<a href="https://nl.wikipedia.org/wiki/N-Triples">n-triples</a>' format can be processed easily in all linked data tooling.</p>
+   <p>Interesting link:</p>
+   <ul>
+    <li data-md>
+     <p><a href="https://ontola.io/blog/rdf-serialization-formats/">https://ontola.io/blog/rdf-serialization-formats/</a></p>
+   </ul>
+   <p>In almost all programming languages libraries are available to transform one RDF-serialization into another. Check for libraries in your favorite programming language.</p>
+   <p><strong>Please offer your data in at least n-triples format.</strong> See for example <a href="nt-examples/example-3.nt">this photo-example</a> that we introduced in Turtle format earlier.</p>
+   <p>If triples are published in both the generic and the specific model they are all included in the same data-file.</p>
+   <p>You could provide more than one serialization and offer the user a choice with 'content negotiation'. (see <a href="#web-compliancy-level-resolvable-uris">section 2.3.2</a>).</p>
+   <h4 class="heading settled" data-level="2.2.2" id="json-ld"><span class="secno">2.2.2. </span><span class="content">JSON-LD</span><a class="self-link" href="#json-ld"></a></h4>
+   <p>JSON-LD is the youngest format and comprehensible to webdevelopers that are used to JSON. The format is more difficult to process in native
+Linked Data environments. We therefore recommend only to use JSON-LD inline in the landing page of an object.
+ (see <a href="#web-compliancy-level-resolvable-uris">section 2.3.2</a>)</p>
+   <h3 class="heading settled" data-level="2.3" id="publishing-linked-data"><span class="secno">2.3. </span><span class="content">Publishing Linked Data</span><a class="self-link" href="#publishing-linked-data"></a></h3>
+   <p>Linked Data can be published in several ways. In this part we will discuss four methods ranging in levels of complexity of implementation.
+Users could prefer one of these methods to obtain the data for their purpose, so the publication-methods should be offered in parallel.</p>
+   <h4 class="heading settled" data-level="2.3.1" id="basic-level-data-dumps"><span class="secno">2.3.1. </span><span class="content">Basic level: Data dumps</span><a class="self-link" href="#basic-level-data-dumps"></a></h4>
+   <p>Most of the current collection management systems support XML-based export formats. In many cases a conversion using XSLT Stylesheets is
+possible to generate a Linked Data dump. The system should support a workflow that can be operated periodically by the system administrator
+in order to produce the dump. The dump should be described by a dataset description. The link pointing to the dump should be fit for
+automatic processing and therefore accessible with for instance a <code>curl</code> command.</p>
+   <p>A dump could be either a zip-file containing files for every object or one big file containing all the triples. <strong>NDE prefers a datadump
+in one file containing ntriples.</strong> A file with ntriples can be easily combined from various sources and easily cut into pieces for processing.</p>
+   <p>In some cases conversion cannot be done by the collection management system itself and a separate publication functionality is required.
+This can be another system within the institution or a system run by a partner in the network (an aggregator or other service provider).
+An export in CSV format could for instance be converted into RDF with the <a href="https://github.com/netwerk-digitaal-erfgoed/LDWizard-ErfgoedWizard">LDWizard</a>.</p>
+   <h4 class="heading settled" data-level="2.3.2" id="web-compliancy-level-resolvable-uris"><span class="secno">2.3.2. </span><span class="content">Web compliancy level: resolvable URIs</span><a class="self-link" href="#web-compliancy-level-resolvable-uris"></a></h4>
+   <p>Although dumps are sufficient to support basic services, proper Linked Data implementations should provide Linked Data per object,
+in Linked Data terminology called a ‘resource’. Each resource in the collection should have a stable and well-formed URI.
+This URI should be ‘resolvable’. This means that the webserver provides data about the resource in a format depending on the accept-header
+in the HTTP request. This functionality is called <a href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec12.html">content negotiation</a> which enables
+browsers or other applications to ask for a specific language or representation of the available content. For Linked Data this mechanism is
+used to differentiate between human-readable content (a rendered HTML page) and machine-readable content (in RDF).</p>
+   <p>For building real time network services that integrate disparate resources, content negotiation should be in place to serve the Linked Data.
+In this case creating a dump is no longer necessary as it is possible to describe the dataset as a collection of resolvable URIs.</p>
+   <p>To improve the overall discoverability on the web it is recommended to add the Schema.org Linked Data format to the landing page of the
+object on the website. <a href="https://developers.google.com/search/docs/guides/intro-structured-data">Google recommends</a> doing this by including
+the Linked Data as <a href="https://json-ld.org/">JSON-LD</a> in the page. The json-ld file could be provided separately from the webpage and including
+with a JavaScript-function. See this <a href="http://cclod.netwerkdigitaalerfgoed.nl/test.html">example</a>.</p>
+   <h4 class="heading settled" data-level="2.3.3" id="advanced-level-queryable-linked-data"><span class="secno">2.3.3. </span><span class="content">Advanced level: queryable Linked Data</span><a class="self-link" href="#advanced-level-queryable-linked-data"></a></h4>
+   <p>Instead of building large centralized services NDE envisions a distributed network of empowered organizations that share and reuse their
+digital information directly. This means that organizations, data providers or service providers, can easily query and combine data from
+several sources in the network. This satifies two needs.</p>
+   <p>Firstly it enables users to create a dedicated query for selecting and harvesting specific data. This data could be used to combine in a
+thematical data-service, eg. Netwerk Oorlogsbronnen. The facility could be used as a more sophisticated endpoint, in addition to an
+OAI-PMH endpoint or a JSON API.</p>
+   <p>Secondly this kind of querying could be used dynamically: whenever a user wants to combine data, various endpoints could be approached and
+results could be combined on-the-fly. This type of querying is still a technological challenge but is already feasible in small-scale applications.</p>
+   <p>The first step in this direction is to make queryable Linked Data available. This can be done by implementing the SPARQL Query Language
+supported by so-called triplestore databases. Another, less demanding technology is the use of <a href="https://linkeddatafragments.org/specification/triple-pattern-fragments/">Triple Pattern Fragments</a>. This offers an easy way of querying the
+available data and is much more scalable but puts a larger burden on the client for processing the query results.</p>
+   <p>Further exploration in the area of decentralized querying needs to be done and NDE invites the IT partners to work together on example
+implementations to determine what practical steps could be made in this direction.</p>
+   <h4 class="heading settled" data-level="2.3.4" id="other-considerations-for-linked-data-publication"><span class="secno">2.3.4. </span><span class="content">Other considerations for Linked Data publication</span><a class="self-link" href="#other-considerations-for-linked-data-publication"></a></h4>
+   <p>Although Linked Data in the core of the collection management systems is not an explicit requirement for NDE it will become more important to
+reorganize the internal data structure of the systems so that it aligns with the Linked Data principles. This will make the transformation to
+Linked Data more straightforward and will offer more opportunities to profit from the reuse of external Linked Data. NDE welcomes cooperation
+with IT partners considering to move in this direction.</p>
+   <p>Another area that needs further exploration is the handling of multiple layers of object descriptions or enrichments, for example originated
+from different sources of other institutions, digital humanities research projects or crowdsourcing projects. Keeping track of the provenance
+of different versions or the ability to maintain and publish different (time) versions of the same resource descriptions
+(i.e. <a href="http://timetravel.mementoweb.org/about/">Memento</a>, <a href="https://www.w3.org/TR/annotation-model/">Web Annotations</a>) are other areas where
+exploration needs to be done. For these topics NDE seeks cooperation with IT partners and with the <a href="https://www.clariah.nl/">CLARIAH-PLUS project</a>,
+responsible for building research infrastructures in the Digital Humanities domain.</p>
+   <p>A third development is the concept of <a href="https://www.w3.org/TR/dx-prof-conneg/">'profile negotiation'</a>. Additional to content negotiation in
+profile negotiation a user can request data according to a certain information model, in our case the generic datamodel or the specific datamodel.</p>
+   <h2 class="heading settled" data-level="3" id="connecting-sources"><span class="secno">3. </span><span class="content">Connecting sources</span><a class="self-link" href="#connecting-sources"></a></h2>
+   <p>"Connected sources" are sources that refer to each other and use each other’s information. This is done using terms.
+Terms are, for example, subjects, persons or places. Each term has a URI as an identifier. Because a URI is a unique webaddress
+the URI makes unambiguously clear which term is meant. Terms and their URIs are managed in terminology sources, such as thesauri,
+reference lists or classification systems. Examples are <a href="https://www.getty.edu/research/tools/vocabularies/aat/">AAT</a>, <a href="https://www.geonames.org/">GeoNames</a> or <a href="https://data.niod.nl/WO2_Thesaurus.html">WO2 Thesaurus</a> (Dutch).</p>
+   <p>For connecting sources, it is important that institutions relate URIs of terms to the descriptions of their heritage objects.
+There are various options for this which are discussed below. The options are increasing in complexity – for example, they
+require changes to the collection management system – but also provide better functionality.</p>
+   <h3 class="heading settled" data-level="3.1" id="using-your-own-terminology-source"><span class="secno">3.1. </span><span class="content">Using your own terminology source</span><a class="self-link" href="#using-your-own-terminology-source"></a></h3>
+   <p>An institution can create and use its own terminology source. Most of the time a collection management system facilitates the
+development and maintenance of a thesaurus or set of persons. These sources contain the terms that the collection manager can use
+when describing heritage objects. This makes it easy to relate terms. A limitation, however, is that the maintenance of ones own
+source could be cumbersome. Another limitation is that the terms in the source may not be known to users outside the institution.
+This reduces the ability to connect sources from different institutions.</p>
+   <p>In the terminology management module of a collection management system the user should be able to relate the internal term to an
+external one. One could for instance state that the internal term for 'schilderij' is an exact match with the external term 'paintings' in
+the AAT. Other types of relations are possible, for instance an internal term 'oil-painting' is a narrower term of the AAT 'paintings'
+(see: <a href="#technology-and-datamodel">section 3.3.2</a>)
+Of course this external term is defined with the proper URI, and stored as such. The process of relating terms form one (internal)
+terminology source with another (external) one, is called _alignment_.</p>
+   <p>If a terminology source is developed and used instead of a standardized one, the terminology source apparently has an added value to
+the field. For that reason the collection management system must be able to publish the terminology source, with alignments, as
+Linked Data (see: <a href="#publishing-terminology-sources">section 3.3</a>).</p>
+   <h3 class="heading settled" data-level="3.2" id="using-standardized-terminology-sources"><span class="secno">3.2. </span><span class="content">Using standardized terminology sources</span><a class="self-link" href="#using-standardized-terminology-sources"></a></h3>
+   <p>Using terms that are not connected to the network of internationally standardized terminology sources reduces the ability to connect sources
+from different institutions. We recommend to use as much standardized terms as possible.</p>
+   <h4 class="heading settled" data-level="3.2.1" id="manually-searching-a-terminology-source"><span class="secno">3.2.1. </span><span class="content">Manually searching a terminology source</span><a class="self-link" href="#manually-searching-a-terminology-source"></a></h4>
+   <p>This is the simplest, low-tech approach to assign the URI of a term to the description of an heritage object. A collection manager goes
+to the online system of a terminology source and searches for a term, for example 'paintings' in AAT. The manager then copies the URI of the
+term, goes back to her collection management system and pastes the URI in a designated field. This approach requires few changes to the
+collection management system: a field has to be created in order to store the URI. On the other hand, this approach is cumbersome:
+a manager has to perform some actions manually.</p>
+   <h4 class="heading settled" data-level="3.2.2" id="adding-terms-in-bulk"><span class="secno">3.2.2. </span><span class="content">Adding terms in bulk</span><a class="self-link" href="#adding-terms-in-bulk"></a></h4>
+   <p>Instead of adding a (URI of a) term to an object description one-by-one, the curator could export the data from her system and add the
+terms and its URIs in bulk. This could be done with applications like <a href="https://openrefine.org/">Open Refine</a>. For this approach, the
+collection management system must be able to export the data, for instance in CSV format, and import the new data with its additional
+link to the term.</p>
+   <p>The addition of a term can be based on an existing field containing only a string of the data, for instance 'schilderij'. By using
+search-and-replace kind of tricks the additional link could be added. This type of work is called _reconciliation_.</p>
+   <h4 class="heading settled" data-level="3.2.3" id="importing-a-terminology-source"><span class="secno">3.2.3. </span><span class="content">Importing a terminology source</span><a class="self-link" href="#importing-a-terminology-source"></a></h4>
+   <p>An institution can import one or more terminology sources into its collection management system, such as AAT and/or WW2 Thesaurus.
+This makes it easy to use terms: the collection manager can search for terms in her management system, without having to switch to the
+system of the source, as is the case when searching terms manually
+(see <a href="#manually-searching-a-terminology-source">section 3.2.1</a>).
+A limitation is that the manager does not use current data: an import takes place periodically – for example: once a day or month – so that
+changes to the terminology source are not immediately visible.</p>
+   <h4 class="heading settled" data-level="3.2.4" id="searching-a-terminology-source-in-real-time"><span class="secno">3.2.4. </span><span class="content">Searching a terminology source in real time</span><a class="self-link" href="#searching-a-terminology-source-in-real-time"></a></h4>
+   <p>An institution can query a terminology source in real time in its collection management system. A collection manager first enters a search query
+in a search field. Next, her management system – on the background – queries the terminology source, retrieves the terms that correspond to the
+query and presents them to the manager. The manager then chooses the desired term and the management system stores the URI of the chosen term.
+This ensures that the institution works with current data. However, the implementation of this approach in the management system can entail
+some difficulties: a connection must be established with the source – or multiple connections, if the institution wants to use multiple sources.</p>
+   <h4 class="heading settled" data-level="3.2.5" id="using-the-network-of-terms"><span class="secno">3.2.5. </span><span class="content">Using the Network of Terms</span><a class="self-link" href="#using-the-network-of-terms"></a></h4>
+   <p>An institution can use the <a href="http://demo.netwerkdigitaalerfgoed.nl/termennetwerk/en/faq">Network of Terms</a>. The Network of Terms is a search engine
+for terms: it searches one or more terminology sources in real time. The Network of Terms can be used in a collection management system.
+A collection manager first enters a search query in a search field. Next, her management system – on the background – queries the Network of Terms,
+retrieves the terms that correspond to the query and presents them to the manager. The manager then chooses the desired term and
+the management system stores the URI of the chosen term. This makes it easier to use multiple terminology sources: you only need to connect
+to the Network of Terms.</p>
+   <h4 class="heading settled" data-level="3.2.6" id="indexing-data-from-the-terminology-source"><span class="secno">3.2.6. </span><span class="content">Indexing data from the terminology source</span><a class="self-link" href="#indexing-data-from-the-terminology-source"></a></h4>
+   <p>If (the URI of) a term is stored, collection managers might be interested in related data in the collection management system, for instance
+alternative labels, pseudonyms, or labels in different languages. This helps the user of the collection management system to retrieve data
+from her system. As long as the web of data is not as decentralized as we’d wish
+(see <a href="#advanced-level-queryable-linked-data">section 2.3.3</a>),
+collection management systems could offer obtaining the needed data via resolving the URI
+(see <a href="#web-compliancy-level-resolvable-uris">section 2.3.2</a>)
+and store and index the extra data in the database. The related data must be synchronized periodically and the collection management interface
+must enable to force the synchonization. A collection manager that helps the editors of the standardized source to add or improve data,
+can than see her results quickly.</p>
+   <h3 class="heading settled" data-level="3.3" id="publishing-terminology-sources"><span class="secno">3.3. </span><span class="content">Publishing terminology sources</span><a class="self-link" href="#publishing-terminology-sources"></a></h3>
+   <p>"Published terminology sources" are sources that are important to the cooperating institutions in the Dutch Digital Heritage Network.
+It enables collection managers to find and use terms in the sources more easily when describing their heritage objects. And that makes
+digital heritage found easier by data-users. Publishing terminology sources should obey <a href="https://netwerk-digitaal-erfgoed.github.io/requirements-terminologiebronnen/">these requirements</a> (Dutch).</p>
+   <p>A terminology source is considered a dataset, with sustainable URIs as described
+in <a href="#adding-persistent-identifiers">section 5</a>, described according
+to the guidelines in <a href="#publishing-dataset-descriptions">section 4</a>,
+and published as dump, with resolvable URIs and in a SPARQL query as described in <a href="#publishing-collection-information">section 2</a>.</p>
+   <p>A terminology source can only be used if it meets a few conditions. Are you the manager of a source and are you considering making it
+available to the network? Then take the following aspects into account.</p>
+   <h4 class="heading settled" data-level="3.3.1" id="authority"><span class="secno">3.3.1. </span><span class="content">Authority</span><a class="self-link" href="#authority"></a></h4>
+   <p>Terms are not just ordinary words: they are official notations. The manager of a terminology source guarantees their quality.
+For example: terms must be accurate and current. Another example: the manager ensures that her terms are permanently available and can
+be used for a long time. This makes a terminology source an authority on which other institutions can build.</p>
+   <h4 class="heading settled" data-level="3.3.2" id="technology-and-datamodel"><span class="secno">3.3.2. </span><span class="content">Technology and datamodel</span><a class="self-link" href="#technology-and-datamodel"></a></h4>
+   <p>A terminology source is used by both humans and machines. For example, institutions' collection management systems must be able to connect
+to the source. To make this possible, the source must meet certain technological requirements. These requirements follow the
+Linked Data principles and best practices. This means, for example, that every term in the source gets a sustainable URI; when dereferencing
+this URI, metadata about the term is returned. **This metadata must be expressed according to a specific RDF metadata model,
+for example <a href="https://www.w3.org/2009/08/skos-reference/skos.html">Simple Knowledge Organization System (SKOS)</a> or Schema.org.**
+SKOS contains various types of relations, eg. skos:exactMatch, skos:closeMatch or skos:broader to store an alignment between your
+terminology source and standardized terms.</p>
+   <p>In addition, terms in the source must be searchable through a SPARQL endpoint. This enables a connection to the Network of Terms.</p>
+   <h4 class="heading settled" data-level="3.3.3" id="cooperation"><span class="secno">3.3.3. </span><span class="content">Cooperation</span><a class="self-link" href="#cooperation"></a></h4>
+   <p>A terminology source is used by institutions. There is a good chance that these institutions do not use one, but several sources.
+In order to increase the ease of use of sources, collaboration between source managers and collection managers is essential.
+For example about the way in which collection managers can propose changes to terms to sources: this could follow a uniform process.
+Another example: it can happen that two sources define the same term (such as painting). The sources should then jointly agree
+that these terms have the same meaning and refer to each other’s terms – this clarifies the relationship between both terms for collection managers.
+The collection management system should support these processes.</p>
+   <h2 class="heading settled" data-level="4" id="publishing-dataset-descriptions"><span class="secno">4. </span><span class="content">Publishing dataset descriptions</span><a class="self-link" href="#publishing-dataset-descriptions"></a></h2>
+   <p>To increase the findability of datasets of heritage institutions, it is important to publish the dataset descriptions according to a
+well documented, machine-readable model. When rich dataset descriptions are used, published not only as HTML (for humans) but also as
+meaningful metadata (for the machine), the findability and use of datasets that heritage institutions make available, will improve.
+Publishing dataset descriptions should obey <a href="https://netwerk-digitaal-erfgoed.github.io/requirements-datasets/">these requirements</a>,
+which contains a more elaborate description of the publishing process.</p>
+   <h3 class="heading settled" data-level="4.1" id="publication-model-for-dataset-descriptions"><span class="secno">4.1. </span><span class="content">Publication model for dataset descriptions</span><a class="self-link" href="#publication-model-for-dataset-descriptions"></a></h3>
+   <p>The NDE has drafted a publication model which is based on schema.org. For datasets, the class https://schema.org/Dataset has been developed.
+This class is based on W3C DCAT work and benefits from collaboration around the DCAT, ADMS and VoID vocabularies.</p>
+   <h3 class="heading settled" data-level="4.2" id="how-to-publish-dataset-descriptions"><span class="secno">4.2. </span><span class="content">How to publish dataset descriptions</span><a class="self-link" href="#how-to-publish-dataset-descriptions"></a></h3>
+   <p>For good findability, every dataset description must be accessible via the Internet, must be legible for humans and machines, and use the
+publication model. The serialization of dataset descriptions can take several serializations, JSON-LD is preferred.</p>
+   <p>A user can obtain a dataset description with a sustainable URI as described in <a href="#adding-persistent-identifiers">section 5</a> and published as a
+resolvable URI as described in <a href="#web-compliancy-level-resolvable-uris">section 2.3.2</a>.</p>
+   <p>Most (automated) users expect to find the metadata in the page itself (inline). Spiders of search engines such as Google might not follow
+linked JSON-LD files. Even if the linked files (via Javascript) are "injected" into the page, most spiders do not pick up on this.
+There are more serializations of RDF, such as RDF/XML and Turtle. Spiders of search engines such as Google currently only support microdata,
+RDFa and JSON-LD. Because search engine findability is an important driver, the use of inline JSON-LD is recommended. However,
+this does not prevent the additional publication of the dataset description in other serialization formats or a (content negotiation based)
+separate resource.</p>
+   <h3 class="heading settled" data-level="4.3" id="spreading-the-knowledge-about-datasets"><span class="secno">4.3. </span><span class="content">Spreading the knowledge about datasets</span><a class="self-link" href="#spreading-the-knowledge-about-datasets"></a></h3>
+   <p>The choice for schema.org as a basis for the publication model for dataset descriptions comes with the benefit that this model is
+known (and used) by big search engines. By adding the dataset description pages to the websites sitemap, search engines are likely
+to pick up the dataset description and make them available in tools like <a href="https://datasetsearch.research.google.com/">Google Dataset Search</a>.</p>
+   <p>By registering the datasets with the NDE Register, the network of Dutch heritage institutions can easily find relevant datasets to link with.
+More generic (open) dataset registers, like data.overheid.nl, can also be used to promote the datasets of the institutions.</p>
+   <h2 class="heading settled" data-level="5" id="adding-persistent-identifiers"><span class="secno">5. </span><span class="content">Adding persistent identifiers</span><a class="self-link" href="#adding-persistent-identifiers"></a></h2>
+   <p>TBD
+Everything (eg. heritage objects, terms, datasets) needs a persistent URI, unique in the world.</p>
+   <h3 class="heading settled" data-level="5.1" id="persistent-identifiers"><span class="secno">5.1. </span><span class="content">Persistent Identifiers</span><a class="self-link" href="#persistent-identifiers"></a></h3>
+   <ul>
+    <li data-md>
+     <p>Please inform yourselves about 'persistent identifiers' on <a href="https://www.pidwijzer.nl/en">this website</a>.</p>
+    <li data-md>
+     <p>Handle</p>
+   </ul>
+   <h3 class="heading settled" data-level="5.2" id="uniform-resource-identifiers"><span class="secno">5.2. </span><span class="content">Uniform Resource Identifiers</span><a class="self-link" href="#uniform-resource-identifiers"></a></h3>
+   <p>URIs are webaddresses. URI-strategies:</p>
+   <ul>
+    <li data-md>
+     <p><a href="https://www.pldn.nl/wiki/Concept_URI-strategie">CONCEPT Nationale URI-Strategie voor Linked Data van de Nederlandse overheid</a> (dutch)</p>
+    <li data-md>
+     <p><a href="doc/URI-beleidLinkedData_1.1.2.pdf">URI-beleid voor Linked Data [van de Koninklijke Bibliotheek</a> (dutch)</p>
+    <li data-md>
+     <p><a href="doc/URI-strategie-Nationaal-Archief_v1_1_INTERN.pdf">Duurzaam vindbaar op het web: URI-strategie Nationaal Archief; het gebruik van Handles en URI’s</a> (dutch)</p>
+    <li data-md>
+     <p><a href="https://confluence.socialhistoryservices.org/display/DOC/IISG+URI+Strategy">IISG URI Strategy</a></p>
+   </ul>
+  </main>
+  <div data-fill-with="conformance">
+   <h2 class="no-ref no-num heading settled" id="conformance"><span class="content"> Conformance</span><a class="self-link" href="#conformance"></a></h2>
+   <p> Conformance requirements are expressed with a combination of descriptive assertions and RFC 2119 terminology.
+            The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “MAY”, and “OPTIONAL”
+            in the normative parts of this document
+            are to be interpreted as described in RFC 2119.
+            However, for readability,
+            these words do not appear in all uppercase letters in this specification. </p>
+   <p> All of the text of this specification is normative
+            except sections explicitly marked as non-normative, examples, and notes. <a data-link-type="biblio" href="#biblio-rfc2119">[RFC2119]</a> </p>
+   <p> Examples in this specification are introduced with the words “for example”
+            or are set apart from the normative text with <code>class="example"</code>, like this: </p>
+   <div class="example" id="example-example"><a class="self-link" href="#example-example"></a> This is an example of an informative example. </div>
+   <p> Informative notes begin with the word “Note”
+            and are set apart from the normative text with <code>class="note"</code>, like this: </p>
+   <p class="note" role="note"> Note, this is an informative note. </p>
+  </div>
+<script>
+(function() {
+  "use strict";
+  var collapseSidebarText = '<span aria-hidden="true">←</span> '
+                          + '<span>Collapse Sidebar</span>';
+  var expandSidebarText   = '<span aria-hidden="true">→</span> '
+                          + '<span>Pop Out Sidebar</span>';
+  var tocJumpText         = '<span aria-hidden="true">↑</span> '
+                          + '<span>Jump to Table of Contents</span>';
+
+  var sidebarMedia = window.matchMedia('screen and (min-width: 78em)');
+  var autoToggle   = function(e){ toggleSidebar(e.matches) };
+  if(sidebarMedia.addListener) {
+    sidebarMedia.addListener(autoToggle);
+  }
+
+  function toggleSidebar(on) {
+    if (on == undefined) {
+      on = !document.body.classList.contains('toc-sidebar');
+    }
+
+    /* Don’t scroll to compensate for the ToC if we’re above it already. */
+    var headY = 0;
+    var head = document.querySelector('.head');
+    if (head) {
+      // terrible approx of "top of ToC"
+      headY += head.offsetTop + head.offsetHeight;
+    }
+    var skipScroll = window.scrollY < headY;
+
+    var toggle = document.getElementById('toc-toggle');
+    var tocNav = document.getElementById('toc');
+    if (on) {
+      var tocHeight = tocNav.offsetHeight;
+      document.body.classList.add('toc-sidebar');
+      document.body.classList.remove('toc-inline');
+      toggle.innerHTML = collapseSidebarText;
+      if (!skipScroll) {
+        window.scrollBy(0, 0 - tocHeight);
+      }
+      tocNav.focus();
+      sidebarMedia.addListener(autoToggle); // auto-collapse when out of room
+    }
+    else {
+      document.body.classList.add('toc-inline');
+      document.body.classList.remove('toc-sidebar');
+      toggle.innerHTML = expandSidebarText;
+      if (!skipScroll) {
+        window.scrollBy(0, tocNav.offsetHeight);
+      }
+      if (toggle.matches(':hover')) {
+        /* Unfocus button when not using keyboard navigation,
+           because I don’t know where else to send the focus. */
+        toggle.blur();
+      }
+    }
+  }
+
+  function createSidebarToggle() {
+    /* Create the sidebar toggle in JS; it shouldn’t exist when JS is off. */
+    var toggle = document.createElement('a');
+      /* This should probably be a button, but appearance isn’t standards-track.*/
+    toggle.id = 'toc-toggle';
+    toggle.class = 'toc-toggle';
+    toggle.href = '#toc';
+    toggle.innerHTML = collapseSidebarText;
+
+    sidebarMedia.addListener(autoToggle);
+    var toggler = function(e) {
+      e.preventDefault();
+      sidebarMedia.removeListener(autoToggle); // persist explicit off states
+      toggleSidebar();
+      return false;
+    }
+    toggle.addEventListener('click', toggler, false);
+
+
+    /* Get <nav id=toc-nav>, or make it if we don’t have one. */
+    var tocNav = document.getElementById('toc-nav');
+    if (!tocNav) {
+      tocNav = document.createElement('p');
+      tocNav.id = 'toc-nav';
+      /* Prepend for better keyboard navigation */
+      document.body.insertBefore(tocNav, document.body.firstChild);
+    }
+    /* While we’re at it, make sure we have a Jump to Toc link. */
+    var tocJump = document.getElementById('toc-jump');
+    if (!tocJump) {
+      tocJump = document.createElement('a');
+      tocJump.id = 'toc-jump';
+      tocJump.href = '#toc';
+      tocJump.innerHTML = tocJumpText;
+      tocNav.appendChild(tocJump);
+    }
+
+    tocNav.appendChild(toggle);
+  }
+
+  var toc = document.getElementById('toc');
+  if (toc) {
+    createSidebarToggle();
+    toggleSidebar(sidebarMedia.matches);
+
+    /* If the sidebar has been manually opened and is currently overlaying the text
+       (window too small for the MQ to add the margin to body),
+       then auto-close the sidebar once you click on something in there. */
+    toc.addEventListener('click', function(e) {
+      if(e.target.tagName.toLowerCase() == "a" && document.body.classList.contains('toc-sidebar') && !sidebarMedia.matches) {
+        toggleSidebar(false);
+      }
+    }, false);
+  }
+  else {
+    console.warn("Can’t find Table of Contents. Please use <nav id='toc'> around the ToC.");
+  }
+
+  /* Wrap tables in case they overflow */
+  var tables = document.querySelectorAll(':not(.overlarge) > table.data, :not(.overlarge) > table.index');
+  var numTables = tables.length;
+  for (var i = 0; i < numTables; i++) {
+    var table = tables[i];
+    var wrapper = document.createElement('div');
+    wrapper.className = 'overlarge';
+    table.parentNode.insertBefore(wrapper, table);
+    wrapper.appendChild(table);
+  }
+
+})();
+</script>
+  <h2 class="no-num no-ref heading settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
+  <h3 class="no-num no-ref heading settled" id="normative"><span class="content">Normative References</span><a class="self-link" href="#normative"></a></h3>
+  <dl>
+   <dt id="biblio-rfc2119">[RFC2119]
+   <dd>S. Bradner. <a href="https://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>. March 1997. Best Current Practice. URL: <a href="https://tools.ietf.org/html/rfc2119">https://tools.ietf.org/html/rfc2119</a>
+  </dl>

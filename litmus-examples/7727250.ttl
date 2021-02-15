@@ -1,0 +1,31 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix atlantis: <urn:atlantis> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <http://schema.org/> .
+
+<http://data.bibliotheken.nl/id/thes/p06847685X>
+    a schema:Person ;
+    rdfs:label "Bilderdijk, Willem (1756-1831)" .
+
+<http://data.bibliotheken.nl/id/thes/p070019061>
+    a schema:Person ;
+    rdfs:label "Woesthoven, Maria Petronella (1760-1830)" .
+
+<https://hdl.handle.net/21.12129/5282988>
+    a schema:ArchiveComponent ;
+    rdfs:label "6248 - Maatschappij der Nederlandse Letterkunde - tijdschriften, boeken en knipsels 10/2/1982" .
+
+<https://hdl.handle.net/21.12129/7727250>
+    schema:about <http://data.bibliotheken.nl/id/thes/p06847685X>, <http://data.bibliotheken.nl/id/thes/p070019061> ;
+    schema:dateCreated "1791-1803" ;
+    schema:identifier "1" ;
+    schema:isPartOf <https://hdl.handle.net/21.12129/5282988> ;
+    schema:materialExtent [
+        schema:unitText "Brieven" ;
+        schema:value "14" ;
+        a schema:QuantitativeValue
+    ] ;
+    schema:url "https://LITtest.hosting.deventit.net/detail.php?id=7727250" ;
+    a schema:ArchiveComponent ;
+    rdfs:label "Brieven van Willem Bilderdijk (1756-1831) aan Maria Petronella Woesthoven (1760-1830) TEST" .
+

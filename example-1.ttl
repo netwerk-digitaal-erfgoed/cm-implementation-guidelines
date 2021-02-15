@@ -1,0 +1,46 @@
+# Example: combining generic (schema.org) and specific (Linked Art) modeling
+# Disclaimer: the example is inspired on a real case, 
+# but does not intend to be correct or complete
+@base <http://hdl.handle.net/10934/RM0001.COLLECT.221600> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sdo: <http://schema.org/> .
+@prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
+@prefix cht:  <https://data.cultureelerfgoed.nl/term/id/cht/> .
+@prefix rkda: <https://data.rkd.nl/artists/> .
+@prefix aat:  <http://vocab.getty.edu/aat/> .
+@prefix tgn:  <http://vocab.getty.edu/tgn/> .
+@prefix ulan: <http://vocab.getty.edu/ulan/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<>	a sdo:VisualArtwork ;
+	sdo:artform cht:26b0d61a-e37a-4912-b516-48884f251bc6 ;  # etching
+	sdo:name "Gezicht op Victoria Embankment in Londen" ;
+	sdo:dateCreated "1888-1944" ;
+        sdo:contentLocation tgn:7011798 ; # London
+	sdo:creator rkda:85165 ;          # Willem Witsen (1860-1923) (etcher)
+	sdo:contributor rkda:36233 ;      # Dirk Harting (1884-1970) (printer)
+        sdo:locationCreated tgn:7007049 ; # Heemstede
+	crm:P108i_was_produced_by <#production1> ; # etching production event
+	crm:P108i_was_produced_by <#production2> . # printing production event
+
+<#production1> a crm:E12_Production ;
+        crm:P14_carried_out_by ulan:500025421 ;        # Willem Witsen
+        crm:P32_used_general_technique aat:300053840 ; # etching
+        crm:P32_used_general_technique aat:300053242 ; # aquatint
+        crm:P4_has_time-span <#timespan1> ;
+        sdo:locationCreated tgn:7011798 ; # London
+        crm:P7_took_place_at tgn:7011798 .             # London
+
+<#production2> a crm:E12_Production ;
+        crm:P14_carried_out_by ulan:500076474 ;        # Dirk Harting
+        crm:P32_used_general_technique aat:300053319 ; # printing
+        crm:P4_has_time-span <#timespan2> ;
+        crm:P7_took_place_at tgn:7007049 .             # Heemstede
+        
+<#timespan1> a crm:E52_Time-Span ;
+        crm:P82a_begin_of_the_begin "1888-09-01T00:00:00"^^xsd:dateTime ;
+        crm:P82b_end_of_the_end "1892-01-01T00:00:00"^^xsd:dateTime .
+
+<#timespan2> a crm:E52_Time-Span ;
+        crm:P82a_begin_of_the_begin "1944-01-01T00:00:00"^^xsd:dateTime ;
+        crm:P82b_end_of_the_end "1945-01-01T00:00:00"^^xsd:dateTime .

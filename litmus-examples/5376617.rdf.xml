@@ -1,0 +1,23 @@
+<rdf:RDF xmlns:atlantis="urn:atlantis" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:schema="http://schema.org/">
+	<rdf:Description rdf:about="https://hdl.handle.net/21.12129/5376617">
+		<rdfs:label>test titel BR</rdfs:label>
+		<rdf:type rdf:resource="http://schema.org/CreativeWork"/>
+		<schema:identifier>242959830</schema:identifier>
+		<schema:url>https://LITtest.hosting.deventit.net/detail.php?id=5376617</schema:url>
+		<schema:description>Met opdracht: 'Voor Anna Blaman van Paul Citroen', Landschap, zonder titel [Eenzaam avontuur]</schema:description>
+		<schema:dateCreated>1950</schema:dateCreated>
+		<schema:size>26 x 36 cm</schema:size>
+		<schema:genre>Schilderij</schema:genre>
+		<schema:material>1 schilderij, houtskool met waterverf</schema:material>
+		<schema:about>
+			<schema:Person rdf:about="http://data.bibliotheken.nl/id/thes/p068579292">
+				<rdfs:label>Blaman, Anna</rdfs:label>
+			</schema:Person>
+		</schema:about>
+		<schema:creator>
+			<schema:Person rdf:about="http://data.bibliotheken.nl/id/thes/p06876314X">
+				<rdfs:label>Citroen, Paul (1896-1983)</rdfs:label>
+			</schema:Person>
+		</schema:creator>
+	</rdf:Description>
+</rdf:RDF>

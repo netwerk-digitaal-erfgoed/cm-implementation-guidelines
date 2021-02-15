@@ -1,0 +1,19 @@
+@base <https://verhalenwiki.nl/id/> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema:  <http://schema.org/> .
+
+<3656>
+	rdf:type schema:CreativeWork ;
+	rdfs:label "Papieren etiket met tekst 'Prize - Medal Geneva, The produce of Holland'" ;
+	schema:url "http://verhalenwiki.nl/index.php?title=Toon_object&identifier=3656" ;
+	schema:isPartOf "Nationaal Jenevermuseum Schiedam, Gekroonde Brandersketel" ;
+	schema:isPartOf "etiketten-jenever/gin" ;
+	schema:genre "Etiket" ;
+	schema:creator "Distilleerderij Henkes" ;
+	schema:size "9 x 5.4 cm" ;
+	schema:identifier "05555" ;
+	schema:contentLocation "Schiedam" ;
+	schema:material "Papier" ;
+	# for example: schema:dateCreated "ca. 1935" ;
+	schema:about "J.H. Henkes" .

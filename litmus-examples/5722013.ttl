@@ -1,0 +1,10 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix schema: <http://schema.org/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<https://hdl.handle.net/21.12129/5722013>
+    a schema:Person ;
+    rdfs:label "Reve, Gerard (1923-2006)" ;
+    skos:exactMatch <http://data.bibliotheken.nl/id/thes/p068256671> .
+
