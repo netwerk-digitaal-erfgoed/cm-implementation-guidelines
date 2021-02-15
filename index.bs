@@ -1,17 +1,14 @@
 <pre class='metadata'>
-Title: Your Spec Title
-Shortname: your-spec
-Level: 1
+Title: Implementation guidelines for NDE alignment of cultural heritage data management and publication infrastructure
+Shortname: implementation-guidelines
 Status: LS
 Markup Shorthands: css yes, markdown yes
-URL: http://example.com/url-this-spec-will-live-at
-Editor: Your Name, Your Company http://example.com/your-company, your-email@example.com, http://example.com/your-personal-website
-Abstract: A short description of your spec, one or two sentences.
+URL: https://netwerk-digitaal-erfgoed.github.io/cm-implementation-guidelines/
+Editor:
+    Ivo Zandhuis, Dutch Digital Heritage Network https://www.netwerkdigitaalerfgoed.nl/en, ivo@zandhuis.nl
+    Sjors de Valk, Dutch Digital Heritage Network https://www.netwerkdigitaalerfgoed.nl/en, sjors@sjorsdevalk.nl
+Abstract: This document describes how IT suppliers can help the Dutch cultural heritage institutions to become more compliant with the principles for cooperation in the Dutch Digital Heritage Network (NDE).
 </pre>
 
 Introduction {#intro}
 =====================
-
-Introduction here.
-
-Test build: d929bb9
