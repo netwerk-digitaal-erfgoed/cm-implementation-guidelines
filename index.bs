@@ -93,8 +93,8 @@ Data model
 
 The main goal for publishing the object descriptions as Linked Data is to improve the data integration and visibility in the network.
 Because the heritage network spans institutions from the library, archive and museum domains, a generic data model that can support
-general visibility on the web is needed. **In order to support a broader visibility on the web outside the cultural heritage domain,
-we have chosen to conform to [Schema.org](https://schema.org/).** Schema.org is a joint initiative of three major search engines:
+general visibility on the web is needed. In order to support a broader visibility on the web outside the cultural heritage domain,
+we have chosen to conform to [Schema.org](https://schema.org/). Schema.org is a joint initiative of three major search engines:
 Bing, Google and Yahoo with the aim of setting up a shared scheme to structure data. Vocabularies from schema.org are developed through an open community process.
 
 Interesting links:
@@ -157,7 +157,7 @@ Interesting link:
 
 In almost all programming languages libraries are available to transform one RDF-serialization into another. Check for libraries in your favorite programming language.
 
-**Please offer your data in at least n-triples format.** See for example [this photo-example](nt-examples/example-3.nt) that we introduced in Turtle format earlier.
+Please offer your data in at least n-triples format. See for example [this photo-example](nt-examples/example-3.nt) that we introduced in Turtle format earlier.
 
 If triples are published in both the generic and the specific model they are all included in the same data-file.
 
@@ -182,8 +182,8 @@ possible to generate a Linked Data dump. The system should support a workflow th
 in order to produce the dump. The dump should be described by a dataset description. The link pointing to the dump should be fit for
 automatic processing and therefore accessible with for instance a ```curl``` command.
 
-A dump could be either a zip-file containing files for every object or one big file containing all the triples. **NDE prefers a datadump
-in one file containing ntriples.** A file with ntriples can be easily combined from various sources and easily cut into pieces for processing.
+A dump could be either a zip-file containing files for every object or one big file containing all the triples. NDE prefers a datadump
+in one file containing ntriples. A file with ntriples can be easily combined from various sources and easily cut into pieces for processing.
 
 In some cases conversion cannot be done by the collection management system itself and a separate publication functionality is required.
 This can be another system within the institution or a system run by a partner in the network (an aggregator or other service provider).
@@ -271,7 +271,7 @@ external one. One could for instance state that the internal term for \'schilder
 the AAT. Other types of relations are possible, for instance an internal term \'oil-painting' is a narrower term of the AAT \'paintings'
 (see: [section 3.3.2](#technology-and-datamodel))
 Of course this external term is defined with the proper URI, and stored as such. The process of relating terms form one (internal)
-terminology source with another (external) one, is called _alignment_.
+terminology source with another (external) one, is called *alignment*.
 
 If a terminology source is developed and used instead of a standardized one, the terminology source apparently has an added value to
 the field. For that reason the collection management system must be able to publish the terminology source, with alignments, as
@@ -299,7 +299,7 @@ collection management system must be able to export the data, for instance in CS
 link to the term.
 
 The addition of a term can be based on an existing field containing only a string of the data, for instance \'schilderij'. By using
-search-and-replace kind of tricks the additional link could be added. This type of work is called _reconciliation_.
+search-and-replace kind of tricks the additional link could be added. This type of work is called *reconciliation*.
 
 ### Importing a terminology source
 
@@ -320,7 +320,7 @@ some difficulties: a connection must be established with the source – or multi
 
 ### Using the Network of Terms
 
-An institution can use the [Network of Terms](http://demo.netwerkdigitaalerfgoed.nl/termennetwerk/en/faq). The Network of Terms is a search engine
+An institution can use the [Network of Terms](https://termennetwerk.netwerkdigitaalerfgoed.nl/faq). The Network of Terms is a search engine
 for terms: it searches one or more terminology sources in real time. The Network of Terms can be used in a collection management system.
 A collection manager first enters a search query in a search field. Next, her management system – on the background – queries the Network of Terms,
 retrieves the terms that correspond to the query and presents them to the manager. The manager then chooses the desired term and
@@ -367,8 +367,8 @@ be used for a long time. This makes a terminology source an authority on which o
 A terminology source is used by both humans and machines. For example, institutions' collection management systems must be able to connect
 to the source. To make this possible, the source must meet certain technological requirements. These requirements follow the
 Linked Data principles and best practices. This means, for example, that every term in the source gets a sustainable URI; when dereferencing
-this URI, metadata about the term is returned. **This metadata must be expressed according to a specific RDF metadata model,
-for example [Simple Knowledge Organization System (SKOS)](https://www.w3.org/2009/08/skos-reference/skos.html) or Schema.org.**
+this URI, metadata about the term is returned. This metadata must be expressed according to a specific RDF metadata model,
+for example [Simple Knowledge Organization System (SKOS)](https://www.w3.org/2009/08/skos-reference/skos.html) or Schema.org.
 SKOS contains various types of relations, eg. skos:exactMatch, skos:closeMatch or skos:broader to store an alignment between your
 terminology source and standardized terms.
 
