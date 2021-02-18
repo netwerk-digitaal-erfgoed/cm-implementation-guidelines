@@ -11,7 +11,7 @@ To view HTML output locally (using a [Docker container](https://github.com/netwe
 run:
 
 ```bash
-make
+make spec
 ```
 
 and open the `index.html` file:
