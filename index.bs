@@ -122,7 +122,7 @@ For specific users or communities a deeper understanding of the knowledge in the
 of Linked Data there is no restriction to simply add another layer of description to the resource. See for [example](example-1.ttl)
 this object description. So institutions can add extra properties and class definitions to the Linked Data they publish.
 In general \[CIDOC-CRM](http://www.cidoc-crm.org/) (and its derivative [Linked Art](https://linked.art/model/)) can be appropriate for museums.
-For archives the [RiC-O ontology](https://www.ica.org/standards/RiC/RiC-O_v0-1.html) seems to be promising and for
+For archives the [RiC-O ontology](https://www.ica.org/standards/RiC/ontology) seems to be promising and for
 libraries [RDA Elements](https://www.rdaregistry.info/Elements/) or \[BIBFRAME](https://www.loc.gov/bibframe/) could be relevant.
 It is up to the institutions in the separate domains to agree on the use and implementation of these shared standards.
 Best practices and information about actual implementations will be shared in the network.
