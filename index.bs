@@ -15,12 +15,17 @@ Introduction {#intro}
 
 This document describes how IT suppliers can help the Dutch cultural heritage institutions to become more compliant with the principles
 for cooperation in the Dutch Digital Heritage Network (NDE). It is and will be constructed in full cooperation with suppliers.
-We ask IT suppliers of data management and publication software to implement the guidelines outlined in this document in their software products.
-This will help the Dutch heritage institutions in making their information accessible to services and users on the web.
+We ask IT suppliers of data management and publication software to implement the guidelines outlined in this document in their products.
+This will help the Dutch heritage institutions in making their information accessible to machines and humans on the web.
 
-The goal of cooperation in the network is to increase the social value of the cultural heritage information by improving its visibility,
+The goal of cooperation in the network is to increase the public value of the cultural heritage information by improving its visibility,
 usability and sustainability. A crucial part of this challenge is to improve the capabilities of institutions to share their information
-in the network and to integrate digital heritage information from various sources to build relevant services for their audiences.
+in the network and to integrate digital heritage information from various sources to build services for their audiences.
+
+This document aims to initiate an open discussion and cooperation with the technical partners in the network. The final goal is to document
+practical solutions that are within reach of the various IT systems used by the institutions and developed by the IT suppliers actively
+cooperating with NDE. Where appropriate, formal specifications of these solutions will be proposed to the Architecture Board of the DERA
+to become part of the long term agreements within the cultural heritage domain.
 
 Relation with other documentation
 --------------------
@@ -31,26 +36,21 @@ The design in itself is based on the [Dutch digital heritage reference architect
 the [National Digital Heritage Strategy](https://www.netwerkdigitaalerfgoed.nl/en/about-us/national-digital-heritage-strategy/) and
 the [NDE position paper](https://www.netwerkdigitaalerfgoed.nl/wp-content/uploads/2018/02/NDE_PositionPaper_NetworkHeritageInformation-EN-v2.pdf).
 
-This document aims to initiate an open discussion and cooperation with the technical partners in the network. The final goal is to document
-practical solutions that are within reach of the various IT systems used by the institutions and developed by the IT suppliers actively
-cooperating with NDE. Where appropriate, formal specifications of these solutions will be proposed to the Architecture Board of the DERA
-to become part of the long term agreements within the cultural heritage domain.
-
 Overview
 --------------------
 
-A large part of the guidelines in this document follows the general practice for publishing [Linked Data](https://en.wikipedia.org/wiki/Linked_data).
-As stated in the [reference architecture](https://dera.netwerkdigitaalerfgoed.nl/index.php/Linked_Data) (Dutch) Linked Data is regarded as a
+The guidelines in this document follow the general practice for publishing [Linked Data](https://en.wikipedia.org/wiki/Linked_data).
+As stated in the [reference architecture](https://dera.netwerkdigitaalerfgoed.nl/index.php/Linked_Data) (in Dutch) Linked Data is regarded as a
 key technology in the cultural heritage domain for integrating the huge amount of information resources within the network. Linked Data is
-therefore the driver for providing and maintaining coherent digital services within the network.
+the driver for providing and maintaining coherent digital services within the network.
 
-The object descriptions should be self-contained in respect to persistent identifiers
+The information resources should be self-contained in respect to persistent identifiers
 (see [section 5](#adding-persistent-identifiers),
-'[Uniform Resource Identifiers](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier)', URIs) and metadata.
+'[Uniform Resource Identifiers](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier)', URIs) and metadata
 (see [section 2](#publishing-collection-information)).
-This metadata should contain as many terms as possible (see [section 3](#connecting-sources)).
-The dataset itself should be described as a separate resource with a unique identifier and additional metadata describing the characteristics
-of the dataset as a whole (see [section 4](#publishing-dataset-descriptions)).
+This metadata should contain as many terms as possible (see [section 3](#connecting-sources)). Information resources can be combined and published in datasets. Each dataset 
+should be described as a separate resource with a unique identifier and additional metadata describing the characteristics
+of the dataset (see [section 4](#publishing-dataset-descriptions)).
 
 Quick access through questions
 --------------------
@@ -76,11 +76,11 @@ although we recommend other serializations in different situations.
 Publishing collection information {#publishing-collection-information}
 =====================
 
-Publishing collection information as Linked Data can be done by transforming the internal data of the collection management system
-to a Linked Data publishing format as described by the [Resource Description Framework](https://www.w3.org/TR/rdf11-concepts/) (RDF).
+Publishing information resources as Linked Data can be done by transforming the internal data of the collection management system
+to a Linked Data format as described by the [Resource Description Framework](https://www.w3.org/TR/rdf11-concepts/) (RDF).
 The primary focus of the guidelines in this document is to improve the visibility and interoperability of the heritage collections.
-These guidelines describe how to create interoperability with Linked Data and do not prescribe which techniques are used to store the data,
-let alone Linked Data technology within the systems.
+These guidelines describe how to create interoperability with Linked Data and do not prescribe which techniques must be used to store the data,
+let alone technology within the systems.
 
 Learn the basics of Linked Data
 * [in this book](http://linkeddatabook.com/editions/1.0/)
@@ -94,25 +94,25 @@ Data model
 The main goal for publishing the object descriptions as Linked Data is to improve the data integration and visibility in the network.
 Because the heritage network spans institutions from the library, archive and museum domains, a generic data model that can support
 general visibility on the web is needed. In order to support broader visibility on the web outside the cultural heritage domain,
-we have chosen to conform to [Schema.org](https://schema.org/). Schema.org is a joint initiative of three major search engines:
-Bing, Google and Yahoo with the aim of setting up a shared scheme to structure data. Vocabularies from schema.org are developed through an open community process.
+data should be published with [Schema.org](https://schema.org/). Schema.org is a joint initiative of three major search engines,
+Bing, Google and Yahoo, with the aim of setting up a shared scheme to structure data. Vocabularies from Schema.org are developed through an open community process.
 
 Interesting links:
-* [https://www.contentking.nl/academy/schema-structured-data/](https://www.contentking.nl/academy/schema-structured-data/) (Dutch)
+* [https://www.contentking.nl/academy/schema-structured-data/](https://www.contentking.nl/academy/schema-structured-data/) (in Dutch)
 
-Thanks to Europeana, most institutions and collection management systems are familiar with Dublin Core. Based on dc, a generic data model
+Thanks to Europeana, most institutions and collection management systems are familiar with Dublin Core (DC). Based on DC, a generic data model
 for cultural heritage institutions has been defined, the Europeana Data Model (EDM). [Recent investigations](https://github.com/netwerk-digitaal-erfgoed/lod-aggregator)
-have shown that well-formed schema.org data can be transformed to EDM without significant loss of detail. Schema.org contains properties
-that are very similar to Dublin Core properties. A complete mapping between schema.org and Dublin Core can be found [here](https://dcmi.github.io/schema.org/).
+have shown that well-formed Schema.org data can be transformed to EDM without significant loss of detail. Schema.org contains properties
+that are very similar to Dublin Core properties. A complete mapping between Schema.org and Dublin Core can be found [here](https://dcmi.github.io/schema.org/).
 
 Interesting links:
 * [https://seopressor.com/blog/dublin-core-vs-schemaorg-metadata-comparison/](https://seopressor.com/blog/dublin-core-vs-schemaorg-metadata-comparison/)
 
 Some basic examples for:
 * a [photo with Dublin Core properties](example-2.ttl)
-* the same [photo with schema.org properties](example-3.ttl)
-* a [museum object with schema.org properties](example-4.ttl)
-* a [two museum objects with schema.org properties](example-5.ttl), showing different rdf:types
+* the same [photo with Schema.org properties](example-3.ttl)
+* a [museum object with Schema.org properties](example-4.ttl)
+* a [two museum objects with Schema.org properties](example-5.ttl), showing different rdf:types
 
 ### Domain data model
 
@@ -127,12 +127,12 @@ libraries, [RDA Elements](https://www.rdaregistry.info/Elements/) or \[BIBFRAME]
 It is up to the institutions in the separate domains to agree on the use and implementation of these shared standards.
 Best practices and information about actual implementations will be shared in the network.
 
-See [Awesome Humanities Ontologies](https://github.com/albertmeronyo/awesome-humanities-ontologies) for more options.
+See [Awesome Humanities Ontologies](https://github.com/CLARIAH/awesome-humanities-ontologies) for more options.
 
 ### Rights
 
 The DERA requires institutions to publish their metadata with an open license (for some institutions this requirement might still be a challenge).
-The actual access to the digital object itself can be restricted; additional license statements for use and reuse of the objects should be specified in the metadata.
+The actual access to the digital object, such as an image or audio file, can be restricted; additional license statements for use and reuse of the objects must be specified in the metadata.
 
 TBD:
 * use schema:license
@@ -144,29 +144,28 @@ TBD:
 RDF serialization
 --------------------
 
-RDF - being the principle to express data in triples - can be formatted in various serializations. Different RDF serializations are useful in different situations.
+RDF - the framework to express data in triples - can be formatted in various serializations. Different serializations are useful in different situations.
 
 ### \'Traditional' linked data
 
-The oldest type of serialization is RDF/XML. This format is complex and old-fashioned. It could be very useful though in XML ecosystems.
+The oldest type of serialization is RDF/XML. This format is complex and old-fashioned, but it could be very useful in XML ecosystems.
 The best readable serialization is Turtle. Examples in this document are written in this form. Linked data provided
-in '[n-triples](https://nl.wikipedia.org/wiki/N-Triples)' format can be processed easily in all linked data tooling.
+in '[N-Triples](https://nl.wikipedia.org/wiki/N-Triples)' format can be processed easily in all linked data tooling.
 
 Interesting link:
 * [https://ontola.io/blog/rdf-serialization-formats/](https://ontola.io/blog/rdf-serialization-formats/)
 
 In almost all programming languages libraries are available to transform one RDF serialization into another. Check for libraries in your favourite programming language.
 
-Please offer your data in at least n-triples format. See for example [this photo example](nt-examples/example-3.nt) that we introduced in Turtle format earlier.
+Please offer your data in at least N-Triples format. See for example [this photo example](nt-examples/example-3.nt) that we introduced in Turtle format earlier.
 
-If triples are published in both the generic and the specific model they are all included in the same data file.
+If triples are published in both the generic and the domain model they are all included in the same data file.
 
 You could provide more than one serialization and offer the user a choice with 'content negotiation'. (see [section 2.3.2](#web-compliancy-level-resolvable-uris)).
 
 ### JSON-LD
 
-JSON-LD is the youngest format and comprehensible to web developers that are used to JSON. The format is more difficult to process in native
-Linked Data environments. We recommend only using JSON-LD inline in the landing page of an object.
+JSON-LD is the youngest format and comprehensible to web developers that are used to JSON. The format is more difficult to process by Linked Data applications. We recommend only using JSON-LD inline in the landing page of an information resource.
  (see [section 2.3.2](#web-compliancy-level-resolvable-uris))
 
 Publishing Linked Data
@@ -395,7 +394,7 @@ which contains a more elaborate description of the publishing process.
 Publication model for dataset descriptions
 --------------------
 
-The NDE has drafted a publication model which is based on schema.org. For datasets, the class https://schema.org/Dataset has been developed.
+The NDE has drafted a publication model which is based on Schema.org. For datasets, the class https://schema.org/Dataset has been developed.
 This class is based on W3C DCAT work and benefits from collaboration around the DCAT, ADMS and VoID vocabularies.
 
 <!--TBD See [https://github.com/netwerk-digitaal-erfgoed/project-organisations-datasets/tree/master/publication-model](https://github.com/netwerk-digitaal-erfgoed/project-organisations-datasets/tree/master/publication-model) for the the complete specification of the publication model.-->
@@ -420,7 +419,7 @@ separate resource.
 Spreading the knowledge about datasets
 --------------------
 
-The choice for schema.org as a basis for the publication model for dataset descriptions comes with the benefit that this model is
+The choice for Schema.org as a basis for the publication model for dataset descriptions comes with the benefit that this model is
 known (and used) by big search engines. By adding the dataset description pages to the sitemap of the website, search engines are likely
 to pick up the dataset description and make them available in tools like [Google Dataset Search](https://datasetsearch.research.google.com/).
 
