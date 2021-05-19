@@ -86,7 +86,7 @@ Learn the basics of Linked Data
 * [in this book](http://linkeddatabook.com/editions/1.0/)
 * [in this online course](https://open.hpi.de/courses/semanticweb2016)
 
-Data model
+Data model {#data-model}
 --------------------
 
 ### Generic data model
@@ -141,7 +141,7 @@ TBD:
 	* object metadata
 	* metadata reproduction
 
-RDF serialization
+RDF serialization {#rdf-serialization}
 --------------------
 
 RDF - the framework to express data in triples - can be formatted in various serializations. Different serializations are useful in different situations.
@@ -168,7 +168,7 @@ You could provide more than one serialization and offer the user a choice with '
 JSON-LD is the youngest format and comprehensible to web developers that are used to JSON. The format is more difficult to process by Linked Data applications. We recommend only using JSON-LD inline in the landing page of an information resource.
  (see [section 2.3.2](#web-compliancy-level-resolvable-uris))
 
-Publishing Linked Data
+Publishing Linked Data {#publishing-linked-data}
 --------------------
 
 Linked Data can be published in several ways. In this section, we will discuss four methods ranging in levels of complexity of implementation.
@@ -188,7 +188,7 @@ In some cases, conversion cannot be done by the collection management system its
 This can be another system within the institution or a system run by a partner in the network (an aggregator or other service provider).
 Export in CSV format could for instance be converted into RDF with the [LDWizard](https://github.com/netwerk-digitaal-erfgoed/LDWizard-ErfgoedWizard).
 
-### Web compliance level: resolvable URIs
+### Web compliance level: resolvable URIs {#web-compliancy-level-resolvable-uris}
 
 Although dumps are sufficient to support basic services, proper Linked Data implementations should provide Linked Data per object,
 in Linked Data terminology called a ‘resource’. Each resource in the collection should have a stable and well-formed URI.
@@ -205,7 +205,7 @@ object on the website. [Google recommends](https://developers.google.com/search/
 the Linked Data as \[JSON-LD](https://json-ld.org/) in the page. The json-ld file could be provided separately from the webpage and including
 with a JavaScript function. See this [example](http://cclod.netwerkdigitaalerfgoed.nl/test.html).
 
-### Advanced level: queryable Linked Data
+### Advanced level: queryable Linked Data {#advanced-level-queryable-linked-data}
 
 Instead of building large centralized services, NDE envisions a distributed network of empowered organizations that share and reuse their
 digital information directly. This means that organizations, data providers or service providers, can easily query and combine data from
@@ -256,7 +256,7 @@ For connecting sources, it is important that institutions relate URIs of terms t
 There are various options for this which are discussed below. The options are increasing in complexity – for example, they
 require changes to the collection management system – but also provide better functionality.
 
-Using your own terminology source
+Using your own terminology source {#using-your-own-terminology-source}
 --------------------
 
 An institution can create and use its own terminology source. Most of the time a collection management system facilitates the
@@ -276,13 +276,13 @@ If a terminology source is developed and used instead of a standardized one, the
 the field. For that reason, the collection management system must be able to publish the terminology source, with alignments, as
 Linked Data (see: [section 3.3](#publishing-terminology-sources)).
 
-Using standardized terminology sources
+Using standardized terminology sources {#using-standardized-terminology-sources}
 --------------------
 
 Using terms that are not connected to the network of internationally standardized terminology sources reduces the ability to connect sources
 from different institutions. We recommend using as many standardized terms as possible.
 
-### Manually searching a terminology source
+### Manually searching a terminology source {#manually-searching-a-terminology-source}
 
 This is the simplest, low-tech approach to assign the URI of a term to the description of a heritage object. A collection manager goes
 to the online system of a terminology source and searches for a term, for example, \'paintings' in AAT. The manager then copies the URI of the
@@ -338,7 +338,7 @@ and store and index the extra data in the database. The related data must be syn
 must enable to force the synchronization. A collection manager that helps the editors of the standardized source to add or improve data,
 can then see her results quickly.
 
-Publishing terminology sources
+Publishing terminology sources {#publishing-terminology-sources}
 --------------------
 
 "Published terminology sources" are sources that are important to the cooperating institutions in the Dutch Digital Heritage Network.
@@ -361,7 +361,7 @@ Terms are not just ordinary words: they are official notations. The manager of a
 For example: terms must be accurate and current. Another example: the manager ensures that her terms are permanently available and can
 be used for a long time. This makes a terminology source an authority on which other institutions can build.
 
-### Technology and data model
+### Technology and data model {#technology-and-datamodel}
 
 A terminology source is used by both humans and machines. For example, institutions' collection management systems must be able to connect
 to the source. To make this possible, the source must meet certain technological requirements. These requirements follow the
@@ -391,7 +391,7 @@ meaningful metadata (for the machine), the findability and use of datasets that 
 Publishing dataset descriptions should obey [these requirements](https://netwerk-digitaal-erfgoed.github.io/requirements-datasets/),
 which contains a more elaborate description of the publishing process.
 
-Publication model for dataset descriptions
+Publication model for dataset descriptions {#publication-model-for-dataset-descriptions}
 --------------------
 
 The NDE has drafted a publication model which is based on Schema.org. For datasets, the class https://schema.org/Dataset has been developed.
@@ -399,7 +399,7 @@ This class is based on W3C DCAT work and benefits from collaboration around the 
 
 <!--TBD See [https://github.com/netwerk-digitaal-erfgoed/project-organisations-datasets/tree/master/publication-model](https://github.com/netwerk-digitaal-erfgoed/project-organisations-datasets/tree/master/publication-model) for the the complete specification of the publication model.-->
 
-How to publish dataset descriptions
+How to publish dataset descriptions {#how-to-publish-dataset-descriptions}
 --------------------
 
 For good findability, every dataset description must be accessible via the Internet, must be legible for humans and machines, and use the
@@ -416,7 +416,7 @@ RDFa and JSON-LD. Because search engine findability is an important driver, the 
 this does not prevent the additional publication of the dataset description in other serialization formats or a (content negotiation based)
 separate resource.
 
-Spreading the knowledge about datasets
+Spreading the knowledge about datasets {#spreading-the-knowledge-about-datasets}
 --------------------
 
 The choice for Schema.org as a basis for the publication model for dataset descriptions comes with the benefit that this model is
@@ -426,7 +426,7 @@ to pick up the dataset description and make them available in tools like [Google
 By registering the datasets with the NDE Register, the network of Dutch heritage institutions can easily find relevant datasets to link with.
 More generic (open) dataset registers, like data.overheid.nl, can also be used to promote the datasets of the institutions.
 
-Adding persistent identifiers
+Adding persistent identifiers {#adding-persistent-identifiers}
 =====================
 
 TBD
