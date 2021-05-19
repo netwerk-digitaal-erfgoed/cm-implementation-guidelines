@@ -1223,7 +1223,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version 5f7b0e20, updated Tue Aug 18 15:46:28 2020 -0700" name="generator">
   <link href="https://netwerk-digitaal-erfgoed.github.io/cm-implementation-guidelines/" rel="canonical">
-  <meta content="be0565f1870095b9e0f42f6d56151620e0a85a40" name="document-revision">
+  <meta content="2ec2178e344056621ee69655a44e10f266a3f6fe" name="document-revision">
 <style>/* style-autolinks */
 
 .css.css, .property.property, .descriptor.descriptor {
@@ -1633,29 +1633,29 @@ in '<a href="https://nl.wikipedia.org/wiki/N-Triples">N-Triples</a>' format can 
  (see <a href="#web-compliancy-level-resolvable-uris">section 2.3.2</a>)</p>
    <h3 class="heading settled" data-level="2.3" id="publishing-linked-data"><span class="secno">2.3. </span><span class="content">Publishing Linked Data</span><a class="self-link" href="#publishing-linked-data"></a></h3>
    <p>Linked Data can be published in several ways. In this section, we will discuss four methods ranging in levels of complexity of implementation.
-Users could prefer one of these methods to obtain the data for their purpose, so the publication methods should be offered in parallel.</p>
+User applications could prefer one of these methods to obtain the data for their purpose, so the publication methods should be offered in parallel.</p>
    <h4 class="heading settled" data-level="2.3.1" id="basic-level-data-dumps"><span class="secno">2.3.1. </span><span class="content">Basic level: Data dumps</span><a class="self-link" href="#basic-level-data-dumps"></a></h4>
+    Although not a proper Linked Data implementation, publishing a file in RDF-format supports basic data services. This section describes requirements for such a data dump. 
    <p>Most of the current collection management systems support XML-based export formats. In many cases, a conversion using XSLT Stylesheets is
 possible to generate a Linked Data dump. The system should support a workflow that can be operated periodically by the system administrator
 in order to produce the dump. The dump should be described by a dataset description. The link pointing to the dump should be fit for
-automatic processing and therefore accessible with for instance a <code>curl</code> command.</p>
-   <p>A dump could be either a zip file containing files for every object or one big file containing all the triples. NDE prefers a data dump
-in one file containing ntriples. A file with ntriples can be easily combined from various sources and easily cut into pieces for processing.</p>
+automatic processing and therefore be accessible by HTTP clients, like curl.</p>
+   <p>A dump could be either a zip file containing files for every information resource or one big file containing all the triples. NDE prefers a data dump
+in one file containing N-Triples because files with N-Triples from various sources can be easily combined and easily cut into pieces for processing.</p>
    <p>In some cases, conversion cannot be done by the collection management system itself and a separate publication functionality is required.
 This can be another system within the institution or a system run by a partner in the network (an aggregator or other service provider).
 Export in CSV format could for instance be converted into RDF with the <a href="https://github.com/netwerk-digitaal-erfgoed/LDWizard-ErfgoedWizard">LDWizard</a>.</p>
    <h4 class="heading settled" data-level="2.3.2" id="web-compliancy-level-resolvable-uris"><span class="secno">2.3.2. </span><span class="content">Web compliance level: resolvable URIs {#web-compliancy-level-resolvable-uris}</span><a class="self-link" href="#web-compliancy-level-resolvable-uris"></a></h4>
    <p>Although dumps are sufficient to support basic services, proper Linked Data implementations should provide Linked Data per object,
 in Linked Data terminology called a ‘resource’. Each resource in the collection should have a stable and well-formed URI.
-This URI should be ‘resolvable’. This means that the webserver provides data about the resource in a format depending on the accept-header
+This URI should be ‘resolvable’. This means that the web server provides data about the resource in a format depending on the Accept header
 in the HTTP request. This functionality is called <a href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec12.html">content negotiation</a> which enables
 browsers or other applications to ask for a specific language or representation of the available content. For Linked Data this mechanism is
-used to differentiate between human-readable content (a rendered HTML page) and machine-readable content (in RDF).</p>
-   <p>For building real-time network services that integrate disparate resources, content negotiation should be in place to serve the Linked Data.
-In this case, creating a dump is no longer necessary as it is possible to describe the dataset as a collection of resolvable URIs.</p>
-   <p>To improve the overall discoverability on the web it is recommended to add the Schema.org Linked Data format to the landing page of the
-object on the website. <a href="https://developers.google.com/search/docs/guides/intro-structured-data">Google recommends</a> doing this by including
-the Linked Data as <a href="https://json-ld.org/">JSON-LD</a> in the page. The json-ld file could be provided separately from the webpage and including
+used to differentiate between human-readable content (in HTML) and machine-readable content (in RDF).</p>
+   <p>For building real-time services that integrate disparate resources, content negotiation should be in place to serve the Linked Data.
+In this case, creating a dump is no longer sufficient as it is possible to describe the dataset as a collection of resolvable URIs.</p>
+   <p>To improve the overall discoverability on the web it is recommended to add a representation of the data of the information resource with concepts and properties in Schema.org to the landing page of the object on the website. <a href="https://developers.google.com/search/docs/guides/intro-structured-data">Google recommends</a> doing this by including
+the Linked Data as <a href="https://json-ld.org/">JSON-LD</a> in the page. The JSON-LD could be provided separately from the webpage and included
 with a JavaScript function. See this <a href="http://cclod.netwerkdigitaalerfgoed.nl/test.html">example</a>.</p>
    <h4 class="heading settled" data-level="2.3.3" id="advanced-level-queryable-linked-data"><span class="secno">2.3.3. </span><span class="content">Advanced level: queryable Linked Data {#advanced-level-queryable-linked-data}</span><a class="self-link" href="#advanced-level-queryable-linked-data"></a></h4>
    <p>Instead of building large centralized services, NDE envisions a distributed network of empowered organizations that share and reuse their
