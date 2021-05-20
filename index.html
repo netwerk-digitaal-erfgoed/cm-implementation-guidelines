@@ -1223,7 +1223,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version 5f7b0e20, updated Tue Aug 18 15:46:28 2020 -0700" name="generator">
   <link href="https://netwerk-digitaal-erfgoed.github.io/cm-implementation-guidelines/" rel="canonical">
-  <meta content="2ec2178e344056621ee69655a44e10f266a3f6fe" name="document-revision">
+  <meta content="efd1b21e870e3293dc68bd35e546e0c9fb937ad7" name="document-revision">
 <style>/* style-autolinks */
 
 .css.css, .property.property, .descriptor.descriptor {
@@ -1375,7 +1375,7 @@ dfn > a.self-link::before      { content: "#"; }</style>
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">Implementation guidelines for NDE alignment of cultural heritage data management and publication infrastructure</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Living Standard, <time class="dt-updated" datetime="2021-05-19">19 May 2021</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Living Standard, <time class="dt-updated" datetime="2021-05-20">20 May 2021</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1391,7 +1391,7 @@ dfn > a.self-link::before      { content: "#"; }</style>
    <div data-fill-with="warning"></div>
    <p class="copyright" data-fill-with="copyright"><a href="http://creativecommons.org/publicdomain/zero/1.0/" rel="license"><img alt="CC0" src="https://licensebuttons.net/p/zero/1.0/80x15.png"></a> To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 19 May 2021,
+In addition, as of 20 May 2021,
 the editors have made this specification available under the <a href="http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0" rel="license">Open Web Foundation Agreement Version 1.0</a>,
 which is available at http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.
 Parts of this work may be from another specification document.  If so, those parts are instead covered by the license of that specification document. </p>
@@ -1406,7 +1406,7 @@ Parts of this work may be from another specification document.  If so, those par
    <h2 class="no-num no-toc no-ref" id="contents">Table of Contents</h2>
    <ol class="toc" role="directory">
     <li>
-     <a href="#intro"><span class="secno">1</span> <span class="content">Introduction</span></a>
+     <a href="#intro"><span class="secno">1</span> <span class="content">Introduction ###</span></a>
      <ol class="toc">
       <li><a href="#relation-with-other-documentation"><span class="secno">1.1</span> <span class="content">Relation with other documentation</span></a>
       <li><a href="#overview"><span class="secno">1.2</span> <span class="content">Overview</span></a>
@@ -1414,38 +1414,38 @@ Parts of this work may be from another specification document.  If so, those par
       <li><a href="#about-this-document"><span class="secno">1.4</span> <span class="content">About this document</span></a>
      </ol>
     <li>
-     <a href="#publishing-collection-information"><span class="secno">2</span> <span class="content">Publishing collection information</span></a>
+     <a href="#publishing-collection-information"><span class="secno">2</span> <span class="content">Publishing collection information ###</span></a>
      <ol class="toc">
       <li>
-       <a href="#data-model"><span class="secno">2.1</span> <span class="content">Data model</span></a>
+       <a href="#data-model"><span class="secno">2.1</span> <span class="content">Data model ###</span></a>
        <ol class="toc">
         <li><a href="#generic-data-model"><span class="secno">2.1.1</span> <span class="content">Generic data model</span></a>
         <li><a href="#domain-data-model"><span class="secno">2.1.2</span> <span class="content">Domain data model</span></a>
         <li><a href="#rights"><span class="secno">2.1.3</span> <span class="content">Rights</span></a>
        </ol>
       <li>
-       <a href="#rdf-serialization"><span class="secno">2.2</span> <span class="content">RDF serialization</span></a>
+       <a href="#rdf-serialization"><span class="secno">2.2</span> <span class="content">RDF serialization ###</span></a>
        <ol class="toc">
         <li><a href="#traditional-linked-data"><span class="secno">2.2.1</span> <span class="content">'Traditional' linked data</span></a>
         <li><a href="#json-ld"><span class="secno">2.2.2</span> <span class="content">JSON-LD</span></a>
        </ol>
       <li>
-       <a href="#publishing-linked-data"><span class="secno">2.3</span> <span class="content">Publishing Linked Data</span></a>
+       <a href="#publishing-linked-data"><span class="secno">2.3</span> <span class="content">Publishing Linked Data ###</span></a>
        <ol class="toc">
         <li><a href="#basic-level-data-dumps"><span class="secno">2.3.1</span> <span class="content">Basic level: Data dumps</span></a>
         <li><a href="#web-compliancy-level-resolvable-uris"><span class="secno">2.3.2</span> <span class="content">Web compliance level: resolvable URIs {#web-compliancy-level-resolvable-uris}</span></a>
-        <li><a href="#advanced-level-queryable-linked-data"><span class="secno">2.3.3</span> <span class="content">Advanced level: queryable Linked Data {#advanced-level-queryable-linked-data}</span></a>
+        <li><a href="#advanced-level-queryable-linked-data"><span class="secno">2.3.3</span> <span class="content">Advanced level: queryable Linked Data</span></a>
         <li><a href="#other-considerations-for-linked-data-publication"><span class="secno">2.3.4</span> <span class="content">Other considerations for Linked Data publication</span></a>
        </ol>
      </ol>
     <li>
-     <a href="#connecting-sources"><span class="secno">3</span> <span class="content">Connecting sources</span></a>
+     <a href="#connecting-sources"><span class="secno">3</span> <span class="content">Connecting sources ###</span></a>
      <ol class="toc">
-      <li><a href="#using-your-own-terminology-source"><span class="secno">3.1</span> <span class="content">Using your own terminology source</span></a>
+      <li><a href="#using-your-own-terminology-source"><span class="secno">3.1</span> <span class="content">Using your own terminology source ###</span></a>
       <li>
-       <a href="#using-standardized-terminology-sources"><span class="secno">3.2</span> <span class="content">Using standardized terminology sources</span></a>
+       <a href="#using-standardized-terminology-sources"><span class="secno">3.2</span> <span class="content">Using standardized terminology sources ###</span></a>
        <ol class="toc">
-        <li><a href="#manually-searching-a-terminology-source"><span class="secno">3.2.1</span> <span class="content">Manually searching a terminology source {#manually-searching-a-terminology-source}</span></a>
+        <li><a href="#manually-searching-a-terminology-source"><span class="secno">3.2.1</span> <span class="content">Manually searching a terminology source</span></a>
         <li><a href="#adding-terms-in-bulk"><span class="secno">3.2.2</span> <span class="content">Adding terms in bulk</span></a>
         <li><a href="#importing-a-terminology-source"><span class="secno">3.2.3</span> <span class="content">Importing a terminology source</span></a>
         <li><a href="#searching-a-terminology-source-in-real-time"><span class="secno">3.2.4</span> <span class="content">Searching a terminology source in real-time</span></a>
@@ -1453,22 +1453,22 @@ Parts of this work may be from another specification document.  If so, those par
         <li><a href="#indexing-data-from-the-terminology-source"><span class="secno">3.2.6</span> <span class="content">Indexing data from the terminology source</span></a>
        </ol>
       <li>
-       <a href="#publishing-terminology-sources"><span class="secno">3.3</span> <span class="content">Publishing terminology sources</span></a>
+       <a href="#publishing-terminology-sources"><span class="secno">3.3</span> <span class="content">Publishing terminology sources ###</span></a>
        <ol class="toc">
         <li><a href="#authority"><span class="secno">3.3.1</span> <span class="content">Authority</span></a>
-        <li><a href="#technology-and-datamodel"><span class="secno">3.3.2</span> <span class="content">Technology and data model {#technology-and-datamodel}</span></a>
+        <li><a href="#technology-and-datamodel"><span class="secno">3.3.2</span> <span class="content">Technology and data model</span></a>
         <li><a href="#cooperation"><span class="secno">3.3.3</span> <span class="content">Cooperation</span></a>
        </ol>
      </ol>
     <li>
-     <a href="#publishing-dataset-descriptions"><span class="secno">4</span> <span class="content">Publishing dataset descriptions</span></a>
+     <a href="#publishing-dataset-descriptions"><span class="secno">4</span> <span class="content">Publishing dataset descriptions ###</span></a>
      <ol class="toc">
-      <li><a href="#publication-model-for-dataset-descriptions"><span class="secno">4.1</span> <span class="content">Publication model for dataset descriptions</span></a>
-      <li><a href="#how-to-publish-dataset-descriptions"><span class="secno">4.2</span> <span class="content">How to publish dataset descriptions</span></a>
-      <li><a href="#spreading-the-knowledge-about-datasets"><span class="secno">4.3</span> <span class="content">Spreading the knowledge about datasets</span></a>
+      <li><a href="#publication-model-for-dataset-descriptions"><span class="secno">4.1</span> <span class="content">Publication model for dataset descriptions ###</span></a>
+      <li><a href="#how-to-publish-dataset-descriptions"><span class="secno">4.2</span> <span class="content">How to publish dataset descriptions ###</span></a>
+      <li><a href="#spreading-the-knowledge-about-datasets"><span class="secno">4.3</span> <span class="content">Spreading the knowledge about datasets ###</span></a>
      </ol>
     <li>
-     <a href="#adding-persistent-identifiers"><span class="secno">5</span> <span class="content">Adding persistent identifiers</span></a>
+     <a href="#adding-persistent-identifiers"><span class="secno">5</span> <span class="content">Adding persistent identifiers ###</span></a>
      <ol class="toc">
       <li><a href="#persistent-identifiers"><span class="secno">5.1</span> <span class="content">Persistent Identifiers</span></a>
       <li><a href="#uniform-resource-identifiers"><span class="secno">5.2</span> <span class="content">Uniform Resource Identifiers</span></a>
@@ -1482,7 +1482,7 @@ Parts of this work may be from another specification document.  If so, those par
    </ol>
   </nav>
   <main>
-   <h2 class="heading settled" data-level="1" id="intro"><span class="secno">1. </span><span class="content">Introduction</span><a class="self-link" href="#intro"></a></h2>
+   <h2 class="heading settled" data-level="1" id="intro"><span class="secno">1. </span><span class="content">Introduction ###</span><a class="self-link" href="#intro"></a></h2>
    <p>This document describes how IT suppliers can help the Dutch cultural heritage institutions to become more compliant with the principles
 for cooperation in the Dutch Digital Heritage Network (NDE). It is and will be constructed in full cooperation with suppliers.
 We ask IT suppliers of data management and publication software to implement the guidelines outlined in this document in their products.
@@ -1540,7 +1540,7 @@ of the dataset (see <a href="#publishing-dataset-descriptions">section 4</a>).</
    <h3 class="heading settled" data-level="1.4" id="about-this-document"><span class="secno">1.4. </span><span class="content">About this document</span><a class="self-link" href="#about-this-document"></a></h3>
    <p>RDF can be published in various serializations. For readability, we present examples in Turtle serialization,
 although we recommend other serializations in different situations.</p>
-   <h2 class="heading settled" data-level="2" id="publishing-collection-information"><span class="secno">2. </span><span class="content">Publishing collection information</span><a class="self-link" href="#publishing-collection-information"></a></h2>
+   <h2 class="heading settled" data-level="2" id="publishing-collection-information"><span class="secno">2. </span><span class="content">Publishing collection information ###</span><a class="self-link" href="#publishing-collection-information"></a></h2>
    <p>Publishing information resources as Linked Data can be done by transforming the internal data of the collection management system
 to a Linked Data format as described by the <a href="https://www.w3.org/TR/rdf11-concepts/">Resource Description Framework</a> (RDF).
 The primary focus of the guidelines in this document is to improve the visibility and interoperability of the heritage collections.
@@ -1553,7 +1553,7 @@ let alone technology within the systems.</p>
     <li data-md>
      <p><a href="https://open.hpi.de/courses/semanticweb2016">in this online course</a></p>
    </ul>
-   <h3 class="heading settled" data-level="2.1" id="data-model"><span class="secno">2.1. </span><span class="content">Data model</span><a class="self-link" href="#data-model"></a></h3>
+   <h3 class="heading settled" data-level="2.1" id="data-model"><span class="secno">2.1. </span><span class="content">Data model ###</span><a class="self-link" href="#data-model"></a></h3>
    <h4 class="heading settled" data-level="2.1.1" id="generic-data-model"><span class="secno">2.1.1. </span><span class="content">Generic data model</span><a class="self-link" href="#generic-data-model"></a></h4>
    <p>The main goal for publishing the object descriptions as Linked Data is to improve the data integration and visibility in the network.
 Because the heritage network spans institutions from the library, archive and museum domains, a generic data model that can support
@@ -1613,7 +1613,7 @@ The actual access to the digital object, such as an image or audio file, can be 
        <p>metadata reproduction</p>
      </ul>
    </ul>
-   <h3 class="heading settled" data-level="2.2" id="rdf-serialization"><span class="secno">2.2. </span><span class="content">RDF serialization</span><a class="self-link" href="#rdf-serialization"></a></h3>
+   <h3 class="heading settled" data-level="2.2" id="rdf-serialization"><span class="secno">2.2. </span><span class="content">RDF serialization ###</span><a class="self-link" href="#rdf-serialization"></a></h3>
    <p>RDF - the framework to express data in triples - can be formatted in various serializations. Different serializations are useful in different situations.</p>
    <h4 class="heading settled" data-level="2.2.1" id="traditional-linked-data"><span class="secno">2.2.1. </span><span class="content">'Traditional' linked data</span><a class="self-link" href="#traditional-linked-data"></a></h4>
    <p>The oldest type of serialization is RDF/XML. This format is complex and old-fashioned, but it could be very useful in XML ecosystems.
@@ -1631,7 +1631,7 @@ in '<a href="https://nl.wikipedia.org/wiki/N-Triples">N-Triples</a>' format can 
    <h4 class="heading settled" data-level="2.2.2" id="json-ld"><span class="secno">2.2.2. </span><span class="content">JSON-LD</span><a class="self-link" href="#json-ld"></a></h4>
    <p>JSON-LD is the youngest format and comprehensible to web developers that are used to JSON. The format is more difficult to process by Linked Data applications. We recommend only using JSON-LD inline in the landing page of an information resource.
  (see <a href="#web-compliancy-level-resolvable-uris">section 2.3.2</a>)</p>
-   <h3 class="heading settled" data-level="2.3" id="publishing-linked-data"><span class="secno">2.3. </span><span class="content">Publishing Linked Data</span><a class="self-link" href="#publishing-linked-data"></a></h3>
+   <h3 class="heading settled" data-level="2.3" id="publishing-linked-data"><span class="secno">2.3. </span><span class="content">Publishing Linked Data ###</span><a class="self-link" href="#publishing-linked-data"></a></h3>
    <p>Linked Data can be published in several ways. In this section, we will discuss four methods ranging in levels of complexity of implementation.
 User applications could prefer one of these methods to obtain the data for their purpose, so the publication methods should be offered in parallel.</p>
    <h4 class="heading settled" data-level="2.3.1" id="basic-level-data-dumps"><span class="secno">2.3.1. </span><span class="content">Basic level: Data dumps</span><a class="self-link" href="#basic-level-data-dumps"></a></h4>
@@ -1657,7 +1657,7 @@ In this case, creating a dump is no longer sufficient as it is possible to descr
    <p>To improve the overall discoverability on the web it is recommended to add a representation of the data of the information resource with concepts and properties in Schema.org to the landing page of the object on the website. <a href="https://developers.google.com/search/docs/guides/intro-structured-data">Google recommends</a> doing this by including
 the Linked Data as <a href="https://json-ld.org/">JSON-LD</a> in the page. The JSON-LD could be provided separately from the webpage and included
 with a JavaScript function. See this <a href="http://cclod.netwerkdigitaalerfgoed.nl/test.html">example</a>.</p>
-   <h4 class="heading settled" data-level="2.3.3" id="advanced-level-queryable-linked-data"><span class="secno">2.3.3. </span><span class="content">Advanced level: queryable Linked Data {#advanced-level-queryable-linked-data}</span><a class="self-link" href="#advanced-level-queryable-linked-data"></a></h4>
+   <h4 class="heading settled" data-level="2.3.3" id="advanced-level-queryable-linked-data"><span class="secno">2.3.3. </span><span class="content">Advanced level: queryable Linked Data</span><a class="self-link" href="#advanced-level-queryable-linked-data"></a></h4>
    <p>Instead of building large centralized services, NDE envisions a distributed network of empowered organizations that share and reuse their
 digital information directly. This means that organizations, data providers or service providers, can easily query and combine data from
 several sources in the network. This satisfies two needs.</p>
@@ -1684,7 +1684,7 @@ exploration needs to be done. For these topics NDE seeks cooperation with IT par
 responsible for building research infrastructures in the Digital Humanities domain.</p>
    <p>A third development is the concept of <a href="https://www.w3.org/TR/dx-prof-conneg/">'profile negotiation'</a>. Additional to content negotiation in
 profile negotiation a user can request data according to a certain information model, in our case the generic data model or the specific data model.</p>
-   <h2 class="heading settled" data-level="3" id="connecting-sources"><span class="secno">3. </span><span class="content">Connecting sources</span><a class="self-link" href="#connecting-sources"></a></h2>
+   <h2 class="heading settled" data-level="3" id="connecting-sources"><span class="secno">3. </span><span class="content">Connecting sources ###</span><a class="self-link" href="#connecting-sources"></a></h2>
    <p>"Connected sources" are sources that refer to each other and use each other’s information. This is done using terms.
 Terms are, for example, subjects, persons or places. Each term has a URI as an identifier. Because a URI is a unique web address
 the URI makes unambiguously clear which term is meant. Terms and their URIs are managed in terminology sources, such as thesauri,
@@ -1692,7 +1692,7 @@ reference lists or classification systems. Examples are <a href="https://www.get
    <p>For connecting sources, it is important that institutions relate URIs of terms to the descriptions of their heritage objects.
 There are various options for this which are discussed below. The options are increasing in complexity – for example, they
 require changes to the collection management system – but also provide better functionality.</p>
-   <h3 class="heading settled" data-level="3.1" id="using-your-own-terminology-source"><span class="secno">3.1. </span><span class="content">Using your own terminology source</span><a class="self-link" href="#using-your-own-terminology-source"></a></h3>
+   <h3 class="heading settled" data-level="3.1" id="using-your-own-terminology-source"><span class="secno">3.1. </span><span class="content">Using your own terminology source ###</span><a class="self-link" href="#using-your-own-terminology-source"></a></h3>
    <p>An institution can create and use its own terminology source. Most of the time a collection management system facilitates the
 development and maintenance of a thesaurus or set of persons. These sources contain the terms that the collection manager can use
 when describing heritage objects. This makes it easy to relate terms. A limitation, however, is that the maintenance of one’s own
@@ -1707,10 +1707,10 @@ terminology source with another (external) one, is called <em>alignment</em>.</p
    <p>If a terminology source is developed and used instead of a standardized one, the terminology source apparently has an added value to
 the field. For that reason, the collection management system must be able to publish the terminology source, with alignments, as
 Linked Data (see: <a href="#publishing-terminology-sources">section 3.3</a>).</p>
-   <h3 class="heading settled" data-level="3.2" id="using-standardized-terminology-sources"><span class="secno">3.2. </span><span class="content">Using standardized terminology sources</span><a class="self-link" href="#using-standardized-terminology-sources"></a></h3>
+   <h3 class="heading settled" data-level="3.2" id="using-standardized-terminology-sources"><span class="secno">3.2. </span><span class="content">Using standardized terminology sources ###</span><a class="self-link" href="#using-standardized-terminology-sources"></a></h3>
    <p>Using terms that are not connected to the network of internationally standardized terminology sources reduces the ability to connect sources
 from different institutions. We recommend using as many standardized terms as possible.</p>
-   <h4 class="heading settled" data-level="3.2.1" id="manually-searching-a-terminology-source"><span class="secno">3.2.1. </span><span class="content">Manually searching a terminology source {#manually-searching-a-terminology-source}</span><a class="self-link" href="#manually-searching-a-terminology-source"></a></h4>
+   <h4 class="heading settled" data-level="3.2.1" id="manually-searching-a-terminology-source"><span class="secno">3.2.1. </span><span class="content">Manually searching a terminology source</span><a class="self-link" href="#manually-searching-a-terminology-source"></a></h4>
    <p>This is the simplest, low-tech approach to assign the URI of a term to the description of a heritage object. A collection manager goes
 to the online system of a terminology source and searches for a term, for example, 'paintings' in AAT. The manager then copies the URI of the
 term, goes back to her collection management system and pastes the URI in a designated field. This approach requires few changes to the
@@ -1753,7 +1753,7 @@ collection management systems could offer to obtain the needed data via resolvin
 and store and index the extra data in the database. The related data must be synchronized periodically and the collection management interface
 must enable to force the synchronization. A collection manager that helps the editors of the standardized source to add or improve data,
 can then see her results quickly.</p>
-   <h3 class="heading settled" data-level="3.3" id="publishing-terminology-sources"><span class="secno">3.3. </span><span class="content">Publishing terminology sources</span><a class="self-link" href="#publishing-terminology-sources"></a></h3>
+   <h3 class="heading settled" data-level="3.3" id="publishing-terminology-sources"><span class="secno">3.3. </span><span class="content">Publishing terminology sources ###</span><a class="self-link" href="#publishing-terminology-sources"></a></h3>
    <p>"Published terminology sources" are sources that are important to the cooperating institutions in the Dutch Digital Heritage Network.
 It enables collection managers to find and use terms in the sources more easily when describing their heritage objects. And that makes
 digital heritage found easier by data-users. Publishing terminology sources should obey <a href="https://netwerk-digitaal-erfgoed.github.io/requirements-terminologiebronnen/">these requirements</a> (Dutch).</p>
@@ -1767,7 +1767,7 @@ available to the network? Then take the following aspects into account.</p>
    <p>Terms are not just ordinary words: they are official notations. The manager of a terminology source guarantees their quality.
 For example: terms must be accurate and current. Another example: the manager ensures that her terms are permanently available and can
 be used for a long time. This makes a terminology source an authority on which other institutions can build.</p>
-   <h4 class="heading settled" data-level="3.3.2" id="technology-and-datamodel"><span class="secno">3.3.2. </span><span class="content">Technology and data model {#technology-and-datamodel}</span><a class="self-link" href="#technology-and-datamodel"></a></h4>
+   <h4 class="heading settled" data-level="3.3.2" id="technology-and-datamodel"><span class="secno">3.3.2. </span><span class="content">Technology and data model</span><a class="self-link" href="#technology-and-datamodel"></a></h4>
    <p>A terminology source is used by both humans and machines. For example, institutions' collection management systems must be able to connect
 to the source. To make this possible, the source must meet certain technological requirements. These requirements follow the
 Linked Data principles and best practices. This means, for example, that every term in the source gets a sustainable URI; when dereferencing
@@ -1783,16 +1783,16 @@ For example about the way in which collection managers can propose changes to te
 Another example: it can happen that two sources define the same term (such as 'painting'). The sources should then jointly agree
 that these terms have the same meaning and refer to each other’s terms – this clarifies the relationship between both terms for collection managers.
 The collection management system should support these processes.</p>
-   <h2 class="heading settled" data-level="4" id="publishing-dataset-descriptions"><span class="secno">4. </span><span class="content">Publishing dataset descriptions</span><a class="self-link" href="#publishing-dataset-descriptions"></a></h2>
+   <h2 class="heading settled" data-level="4" id="publishing-dataset-descriptions"><span class="secno">4. </span><span class="content">Publishing dataset descriptions ###</span><a class="self-link" href="#publishing-dataset-descriptions"></a></h2>
    <p>To increase the findability of datasets of heritage institutions, it is important to publish the dataset descriptions according to a
 well documented, machine-readable model. When rich dataset descriptions are used, published not only as HTML (for humans) but also as
 meaningful metadata (for the machine), the findability and use of datasets that heritage institutions make available, will improve.
 Publishing dataset descriptions should obey <a href="https://netwerk-digitaal-erfgoed.github.io/requirements-datasets/">these requirements</a>,
 which contains a more elaborate description of the publishing process.</p>
-   <h3 class="heading settled" data-level="4.1" id="publication-model-for-dataset-descriptions"><span class="secno">4.1. </span><span class="content">Publication model for dataset descriptions</span><a class="self-link" href="#publication-model-for-dataset-descriptions"></a></h3>
+   <h3 class="heading settled" data-level="4.1" id="publication-model-for-dataset-descriptions"><span class="secno">4.1. </span><span class="content">Publication model for dataset descriptions ###</span><a class="self-link" href="#publication-model-for-dataset-descriptions"></a></h3>
    <p>The NDE has drafted a publication model which is based on Schema.org. For datasets, the class https://schema.org/Dataset has been developed.
 This class is based on W3C DCAT work and benefits from collaboration around the DCAT, ADMS and VoID vocabularies.</p>
-   <h3 class="heading settled" data-level="4.2" id="how-to-publish-dataset-descriptions"><span class="secno">4.2. </span><span class="content">How to publish dataset descriptions</span><a class="self-link" href="#how-to-publish-dataset-descriptions"></a></h3>
+   <h3 class="heading settled" data-level="4.2" id="how-to-publish-dataset-descriptions"><span class="secno">4.2. </span><span class="content">How to publish dataset descriptions ###</span><a class="self-link" href="#how-to-publish-dataset-descriptions"></a></h3>
    <p>For good findability, every dataset description must be accessible via the Internet, must be legible for humans and machines, and use the
 publication model. The serialization of dataset descriptions can take several serializations, JSON-LD is preferred.</p>
    <p>A user can obtain a dataset description with a sustainable URI as described in <a href="#adding-persistent-identifiers">section 5</a> and published as a
@@ -1803,13 +1803,13 @@ There are more serializations of RDF, such as RDF/XML and Turtle. Spiders of sea
 RDFa and JSON-LD. Because search engine findability is an important driver, the use of inline JSON-LD is recommended. However,
 this does not prevent the additional publication of the dataset description in other serialization formats or a (content negotiation based)
 separate resource.</p>
-   <h3 class="heading settled" data-level="4.3" id="spreading-the-knowledge-about-datasets"><span class="secno">4.3. </span><span class="content">Spreading the knowledge about datasets</span><a class="self-link" href="#spreading-the-knowledge-about-datasets"></a></h3>
+   <h3 class="heading settled" data-level="4.3" id="spreading-the-knowledge-about-datasets"><span class="secno">4.3. </span><span class="content">Spreading the knowledge about datasets ###</span><a class="self-link" href="#spreading-the-knowledge-about-datasets"></a></h3>
    <p>The choice for Schema.org as a basis for the publication model for dataset descriptions comes with the benefit that this model is
 known (and used) by big search engines. By adding the dataset description pages to the sitemap of the website, search engines are likely
 to pick up the dataset description and make them available in tools like <a href="https://datasetsearch.research.google.com/">Google Dataset Search</a>.</p>
    <p>By registering the datasets with the NDE Register, the network of Dutch heritage institutions can easily find relevant datasets to link with.
 More generic (open) dataset registers, like data.overheid.nl, can also be used to promote the datasets of the institutions.</p>
-   <h2 class="heading settled" data-level="5" id="adding-persistent-identifiers"><span class="secno">5. </span><span class="content">Adding persistent identifiers</span><a class="self-link" href="#adding-persistent-identifiers"></a></h2>
+   <h2 class="heading settled" data-level="5" id="adding-persistent-identifiers"><span class="secno">5. </span><span class="content">Adding persistent identifiers ###</span><a class="self-link" href="#adding-persistent-identifiers"></a></h2>
    <p>TBD
 Everything (eg. heritage objects, terms, datasets) needs a persistent URI, unique in the world.</p>
    <h3 class="heading settled" data-level="5.1" id="persistent-identifiers"><span class="secno">5.1. </span><span class="content">Persistent Identifiers</span><a class="self-link" href="#persistent-identifiers"></a></h3>
