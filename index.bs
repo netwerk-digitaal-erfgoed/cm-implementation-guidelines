@@ -211,37 +211,34 @@ Instead of building large centralized services, NDE envisions a distributed netw
 digital information directly. This means that organizations, data providers or service providers, can easily query and combine data from
 several sources in the network. This satisfies two needs.
 
-Firstly it enables users to create a dedicated query for selecting and harvesting specific data. This data could be used to combine in a
-thematical data service, eg. Netwerk Oorlogsbronnen. The facility could be used as a more sophisticated endpoint, in addition to an
-OAI-PMH endpoint or a JSON API.
+Firstly, it enables users to create a dedicated query for selecting and harvesting specific data. This data could be combined in a
+thematic data service, e.g. [Netwerk Oorlogsbronnen](https://www.oorlogsbronnen.nl/) or [Van Gogh Worldwide](https://vangoghworldwide.org/). The facility could be used as a more sophisticated endpoint, in addition to an
+OAI-PMH endpoint or a custom API.
 
-Secondly, this kind of querying could be used dynamically: whenever a user wants to combine data, various endpoints could be approached and
-results could be combined on the fly. This type of querying is still a technological challenge but is already feasible in small-scale applications.
+Secondly, this kind of querying could be used dynamically: whenever a user wants to combine data, various endpoints could be queried and
+results could be combined on the fly. This way of combining data, although a technological challenge, is already feasible in small-scale applications.
 
-The first step in this direction is to make queryable Linked Data available. This can be done by implementing the SPARQL Query Language
-supported by so-called triplestore databases. Another, less demanding technology is the use of
-[Triple Pattern Fragments](https://linkeddatafragments.org/specification/triple-pattern-fragments/). This offers an easy way of querying the
-available data and is much more scalable but puts a larger burden on the client for processing the query results.
+The first step in this direction is to make queryable Linked Data available. This can be done by implementing a SPARQL endpoint. Another, less demanding technology is the use of
+[Triple Pattern Fragments](https://linkeddatafragments.org/specification/triple-pattern-fragments/). This offers an easy way of querying data and is much more scalable but puts a larger burden on the client for processing the results.
 
-Further exploration in the area of decentralized querying needs to be done and NDE invites the IT partners to work together on example
-implementations to determine what practical steps could be made in this direction.
+Further exploration in the area of decentralized querying has to take place and NDE invites the IT suppliers to work together on example
+implementations to determine what practical steps can be made.
 
 ### Other considerations for Linked Data publication
 
-Although Linked Data in the core of the collection management systems is not an explicit requirement for NDE it will become more important to
+Linked Data in the core of the collection management systems is not an explicit requirement for NDE. In the future, it will become more important to
 reorganize the internal data structure of the systems so that it aligns with the Linked Data principles. This will make the transformation to
 Linked Data more straightforward and will offer more opportunities to profit from the reuse of external Linked Data. NDE welcomes cooperation
-with IT partners considering to move in this direction.
+with IT suppliers considering moving in this direction.
 
-Another area that needs further exploration is the handling of multiple layers of object descriptions or enrichments, for example originated
+Another area that needs further exploration is the handling of multiple layers of object descriptions, for example originating
 from different sources of other institutions, digital humanities research projects or crowdsourcing projects. Keeping track of the provenance
 of different versions or the ability to maintain and publish different (time) versions of the same resource descriptions
-(i.e. [Memento](http://timetravel.mementoweb.org/about/), [Web Annotations](https://www.w3.org/TR/annotation-model/)) are other areas where
-exploration needs to be done. For these topics NDE seeks cooperation with IT partners and with the [CLARIAH-PLUS project](https://www.clariah.nl/),
+(e.g. with [Memento](http://timetravel.mementoweb.org/about/), [Web Annotations](https://www.w3.org/TR/annotation-model/)) are other areas where
+exploration needs to be done. For these topics NDE seeks cooperation with IT suppliers and with the [CLARIAH-PLUS project](https://www.clariah.nl/),
 responsible for building research infrastructures in the Digital Humanities domain.
 
-A third development is the concept of ['profile negotiation'](https://www.w3.org/TR/dx-prof-conneg/). Additional to content negotiation in
-profile negotiation a user can request data according to a certain information model, in our case the generic data model or the specific data model.
+A third development is the concept of ['profile negotiation'](https://www.w3.org/TR/dx-prof-conneg/). In addition to content negotiation, profile negotiation enables a user to request data according to a certain data model. In our case the user could be able to choose between the generic data model or the domain data model.
 
 Connecting sources {#connecting-sources}
 =====================
