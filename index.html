@@ -1223,7 +1223,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version 5f7b0e20, updated Tue Aug 18 15:46:28 2020 -0700" name="generator">
   <link href="https://netwerk-digitaal-erfgoed.github.io/cm-implementation-guidelines/" rel="canonical">
-  <meta content="6cd87ec4a37ad1b1a6ed85419e53c7078ff773f9" name="document-revision">
+  <meta content="75bf06641071a318e15e54f1edebc8db9078cabf" name="document-revision">
 <style>/* style-autolinks */
 
 .css.css, .property.property, .descriptor.descriptor {
@@ -1375,7 +1375,7 @@ dfn > a.self-link::before      { content: "#"; }</style>
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">Implementation guidelines for NDE alignment of cultural heritage data management and publication infrastructure</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Living Standard, <time class="dt-updated" datetime="2021-05-20">20 May 2021</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Living Standard, <time class="dt-updated" datetime="2021-05-24">24 May 2021</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1391,7 +1391,7 @@ dfn > a.self-link::before      { content: "#"; }</style>
    <div data-fill-with="warning"></div>
    <p class="copyright" data-fill-with="copyright"><a href="http://creativecommons.org/publicdomain/zero/1.0/" rel="license"><img alt="CC0" src="https://licensebuttons.net/p/zero/1.0/80x15.png"></a> To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 20 May 2021,
+In addition, as of 24 May 2021,
 the editors have made this specification available under the <a href="http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0" rel="license">Open Web Foundation Agreement Version 1.0</a>,
 which is available at http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.
 Parts of this work may be from another specification document.  If so, those parts are instead covered by the license of that specification document. </p>
@@ -1443,7 +1443,7 @@ Parts of this work may be from another specification document.  If so, those par
      <ol class="toc">
       <li><a href="#using-your-own-terminology-source"><span class="secno">3.1</span> <span class="content">Using your own terminology source</span></a>
       <li>
-       <a href="#using-standardized-terminology-sources"><span class="secno">3.2</span> <span class="content">Using standardized terminology sources</span></a>
+       <a href="#using-external-terminology-sources"><span class="secno">3.2</span> <span class="content">Using external terminology sources</span></a>
        <ol class="toc">
         <li><a href="#manually-searching-a-terminology-source"><span class="secno">3.2.1</span> <span class="content">Manually searching a terminology source</span></a>
         <li><a href="#adding-terms-in-bulk"><span class="secno">3.2.2</span> <span class="content">Adding terms in bulk</span></a>
@@ -1523,7 +1523,7 @@ of the dataset (see <a href="#publishing-dataset-descriptions">section 4</a>).</
     <li data-md>
      <p><a href="#using-your-own-terminology-source">How can I use an internal terminology source?</a></p>
     <li data-md>
-     <p><a href="#using-standardized-terminology-sources">How can I use an external terminology source?</a></p>
+     <p><a href="#using-external-terminology-sources">How can I use an external terminology source?</a></p>
     <li data-md>
      <p><a href="#publishing-terminology-sources">Which processes and data models are recommended for publishing terminology sources?</a></p>
     <li data-md>
@@ -1683,10 +1683,10 @@ responsible for building research infrastructures in the Digital Humanities doma
    <p>A third development is the concept of <a href="https://www.w3.org/TR/dx-prof-conneg/">'profile negotiation'</a>. In addition to content negotiation, profile negotiation enables a user to request data according to a certain data model. In our case the user could be able to choose between the generic data model or the domain data model.</p>
    <h2 class="heading settled" data-level="3" id="connecting-sources"><span class="secno">3. </span><span class="content">Connecting sources</span><a class="self-link" href="#connecting-sources"></a></h2>
    <p>"Connected sources" are sources that refer to each other and use each other’s information. This is done using terms.
-Terms are, for example, subjects, persons or places. Each term has a URI as an identifier. Because a URI is a unique web address
-the URI makes unambiguously clear which term is meant. Terms and their URIs are managed in terminology sources, such as thesauri,
-reference lists or classification systems. Examples are <a href="https://www.getty.edu/research/tools/vocabularies/aat/">AAT</a>, <a href="https://www.geonames.org/">GeoNames</a> or <a href="https://data.niod.nl/WO2_Thesaurus.html">WO2 Thesaurus</a> (Dutch).</p>
-   <p>For connecting sources, it is important that institutions relate URIs of terms to the descriptions of their heritage objects.
+Terms are descriptions of concepts or entities, such as subjects, people or places. Each term has a URI as an identifier. Because a URI is a unique web address
+it makes unambiguously clear which term is meant. Terms and their URIs are managed in terminology sources, such as thesauri,
+reference lists or classification systems. Examples are <a href="https://www.getty.edu/research/tools/vocabularies/aat/">AAT</a>, <a href="https://www.geonames.org/">GeoNames</a> or <a href="https://data.niod.nl/WO2_Thesaurus.html">WO2 Thesaurus</a> (in Dutch).</p>
+   <p>For connecting sources, it is important that institutions assign URIs of terms to the descriptions of their heritage objects.
 There are various options for this which are discussed below. The options are increasing in complexity – for example, they
 require changes to the collection management system – but also provide better functionality.</p>
    <h3 class="heading settled" data-level="3.1" id="using-your-own-terminology-source"><span class="secno">3.1. </span><span class="content">Using your own terminology source</span><a class="self-link" href="#using-your-own-terminology-source"></a></h3>
@@ -1698,39 +1698,39 @@ This reduces the ability to connect sources from different institutions.</p>
    <p>In the terminology management module of a collection management system, the user should be able to relate the internal term to an
 external one. One could for instance state that the internal term for 'schilderij' is an exact match with the external term 'paintings' in
 the AAT. Other types of relations are possible, for instance, an internal term 'oil-painting' is a narrower term of the AAT 'paintings'
-(see: <a href="#technology-and-datamodel">section 3.3.2</a>)
+(see: <a href="#technology-and-datamodel">section 3.3.2</a>).
 Of course this external term is defined with the proper URI and stored as such. The process of relating terms from one (internal)
 terminology source with another (external) one, is called <em>alignment</em>.</p>
-   <p>If a terminology source is developed and used instead of a standardized one, the terminology source apparently has an added value to
+   <p>If a cultural heritage institute develops its own terminology source and uses this internal one instead of an external one, the terminology source apparently has an added value to
 the field. For that reason, the collection management system must be able to publish the terminology source, with alignments, as
 Linked Data (see: <a href="#publishing-terminology-sources">section 3.3</a>).</p>
-   <h3 class="heading settled" data-level="3.2" id="using-standardized-terminology-sources"><span class="secno">3.2. </span><span class="content">Using standardized terminology sources</span><a class="self-link" href="#using-standardized-terminology-sources"></a></h3>
+   <h3 class="heading settled" data-level="3.2" id="using-external-terminology-sources"><span class="secno">3.2. </span><span class="content">Using external terminology sources</span><a class="self-link" href="#using-external-terminology-sources"></a></h3>
    <p>Using terms that are not connected to the network of internationally standardized terminology sources reduces the ability to connect sources
 from different institutions. We recommend using as many standardized terms as possible.</p>
    <h4 class="heading settled" data-level="3.2.1" id="manually-searching-a-terminology-source"><span class="secno">3.2.1. </span><span class="content">Manually searching a terminology source</span><a class="self-link" href="#manually-searching-a-terminology-source"></a></h4>
    <p>This is the simplest, low-tech approach to assign the URI of a term to the description of a heritage object. A collection manager goes
-to the online system of a terminology source and searches for a term, for example, 'paintings' in AAT. The manager then copies the URI of the
+to the online system of a terminology source and searches for a term, for example 'paintings' in AAT. The manager then copies the URI of the
 term, goes back to her collection management system and pastes the URI in a designated field. This approach requires few changes to the
 collection management system: a field has to be created in order to store the URI. On the other hand, this approach is cumbersome:
 a manager has to perform some actions manually.</p>
    <h4 class="heading settled" data-level="3.2.2" id="adding-terms-in-bulk"><span class="secno">3.2.2. </span><span class="content">Adding terms in bulk</span><a class="self-link" href="#adding-terms-in-bulk"></a></h4>
    <p>Instead of adding a (URI of a) term to an object description one-by-one, the curator could export the data from her system and add the
-terms and their URIs in bulk. This could be done with applications like <a href="https://openrefine.org/">Open Refine</a>. For this approach, the
+terms and their URIs in bulk. This could be done with applications like <a href="https://openrefine.org/">OpenRefine</a>. For this approach, the
 collection management system must be able to export the data, for instance in CSV format, and import the new data with its additional
 link to the object.</p>
    <p>The addition of a term can be based on an existing field containing only a string of the data, for instance 'schilderij'. By using
 search-and-replace kind of tricks the additional link could be added. This type of work is called <em>reconciliation</em>.</p>
    <h4 class="heading settled" data-level="3.2.3" id="importing-a-terminology-source"><span class="secno">3.2.3. </span><span class="content">Importing a terminology source</span><a class="self-link" href="#importing-a-terminology-source"></a></h4>
-   <p>An institution can import one or more terminology sources into its collection management system, such as AAT and/or WW2 Thesaurus.
+   <p>An institution can import one or more terminology sources into its collection management system.
 This makes it easy to use terms: the collection manager can search for terms in her management system, without having to switch to the
 system of the source, as is the case when searching terms manually
 (see <a href="#manually-searching-a-terminology-source">section 3.2.1</a>).
 A limitation is that the manager does not use current data: an import takes place periodically – for example: once a day or month – so that
-changes to the terminology source are not immediately visible.</p>
+changes to the terminology source are not immediately usable.</p>
    <h4 class="heading settled" data-level="3.2.4" id="searching-a-terminology-source-in-real-time"><span class="secno">3.2.4. </span><span class="content">Searching a terminology source in real-time</span><a class="self-link" href="#searching-a-terminology-source-in-real-time"></a></h4>
    <p>An institution can query a terminology source in real-time in its collection management system. A collection manager first enters a search query
 in a search field. Next, her management system – in the background – queries the terminology source, retrieves the terms that correspond to the
-query and presents them to the manager. The manager then chooses the desired term and the management system stores the URI of the chosen term.
+query and presents them to the manager. The manager then chooses the desired term and the management system stores its URI.
 This ensures that the institution works with current data. However, the implementation of this approach in the management system can entail
 some difficulties: a connection must be established with the source – or multiple connections if the institution wants to use multiple sources.</p>
    <h4 class="heading settled" data-level="3.2.5" id="using-the-network-of-terms"><span class="secno">3.2.5. </span><span class="content">Using the Network of Terms</span><a class="self-link" href="#using-the-network-of-terms"></a></h4>
@@ -1738,26 +1738,23 @@ some difficulties: a connection must be established with the source – or multi
 for terms: it searches one or more terminology sources in real-time. The Network of Terms can be used in a collection management system.
 A collection manager first enters a search query in a search field. Next, her management system – in the background – queries the Network of Terms,
 retrieves the terms that correspond to the query and presents them to the manager. The manager then chooses the desired term and
-the management system stores the URI of the chosen term. This makes it easier to use multiple terminology sources: you only need to connect
+the management system stores its URI. This makes it easier to use multiple terminology sources: you only need to connect
 to the Network of Terms.</p>
    <h4 class="heading settled" data-level="3.2.6" id="indexing-data-from-the-terminology-source"><span class="secno">3.2.6. </span><span class="content">Indexing data from the terminology source</span><a class="self-link" href="#indexing-data-from-the-terminology-source"></a></h4>
-   <p>If (the URI of) a term is stored, collection managers might be interested in related data in the collection management system, for instance,
-alternative labels, pseudonyms, or labels in different languages. This helps the user of the collection management system to retrieve data
+   <p>If (the URI of) a term is stored, collection managers might be interested to store related data, for instance, alternative labels, pseudonyms, or labels in different languages, in the collection management system as well. This helps the user of the collection management system to retrieve data
 from her system. As long as the web of data is not as decentralized as we’d wish
 (see <a href="#advanced-level-queryable-linked-data">section 2.3.3</a>),
 collection management systems could offer to obtain the needed data via resolving the URI
 (see <a href="#web-compliancy-level-resolvable-uris">section 2.3.2</a>)
-and store and index the extra data in the database. The related data must be synchronized periodically and the collection management interface
-must enable to force the synchronization. A collection manager that helps the editors of the standardized source to add or improve data,
+and store and index the extra data in the database. The related data must be synchronized periodically and the collection management user interface must have a function to force the synchronization. A collection manager that helps the editors of the standardized source to add or improve data,
 can then see her results quickly.</p>
    <h3 class="heading settled" data-level="3.3" id="publishing-terminology-sources"><span class="secno">3.3. </span><span class="content">Publishing terminology sources</span><a class="self-link" href="#publishing-terminology-sources"></a></h3>
    <p>"Published terminology sources" are sources that are important to the cooperating institutions in the Dutch Digital Heritage Network.
-It enables collection managers to find and use terms in the sources more easily when describing their heritage objects. And that makes
-digital heritage found easier by data-users. Publishing terminology sources should obey <a href="https://netwerk-digitaal-erfgoed.github.io/requirements-terminologiebronnen/">these requirements</a> (Dutch).</p>
-   <p>A terminology source is considered a dataset, with sustainable URIs as described
+It enables collection managers to find and use terms in the sources more easily when describing their heritage objects. And that makes digital heritage easier to find by users. Terminology sources should comply with <a href="https://netwerk-digitaal-erfgoed.github.io/requirements-terminologiebronnen/">these requirements</a> (in Dutch).</p>
+   <p>A terminology source is a dataset, with sustainable URIs as described
 in <a href="#adding-persistent-identifiers">section 5</a>, described according
 to the guidelines in <a href="#publishing-dataset-descriptions">section 4</a>,
-and published as dump, with resolvable URIs and in a SPARQL query as described in <a href="#publishing-collection-information">section 2</a>.</p>
+and published as a dump, with resolvable URIs and in a SPARQL endpoint as described in <a href="#publishing-collection-information">section 2</a>.</p>
    <p>A terminology source can only be used if it meets a few conditions. Are you the manager of a source and are you considering making it
 available to the network? Then take the following aspects into account.</p>
    <h4 class="heading settled" data-level="3.3.1" id="authority"><span class="secno">3.3.1. </span><span class="content">Authority</span><a class="self-link" href="#authority"></a></h4>
