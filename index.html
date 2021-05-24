@@ -1223,7 +1223,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version 5f7b0e20, updated Tue Aug 18 15:46:28 2020 -0700" name="generator">
   <link href="https://netwerk-digitaal-erfgoed.github.io/cm-implementation-guidelines/" rel="canonical">
-  <meta content="75bf06641071a318e15e54f1edebc8db9078cabf" name="document-revision">
+  <meta content="3d3ffa1c43eb95c53f62f54d50495516ccf99924" name="document-revision">
 <style>/* style-autolinks */
 
 .css.css, .property.property, .descriptor.descriptor {
@@ -1779,23 +1779,22 @@ that these terms have the same meaning and refer to each other’s terms – thi
 The collection management system should support these processes.</p>
    <h2 class="heading settled" data-level="4" id="publishing-dataset-descriptions"><span class="secno">4. </span><span class="content">Publishing dataset descriptions</span><a class="self-link" href="#publishing-dataset-descriptions"></a></h2>
    <p>To increase the findability of datasets of heritage institutions, it is important to publish the dataset descriptions according to a
-well documented, machine-readable model. When rich dataset descriptions are used, published not only as HTML (for humans) but also as
-meaningful metadata (for the machine), the findability and use of datasets that heritage institutions make available, will improve.
+well-documented, machine-readable model. When dataset descriptions are used, the findability and use of datasets that heritage institutions make available, will improve.
 Publishing dataset descriptions should obey <a href="https://netwerk-digitaal-erfgoed.github.io/requirements-datasets/">these requirements</a>,
 which contains a more elaborate description of the publishing process.</p>
    <h3 class="heading settled" data-level="4.1" id="publication-model-for-dataset-descriptions"><span class="secno">4.1. </span><span class="content">Publication model for dataset descriptions</span><a class="self-link" href="#publication-model-for-dataset-descriptions"></a></h3>
-   <p>The NDE has drafted a publication model which is based on Schema.org. For datasets, the class https://schema.org/Dataset has been developed.
+   <p>NDE has created a publication model based on Schema.org. For datasets, the class https://schema.org/Dataset has been developed.
 This class is based on W3C DCAT work and benefits from collaboration around the DCAT, ADMS and VoID vocabularies.</p>
    <h3 class="heading settled" data-level="4.2" id="how-to-publish-dataset-descriptions"><span class="secno">4.2. </span><span class="content">How to publish dataset descriptions</span><a class="self-link" href="#how-to-publish-dataset-descriptions"></a></h3>
-   <p>For good findability, every dataset description must be accessible via the Internet, must be legible for humans and machines, and use the
-publication model. The serialization of dataset descriptions can take several serializations, JSON-LD is preferred.</p>
+   <p>For good findability, every dataset description must be accessible via the web, must be readable for humans and machines, and use the
+publication model. The serialization of dataset descriptions can take several forms. JSON-LD is preferred.</p>
    <p>A user can obtain a dataset description with a sustainable URI as described in <a href="#adding-persistent-identifiers">section 5</a> and published as a
 resolvable URI as described in <a href="#web-compliancy-level-resolvable-uris">section 2.3.2</a>.</p>
    <p>Most (automated) users expect to find the metadata in the page itself (inline). Spiders of search engines such as Google might not follow
-linked JSON-LD files. Even if the linked files (via Javascript) are "injected" into the page, most spiders do not pick up on this.
+linked JSON-LD files. Even if the linked files (via JavaScript) are "injected" into the page, most spiders do not pick up on this.
 There are more serializations of RDF, such as RDF/XML and Turtle. Spiders of search engines such as Google currently only support microdata,
 RDFa and JSON-LD. Because search engine findability is an important driver, the use of inline JSON-LD is recommended. However,
-this does not prevent the additional publication of the dataset description in other serialization formats or a (content negotiation based)
+this does not prevent the publication of the dataset description in other serialization formats or a (content negotiation-based)
 separate resource.</p>
    <h3 class="heading settled" data-level="4.3" id="spreading-the-knowledge-about-datasets"><span class="secno">4.3. </span><span class="content">Spreading the knowledge about datasets</span><a class="self-link" href="#spreading-the-knowledge-about-datasets"></a></h3>
    <p>The choice for Schema.org as a basis for the publication model for dataset descriptions comes with the benefit that this model is

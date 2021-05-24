@@ -380,15 +380,14 @@ Publishing dataset descriptions {#publishing-dataset-descriptions}
 =====================
 
 To increase the findability of datasets of heritage institutions, it is important to publish the dataset descriptions according to a
-well documented, machine-readable model. When rich dataset descriptions are used, published not only as HTML (for humans) but also as
-meaningful metadata (for the machine), the findability and use of datasets that heritage institutions make available, will improve.
+well-documented, machine-readable model. When dataset descriptions are used, the findability and use of datasets that heritage institutions make available, will improve.
 Publishing dataset descriptions should obey [these requirements](https://netwerk-digitaal-erfgoed.github.io/requirements-datasets/),
 which contains a more elaborate description of the publishing process.
 
 Publication model for dataset descriptions {#publication-model-for-dataset-descriptions}
 --------------------
 
-The NDE has drafted a publication model which is based on Schema.org. For datasets, the class https://schema.org/Dataset has been developed.
+NDE has created a publication model based on Schema.org. For datasets, the class https://schema.org/Dataset has been developed.
 This class is based on W3C DCAT work and benefits from collaboration around the DCAT, ADMS and VoID vocabularies.
 
 <!--TBD See [https://github.com/netwerk-digitaal-erfgoed/project-organisations-datasets/tree/master/publication-model](https://github.com/netwerk-digitaal-erfgoed/project-organisations-datasets/tree/master/publication-model) for the the complete specification of the publication model.-->
@@ -396,18 +395,18 @@ This class is based on W3C DCAT work and benefits from collaboration around the 
 How to publish dataset descriptions {#how-to-publish-dataset-descriptions}
 --------------------
 
-For good findability, every dataset description must be accessible via the Internet, must be legible for humans and machines, and use the
-publication model. The serialization of dataset descriptions can take several serializations, JSON-LD is preferred.
+For good findability, every dataset description must be accessible via the web, must be readable for humans and machines, and use the
+publication model. The serialization of dataset descriptions can take several forms. JSON-LD is preferred.
 
 A user can obtain a dataset description with a sustainable URI as described in
 [section 5](#adding-persistent-identifiers) and published as a
 resolvable URI as described in [section 2.3.2](#web-compliancy-level-resolvable-uris).
 
 Most (automated) users expect to find the metadata in the page itself (inline). Spiders of search engines such as Google might not follow
-linked JSON-LD files. Even if the linked files (via Javascript) are "injected" into the page, most spiders do not pick up on this.
+linked JSON-LD files. Even if the linked files (via JavaScript) are "injected" into the page, most spiders do not pick up on this.
 There are more serializations of RDF, such as RDF/XML and Turtle. Spiders of search engines such as Google currently only support microdata,
 RDFa and JSON-LD. Because search engine findability is an important driver, the use of inline JSON-LD is recommended. However,
-this does not prevent the additional publication of the dataset description in other serialization formats or a (content negotiation based)
+this does not prevent the publication of the dataset description in other serialization formats or a (content negotiation-based)
 separate resource.
 
 Spreading the knowledge about datasets {#spreading-the-knowledge-about-datasets}
