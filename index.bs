@@ -59,7 +59,7 @@ Quick access through questions
 * [Which RDF-serialization is recommended?](#rdf-serialization)
 * [Which technique is recommended to provide data through the web?](#publishing-linked-data)
 * [How can I use an internal terminology source?](#using-your-own-terminology-source)
-* [How can I use an external terminology source?](#using-standardized-terminology-sources)
+* [How can I use an external terminology source?](#using-external-terminology-sources)
 * [Which processes and data models are recommended for publishing terminology sources?](#publishing-terminology-sources)
 * [Which data models are recommended for publishing dataset information?](#publication-model-for-dataset-descriptions)
 * [Which techniques are recommended to provide datasetdescriptions through the web?](#how-to-publish-dataset-descriptions)
@@ -244,12 +244,12 @@ Connecting sources {#connecting-sources}
 =====================
 
 "Connected sources" are sources that refer to each other and use each other's information. This is done using terms.
-Terms are, for example, subjects, persons or places. Each term has a URI as an identifier. Because a URI is a unique web address
-the URI makes unambiguously clear which term is meant. Terms and their URIs are managed in terminology sources, such as thesauri,
+Terms are descriptions of concepts or entities, such as subjects, people or places. Each term has a URI as an identifier. Because a URI is a unique web address
+it makes unambiguously clear which term is meant. Terms and their URIs are managed in terminology sources, such as thesauri,
 reference lists or classification systems. Examples are \[AAT](https://www.getty.edu/research/tools/vocabularies/aat/),
-[GeoNames](https://www.geonames.org/) or [WO2 Thesaurus](https://data.niod.nl/WO2_Thesaurus.html) (Dutch).
+[GeoNames](https://www.geonames.org/) or [WO2 Thesaurus](https://data.niod.nl/WO2_Thesaurus.html) (in Dutch).
 
-For connecting sources, it is important that institutions relate URIs of terms to the descriptions of their heritage objects.
+For connecting sources, it is important that institutions assign URIs of terms to the descriptions of their heritage objects.
 There are various options for this which are discussed below. The options are increasing in complexity – for example, they
 require changes to the collection management system – but also provide better functionality.
 
@@ -265,15 +265,15 @@ This reduces the ability to connect sources from different institutions.
 In the terminology management module of a collection management system, the user should be able to relate the internal term to an
 external one. One could for instance state that the internal term for \'schilderij' is an exact match with the external term \'paintings' in
 the AAT. Other types of relations are possible, for instance, an internal term \'oil-painting' is a narrower term of the AAT \'paintings'
-(see: [section 3.3.2](#technology-and-datamodel))
+(see: [section 3.3.2](#technology-and-datamodel)).
 Of course this external term is defined with the proper URI and stored as such. The process of relating terms from one (internal)
 terminology source with another (external) one, is called *alignment*.
 
-If a terminology source is developed and used instead of a standardized one, the terminology source apparently has an added value to
+If a cultural heritage institute develops its own terminology source and uses this internal one instead of an external one, the terminology source apparently has an added value to
 the field. For that reason, the collection management system must be able to publish the terminology source, with alignments, as
 Linked Data (see: [section 3.3](#publishing-terminology-sources)).
 
-Using standardized terminology sources {#using-standardized-terminology-sources}
+Using external terminology sources {#using-external-terminology-sources}
 --------------------
 
 Using terms that are not connected to the network of internationally standardized terminology sources reduces the ability to connect sources
@@ -282,7 +282,7 @@ from different institutions. We recommend using as many standardized terms as po
 ### Manually searching a terminology source ### {#manually-searching-a-terminology-source}
 
 This is the simplest, low-tech approach to assign the URI of a term to the description of a heritage object. A collection manager goes
-to the online system of a terminology source and searches for a term, for example, \'paintings' in AAT. The manager then copies the URI of the
+to the online system of a terminology source and searches for a term, for example \'paintings' in AAT. The manager then copies the URI of the
 term, goes back to her collection management system and pastes the URI in a designated field. This approach requires few changes to the
 collection management system: a field has to be created in order to store the URI. On the other hand, this approach is cumbersome:
 a manager has to perform some actions manually.
@@ -290,7 +290,7 @@ a manager has to perform some actions manually.
 ### Adding terms in bulk
 
 Instead of adding a (URI of a) term to an object description one-by-one, the curator could export the data from her system and add the
-terms and their URIs in bulk. This could be done with applications like [Open Refine](https://openrefine.org/). For this approach, the
+terms and their URIs in bulk. This could be done with applications like [OpenRefine](https://openrefine.org/). For this approach, the
 collection management system must be able to export the data, for instance in CSV format, and import the new data with its additional
 link to the object.
 
@@ -299,18 +299,18 @@ search-and-replace kind of tricks the additional link could be added. This type 
 
 ### Importing a terminology source
 
-An institution can import one or more terminology sources into its collection management system, such as AAT and/or WW2 Thesaurus.
+An institution can import one or more terminology sources into its collection management system.
 This makes it easy to use terms: the collection manager can search for terms in her management system, without having to switch to the
 system of the source, as is the case when searching terms manually
 (see [section 3.2.1](#manually-searching-a-terminology-source)).
 A limitation is that the manager does not use current data: an import takes place periodically – for example: once a day or month – so that
-changes to the terminology source are not immediately visible.
+changes to the terminology source are not immediately usable.
 
 ### Searching a terminology source in real-time
 
 An institution can query a terminology source in real-time in its collection management system. A collection manager first enters a search query
 in a search field. Next, her management system – in the background – queries the terminology source, retrieves the terms that correspond to the
-query and presents them to the manager. The manager then chooses the desired term and the management system stores the URI of the chosen term.
+query and presents them to the manager. The manager then chooses the desired term and the management system stores its URI.
 This ensures that the institution works with current data. However, the implementation of this approach in the management system can entail
 some difficulties: a connection must be established with the source – or multiple connections if the institution wants to use multiple sources.
 
@@ -320,33 +320,30 @@ An institution can use the [Network of Terms](https://termennetwerk.netwerkdigit
 for terms: it searches one or more terminology sources in real-time. The Network of Terms can be used in a collection management system.
 A collection manager first enters a search query in a search field. Next, her management system – in the background – queries the Network of Terms,
 retrieves the terms that correspond to the query and presents them to the manager. The manager then chooses the desired term and
-the management system stores the URI of the chosen term. This makes it easier to use multiple terminology sources: you only need to connect
+the management system stores its URI. This makes it easier to use multiple terminology sources: you only need to connect
 to the Network of Terms.
 
 ### Indexing data from the terminology source
 
-If (the URI of) a term is stored, collection managers might be interested in related data in the collection management system, for instance,
-alternative labels, pseudonyms, or labels in different languages. This helps the user of the collection management system to retrieve data
+If (the URI of) a term is stored, collection managers might be interested to store related data, for instance, alternative labels, pseudonyms, or labels in different languages, in the collection management system as well. This helps the user of the collection management system to retrieve data
 from her system. As long as the web of data is not as decentralized as we'd wish
 (see [section 2.3.3](#advanced-level-queryable-linked-data)),
 collection management systems could offer to obtain the needed data via resolving the URI
 (see [section 2.3.2](#web-compliancy-level-resolvable-uris))
-and store and index the extra data in the database. The related data must be synchronized periodically and the collection management interface
-must enable to force the synchronization. A collection manager that helps the editors of the standardized source to add or improve data,
+and store and index the extra data in the database. The related data must be synchronized periodically and the collection management user interface must have a function to force the synchronization. A collection manager that helps the editors of the standardized source to add or improve data,
 can then see her results quickly.
 
 Publishing terminology sources {#publishing-terminology-sources}
 --------------------
 
 "Published terminology sources" are sources that are important to the cooperating institutions in the Dutch Digital Heritage Network.
-It enables collection managers to find and use terms in the sources more easily when describing their heritage objects. And that makes
-digital heritage found easier by data-users. Publishing terminology sources should obey
-[these requirements](https://netwerk-digitaal-erfgoed.github.io/requirements-terminologiebronnen/) (Dutch).
+It enables collection managers to find and use terms in the sources more easily when describing their heritage objects. And that makes digital heritage easier to find by users. Terminology sources should comply with 
+[these requirements](https://netwerk-digitaal-erfgoed.github.io/requirements-terminologiebronnen/) (in Dutch).
 
-A terminology source is considered a dataset, with sustainable URIs as described
+A terminology source is a dataset, with sustainable URIs as described
 in [section 5](#adding-persistent-identifiers), described according
 to the guidelines in [section 4](#publishing-dataset-descriptions),
-and published as dump, with resolvable URIs and in a SPARQL query as described in
+and published as a dump, with resolvable URIs and in a SPARQL endpoint as described in
 [section 2](#publishing-collection-information).
 
 A terminology source can only be used if it meets a few conditions. Are you the manager of a source and are you considering making it
