@@ -17,12 +17,12 @@ This document describes how IT suppliers can help the Dutch cultural heritage in
 
 The goal of cooperation in the network is to increase the public value of the cultural heritage information by improving its visibility, usability and sustainability. A crucial part of this challenge is to improve the capabilities of institutions to share their information in the network and to integrate digital heritage information from various sources to build services for their audiences.
 
-This document aims to initiate an open discussion and cooperation with the technical partners in the network. The final goal is to document practical solutions that are within reach of the various IT systems used by the institutions and developed by the IT suppliers actively cooperating with NDE. Where appropriate, formal specifications of these solutions will be proposed to the Architecture Board of the DERA to become part of the long term agreements within the cultural heritage domain.
+This document aims to initiate an open discussion and cooperation with the technical partners in the network. The final goal is to document practical solutions that are within reach of the various IT systems used by the institutions and developed by the IT suppliers actively cooperating with NDE. 
 
 Relation with other documentation
 --------------------
 
-This document builds upon the [high-level functional design](https://github.com/netwerk-digitaal-erfgoed/high-level-design) for the network of cultural heritage information created earlier in the NDE program. In the high-level design, we define terms, building blocks and functions. The design in itself is based on the [Dutch digital heritage reference architecture (DERA)](https://dera.netwerkdigitaalerfgoed.nl/) and the [National Digital Heritage Strategy](https://zenodo.org/record/4604654#.YNB8EjqxWCg) (dutch).
+This document builds upon the [Dutch digital heritage reference architecture (DERA)](https://dera.netwerkdigitaalerfgoed.nl/) (dutch) and the [National Digital Heritage Strategy](https://zenodo.org/record/4604654#.YNB8EjqxWCg) (dutch). Where appropriate, formal specifications of solutions developed in this document will be proposed to the Architecture Board of the DERA to become part of the long term agreements within the cultural heritage domain.
 
 Overview
 --------------------
@@ -48,7 +48,7 @@ If you call the web address, the webserver must serve the metadata in RDF format
 
 ### Anything else that that same thing has a relationship with through its data should also be given a name beginning with HTTP.
 
-The best metadata relates the painting with, for instance, its creator by means of the URI of the creator instead of the label. This means that you are able to follow the link and use the web address of the creator to obtain the data about the creator. This way you can, for instance, know its living years.
+In the best metadata, the painting is related with, for instance, its creator by means of the URI of the creator instead of the label. This means that you are able to follow the link and use the web address of the creator to obtain the data about the creator. This way you can, for instance, know its living years.
 
 ### More information
 
@@ -58,8 +58,6 @@ This section of document is not intended as a complete introduction into Linked 
 
 Adding persistent identifiers {#adding-persistent-identifiers}
 =====================
-
-Important 
 
 TBD
 Use [Uniform Resource Identifiers](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier) for every information resource (eg. heritage objects, terms, datasets) you want to publish.
