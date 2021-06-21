@@ -22,24 +22,47 @@ This document aims to initiate an open discussion and cooperation with the techn
 Relation with other documentation
 --------------------
 
-This document builds upon the [high-level functional design](https://github.com/netwerk-digitaal-erfgoed/high-level-design) for the network of cultural heritage information created earlier in the NDE program. In the high-level design, we define terms, building blocks and functions. The design in itself is based on the [Dutch digital heritage reference architecture (DERA)](https://dera.netwerkdigitaalerfgoed.nl/), the [National Digital Heritage Strategy](https://www.netwerkdigitaalerfgoed.nl/en/about-us/national-digital-heritage-strategy/) and the [NDE position paper](https://www.netwerkdigitaalerfgoed.nl/wp-content/uploads/2018/02/NDE_PositionPaper_NetworkHeritageInformation-EN-v2.pdf).
+This document builds upon the [high-level functional design](https://github.com/netwerk-digitaal-erfgoed/high-level-design) for the network of cultural heritage information created earlier in the NDE program. In the high-level design, we define terms, building blocks and functions. The design in itself is based on the [Dutch digital heritage reference architecture (DERA)](https://dera.netwerkdigitaalerfgoed.nl/) and the [National Digital Heritage Strategy](https://zenodo.org/record/4604654#.YNB8EjqxWCg) (dutch).
 
 Overview
 --------------------
 
-The guidelines in this document follow the general practice for publishing [Linked Data](https://en.wikipedia.org/wiki/Linked_data). As stated in the [reference architecture](https://dera.netwerkdigitaalerfgoed.nl/index.php/Linked_Data) (in Dutch) Linked Data is regarded as a key technology in the cultural heritage domain for integrating the huge amount of information resources within the network. Linked Data is the driver for providing and maintaining coherent digital services within the network.
+The primary focus of the guidelines in this document is to improve the visibility and interoperability of the heritage collections. This document therefor follows the general practice for publishing [Linked Data](https://en.wikipedia.org/wiki/Linked_data). As stated in the [reference architecture](https://dera.netwerkdigitaalerfgoed.nl/index.php/Linked_Data) (in Dutch) Linked Data is regarded as a key technology in the cultural heritage domain for integrating the huge amount of information resources within the network. Linked Data is the driver for providing and maintaining coherent digital services within the network.
 
-The information resources should be self-contained in respect to persistent identifiers (see [this section](#adding-persistent-identifiers), '[Uniform Resource Identifiers](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier)', URIs) and metadata (see [this section](#publishing-collection-information)). This metadata should contain as many terms as possible (see [this section](#connecting-sources)). Information resources can be combined and published in datasets. Each dataset should be described as a separate resource with a unique identifier and additional metadata describing the characteristics of the dataset (see [this section](#publishing-dataset-descriptions)).
+The information resources should be self-contained in respect to persistent identifiers, (see [this section](#adding-persistent-identifiers)) and metadata (see [this section](#publishing-collection-information)). This metadata should contain as many terms as possible (see [this section](#connecting-sources)). Information resources can be combined and published in datasets. Each dataset should be described as a separate resource with a unique identifier and additional metadata describing the characteristics of the dataset (see [this section](#publishing-dataset-descriptions)).
 
-Linked Open Data
+Linked Open Data Principles
 --------------------
-TBD
+
+Publishing information resources as Linked Data can be done by transforming the internal data of the collection management system to a Linked Data format as described by the [Resource Description Framework](https://www.w3.org/TR/rdf11-concepts/) (RDF). These guidelines describe how to create interoperability with Linked Data and do not prescribe which techniques must be used to store the data, let alone technology within the systems.
+
+Describing information resource by the Resource Description Framework means three things (watch [this TED-talk](https://www.ted.com/talks/tim_berners_lee_the_next_web) by Tim Berners-Lee).
+
+### All conceptual things should have a name starting with HTTP.
+
+This means that every 'thing' you need to publish an information resource for, must have a web address, more precise a [Uniform Resource Identifiers](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier). Information resources could be the metadata about a painting, a creator, a depicted location or a data set.
+
+### Looking up an HTTP name should return useful data about the thing in question in a standard format.
+
+If you call the web address, the webserver must serve the metadata in RDF format. In the RDF format the metadata attributes are expressed. These attributes are for instance the title of a painting or the date of creation.
+
+### Anything else that that same thing has a relationship with through its data should also be given a name beginning with HTTP.
+
+The best metadata relates the painting with, for instance, its creator by means of the URI of the creator instead of the label. This means that you are able to follow the link and use the web address of the creator to obtain the data about the creator. This way you can, for instance, know its living years.
+
+### More information
+
+This section of document is not intended as a complete introduction into Linked Data. You can learn the basics of Linked Data
+* [in this book](http://linkeddatabook.com/editions/1.0/)
+* [in this online course](https://open.hpi.de/courses/knowledgegraphs2020).
 
 Adding persistent identifiers {#adding-persistent-identifiers}
 =====================
 
+Important 
+
 TBD
-Everything (eg. heritage objects, terms, datasets) needs a persistent URI, unique in the world.
+Use [Uniform Resource Identifiers](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier) for every information resource (eg. heritage objects, terms, datasets) you want to publish.
 
 Persistent Identifiers
 --------------------
@@ -47,10 +70,11 @@ Persistent Identifiers
 * Please inform yourselves about 'persistent identifiers' on [this website](https://www.pidwijzer.nl/en).
 * Handle
 
-Uniform Resource Identifiers
+Uniform Resource Identifiers Strategies
 --------------------
 
-URIs are webaddresses. URI-strategies:
+As an institution you must decide on how your persistent URI's look like. Here are some examples by other (heritage) institutions.
+
 * [CONCEPT Nationale URI-Strategie voor Linked Data van de Nederlandse overheid](https://www.pldn.nl/wiki/Concept_URI-strategie) (dutch)
 * [URI-beleid voor Linked Data [van de Koninklijke Bibliotheek](doc/URI-beleidLinkedData_1.1.2.pdf) (dutch)
 * [Duurzaam vindbaar op het web: URI-strategie Nationaal Archief; het gebruik van Handles en URI’s](doc/URI-strategie-Nationaal-Archief_v1_1_INTERN.pdf) (dutch)
@@ -59,12 +83,6 @@ URIs are webaddresses. URI-strategies:
 Publishing collection information {#publishing-collection-information}
 =====================
 
-Publishing information resources as Linked Data can be done by transforming the internal data of the collection management system to a Linked Data format as described by the [Resource Description Framework](https://www.w3.org/TR/rdf11-concepts/) (RDF). The primary focus of the guidelines in this document is to improve the visibility and interoperability of the heritage collections. These guidelines describe how to create interoperability with Linked Data and do not prescribe which techniques must be used to store the data, let alone technology within the systems.
-
-Learn the basics of Linked Data
-* [in this book](http://linkeddatabook.com/editions/1.0/)
-* [in this online course](https://open.hpi.de/courses/semanticweb2016)
-
 Data model {#data-model}
 --------------------
 
@@ -72,12 +90,10 @@ Data model {#data-model}
 
 The main goal for publishing the object descriptions as Linked Data is to improve the data integration and visibility in the network. Because the heritage network spans institutions from the library, archive and museum domains, a generic data model that can support general visibility on the web is needed. In order to support broader visibility on the web outside the cultural heritage domain, data should be published with [Schema.org](https://schema.org/). Schema.org is a joint initiative of three major search engines, Bing, Google and Yahoo, with the aim of setting up a shared scheme to structure data. Vocabularies from Schema.org are developed through an open community process.
 
-Interesting links:
-* [https://www.contentking.nl/academy/schema-structured-data/](https://www.contentking.nl/academy/schema-structured-data/) (in Dutch)
-
 Thanks to Europeana, most institutions and collection management systems are familiar with Dublin Core (DC). Based on DC, a generic data model for cultural heritage institutions has been defined, the Europeana Data Model (EDM). [Recent investigations](https://github.com/netwerk-digitaal-erfgoed/lod-aggregator) have shown that well-formed Schema.org data can be transformed to EDM without significant loss of detail. Schema.org contains properties that are very similar to Dublin Core properties. A complete mapping between Schema.org and Dublin Core can be found [here](https://dcmi.github.io/schema.org/).
 
 Interesting links:
+* [https://www.contentking.nl/academy/schema-structured-data/](https://www.contentking.nl/academy/schema-structured-data/) (in Dutch)
 * [https://seopressor.com/blog/dublin-core-vs-schemaorg-metadata-comparison/](https://seopressor.com/blog/dublin-core-vs-schemaorg-metadata-comparison/)
 
 Some basic examples for:
