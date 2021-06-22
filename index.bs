@@ -27,7 +27,7 @@ This document builds upon the [Dutch digital heritage reference architecture (DE
 Overview
 --------------------
 
-The primary focus of the guidelines in this document is to improve the visibility and interoperability of the heritage collections. This document therefor follows the general practice for publishing [Linked Data](https://en.wikipedia.org/wiki/Linked_data). As stated in the [reference architecture](https://dera.netwerkdigitaalerfgoed.nl/index.php/Linked_Data) (in Dutch) Linked Data is regarded as a key technology in the cultural heritage domain for integrating the huge amount of information resources within the network. Linked Data is the driver for providing and maintaining coherent digital services within the network.
+The primary focus of the guidelines in this document is to improve the visibility and interoperability of the heritage collections. This document therefor follows the general practice for publishing [Linked Data](https://en.wikipedia.org/wiki/Linked_data). As stated in the [reference architecture](https://dera.netwerkdigitaalerfgoed.nl/index.php/Linked_Data) (in Dutch) Linked Data is regarded as a key technology in the cultural heritage domain for integrating the huge amount of information resources within the network.
 
 The information resources should be self-contained in respect to persistent identifiers, (see [this section](#adding-persistent-identifiers)) and metadata (see [this section](#publishing-collection-information)). This metadata should contain as many terms as possible (see [this section](#connecting-sources)). Information resources can be combined and published in datasets. Each dataset should be described as a separate resource with a unique identifier and additional metadata describing the characteristics of the dataset (see [this section](#publishing-dataset-descriptions)).
 
@@ -84,6 +84,8 @@ Publishing collection information {#publishing-collection-information}
 Data model {#data-model}
 --------------------
 
+After introducing URIs for the information resources we want to publish, we have to decide which set of properties we use for expressing the data. On the one hand, there is a more generic data model available, easy to use and combine. On the other hand a more precise but complicated domain specific model can be used. If triples are published in both the generic and the domain model they are all included in the same information resource.
+
 ### Generic data model
 
 The main goal for publishing the object descriptions as Linked Data is to improve the data integration and visibility in the network. Because the heritage network spans institutions from the library, archive and museum domains, a generic data model that can support general visibility on the web is needed. In order to support broader visibility on the web outside the cultural heritage domain, data should be published with [Schema.org](https://schema.org/). Schema.org is a joint initiative of three major search engines, Bing, Google and Yahoo, with the aim of setting up a shared scheme to structure data. Vocabularies from Schema.org are developed through an open community process.
@@ -122,24 +124,16 @@ RDF serialization {#rdf-serialization}
 
 RDF - the framework to express data in triples - can be formatted in various serializations. Different serializations are useful in different situations.
 
-### \'Traditional' linked data
-
-The oldest type of serialization is RDF/XML. This format is complex and old-fashioned, but it could be very useful in XML ecosystems. The best readable serialization is Turtle. Examples in this document are written in this form. Linked data provided in '[N-Triples](https://nl.wikipedia.org/wiki/N-Triples)' format can be processed easily in all linked data tooling.
-
-Interesting link:
-* [https://ontola.io/blog/rdf-serialization-formats/](https://ontola.io/blog/rdf-serialization-formats/)
-
-In almost all programming languages libraries are available to transform one RDF serialization into another. Check for libraries in your favourite programming language.
-
-Please offer your data in at least N-Triples format. See for example [this photo example](nt-examples/example-3.nt) that we introduced in Turtle format earlier.
-
-If triples are published in both the generic and the domain model they are all included in the same data file.
-
-You could provide more than one serialization and offer the user a choice with 'content negotiation'. (see [this section](#web-compliancy-level-resolvable-uris)).
-
-### JSON-LD
+The oldest type of serialization is RDF/XML. This format is complex and old-fashioned, but it could be very useful in XML ecosystems. The best readable serialization is Turtle. Examples in this document are written in this form. Linked data provided in '[N-Triples](https://nl.wikipedia.org/wiki/N-Triples)' format can be processed easily in all linked data tooling. Please offer your data in at least N-Triples format. See for example [this photo example](nt-examples/example-3.nt) that we introduced in Turtle format earlier.
 
 JSON-LD is the youngest format and comprehensible to web developers that are used to JSON. The format is more difficult to process by Linked Data applications. We recommend only using JSON-LD inline in the landing page of an information resource. (see [this section](#web-compliancy-level-resolvable-uris))
+
+In almost all programming languages libraries are available to transform one RDF serialization into another. Check for libraries in your favourite programming language. If you create one type of RDF (eg. RDF/XML) in your infrastructure, be sure to validate the syntax of your output by trying to transform it into another serialization. You could provide more than one serialization and offer the user a choice with 'content negotiation'. (see [this section](#web-compliancy-level-resolvable-uris)).
+
+Interesting links:
+* [https://ontola.io/blog/rdf-serialization-formats/](https://ontola.io/blog/rdf-serialization-formats/)
+* [http://www.linkeddatatools.com/semantic-web-basics](http://www.linkeddatatools.com/semantic-web-basics)
+* [https://medium.com/wallscope/understanding-linked-data-formats-rdf-xml-vs-turtle-vs-n-triples-eb931dbe9827](https://medium.com/wallscope/understanding-linked-data-formats-rdf-xml-vs-turtle-vs-n-triples-eb931dbe9827)
 
 Publishing Linked Data {#publishing-linked-data}
 --------------------
@@ -149,7 +143,7 @@ Linked Data can be published in several ways. In this section, we will discuss f
 ### Basic level: Data dumps
 Although not a proper Linked Data implementation, publishing a file in RDF-format supports basic data services. This section describes requirements for such a data dump.
 
-Most of the current collection management systems support XML-based export formats. In many cases, a conversion using XSLT Stylesheets is possible to generate a Linked Data dump. The system should support a workflow that can be operated periodically by the system administrator in order to produce the dump. The dump should be described by a dataset description. The link pointing to the dump should be fit for automatic processing and therefore be accessible by HTTP clients, like curl.
+Most of the current collection management systems support XML-based export formats. In many cases, a conversion using XSLT Stylesheets is possible to generate a Linked Data dump. The system should support a workflow that can be operated by the system administrator in order to produce the dump. Remember that a new dump must be created if data is added or corrected. The dump should be described by a dataset description. The link pointing to the dump should be fit for automatic processing and therefore be accessible by HTTP clients, like [curl](https://en.wikipedia.org/wiki/CURL).
 
 A dump could be either a zip file containing files for every information resource or one big file containing all the triples. NDE prefers a data dump in one file containing N-Triples because files with N-Triples from various sources can be easily combined and easily cut into pieces for processing.
 
@@ -157,19 +151,19 @@ In some cases, conversion cannot be done by the collection management system its
 
 ### Web compliance level: resolvable URIs ### {#web-compliancy-level-resolvable-uris}
 
-Although dumps are sufficient to support basic services, proper Linked Data implementations should provide Linked Data per object, in Linked Data terminology called a ‘resource’. Each resource in the collection should have a stable and well-formed URI. This URI should be ‘resolvable’. This means that the web server provides data about the resource in a format depending on the Accept header in the HTTP request. This functionality is called [content negotiation](https://www.w3.org/Protocols/rfc2616/rfc2616-sec12.html) which enables browsers or other applications to ask for a specific language or representation of the available content. For Linked Data this mechanism is used to differentiate between human-readable content (in HTML) and machine-readable content (in RDF).
-
-For building real-time services that integrate disparate resources, content negotiation should be in place to serve the Linked Data. In this case, creating a dump is no longer sufficient as it is possible to describe the dataset as a collection of resolvable URIs. 
+Although dumps are sufficient to support basic services, proper Linked Data implementations should provide Linked Data per object, in Linked Data terminology called a ‘resource’. Each resource in the collection should have a stable URI. This URI should be ‘resolvable’. This means that the web server provides data about the resource in a format depending on the Accept header in the HTTP request. This functionality is called [content negotiation](https://www.w3.org/Protocols/rfc2616/rfc2616-sec12.html) which enables browsers or other applications to ask for a specific language or representation of the available content. For Linked Data this mechanism is used to differentiate between human-readable content (in HTML) and machine-readable content (in RDF).
 
 To improve the overall discoverability on the web it is recommended to add a representation of the data of the information resource with concepts and properties in Schema.org to the landing page of the object on the website. [Google recommends](https://developers.google.com/search/docs/guides/intro-structured-data) doing this by including the Linked Data as \[JSON-LD](https://json-ld.org/) in the page. The JSON-LD could be provided separately from the webpage and included with a JavaScript function. See this [example](http://cclod.netwerkdigitaalerfgoed.nl/test.html).
 
 ### Advanced level: queryable Linked Data ### {#advanced-level-queryable-linked-data}
 
-Instead of building large centralized services, NDE envisions a distributed network of empowered organizations that share and reuse their digital information directly. This means that organizations, data providers or service providers, can easily query and combine data from several sources in the network. This satisfies two needs.
+Instead of building large centralized services, NDE envisions a distributed network of empowered organizations that share and reuse their digital information directly. This means that organizations, data providers or service providers, can easily query and combine data from several sources in the network. The first step in this direction is to make queryable Linked Data available. This can be done by implementing a SPARQL endpoint. Another, less demanding technology is the use of [Triple Pattern Fragments](https://linkeddatafragments.org/specification/triple-pattern-fragments/). This offers an easy way of querying data and is much more scalable but puts a larger burden on the client for processing the results.
 
-Firstly, it enables users to create a dedicated query for selecting and harvesting specific data. This data could be combined in a thematic data service, e.g. [Netwerk Oorlogsbronnen](https://www.oorlogsbronnen.nl/) or [Van Gogh Worldwide](https://vangoghworldwide.org/). The facility could be used as a more sophisticated endpoint, in addition to an OAI-PMH endpoint or a custom API.
+Creating queryable Linked Data satisfies two needs.
 
-Secondly, this kind of querying could be used dynamically: whenever a user wants to combine data, various endpoints could be queried and results could be combined on the fly. This way of combining data, although a technological challenge, is already feasible in small-scale applications. The first step in this direction is to make queryable Linked Data available. This can be done by implementing a SPARQL endpoint. Another, less demanding technology is the use of [Triple Pattern Fragments](https://linkeddatafragments.org/specification/triple-pattern-fragments/). This offers an easy way of querying data and is much more scalable but puts a larger burden on the client for processing the results.
+Firstly, it enables users to create a dedicated query for selecting and harvesting specific data. This data could be combined in a thematic data service like [Netwerk Oorlogsbronnen](https://www.oorlogsbronnen.nl/) or [Van Gogh Worldwide](https://vangoghworldwide.org/). A query-facility like a SPARQL endpoint could be used as a more sophisticated endpoint, in addition to an OAI-PMH endpoint or a custom API. 
+
+Secondly, this kind of querying could be used dynamically: whenever a user wants to combine data, various endpoints could be queried and results could be combined on the fly. This way of combining data, although a technological challenge, is already feasible in small-scale applications. 
 
 Further exploration in the area of decentralized querying has to take place and NDE invites the IT suppliers to work together on example implementations to determine what practical steps can be made.
 
