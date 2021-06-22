@@ -40,7 +40,7 @@ Describing information resource by the Resource Description Framework means thre
 
 ### All conceptual things should have a name starting with HTTP.
 
-This means that every 'thing' you need to publish an information resource for, must have a web address, more precise a [Uniform Resource Identifiers](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier). Information resources could be the metadata about a painting, a creator, a depicted location or a data set.
+This means that every entity you want to publish an information resource for must have a web address, more precisely a so-called [Uniform Resource Identifier](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier). Information resources could be the metadata about a painting, a creator, a depicted location or a data set.
 
 ### Looking up an HTTP name should return useful data about the thing in question in a standard format.
 
