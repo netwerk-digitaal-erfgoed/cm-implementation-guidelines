@@ -1223,7 +1223,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version 5f7b0e20, updated Tue Aug 18 15:46:28 2020 -0700" name="generator">
   <link href="https://netwerk-digitaal-erfgoed.github.io/cm-implementation-guidelines/" rel="canonical">
-  <meta content="da91c3e78636eaba61bfbb022e9e90e49b704c49" name="document-revision">
+  <meta content="783305fe5a9e4688fa8baf28a72f97bf45c52a31" name="document-revision">
 <style>/* style-autolinks */
 
 .css.css, .property.property, .descriptor.descriptor {
@@ -1375,7 +1375,7 @@ dfn > a.self-link::before      { content: "#"; }</style>
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">Implementation guidelines for NDE alignment of cultural heritage data management and publication infrastructure</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Living Standard, <time class="dt-updated" datetime="2021-06-21">21 June 2021</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Living Standard, <time class="dt-updated" datetime="2021-06-22">22 June 2021</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1391,7 +1391,7 @@ dfn > a.self-link::before      { content: "#"; }</style>
    <div data-fill-with="warning"></div>
    <p class="copyright" data-fill-with="copyright"><a href="http://creativecommons.org/publicdomain/zero/1.0/" rel="license"><img alt="CC0" src="https://licensebuttons.net/p/zero/1.0/80x15.png"></a> To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 21 June 2021,
+In addition, as of 22 June 2021,
 the editors have made this specification available under the <a href="http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0" rel="license">Open Web Foundation Agreement Version 1.0</a>,
 which is available at http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.
 Parts of this work may be from another specification document.  If so, those parts are instead covered by the license of that specification document. </p>
@@ -1491,9 +1491,9 @@ Parts of this work may be from another specification document.  If so, those par
    <h2 class="heading settled" data-level="1" id="intro"><span class="secno">1. </span><span class="content">Introduction</span><a class="self-link" href="#intro"></a></h2>
    <p>This document describes how IT suppliers can help the Dutch cultural heritage institutions to become more compliant with the principles for cooperation in the Dutch Digital Heritage Network (NDE). It is and will be constructed in full cooperation with suppliers. We ask IT suppliers of data management and publication software to implement the guidelines outlined in this document in their products. This will help the Dutch heritage institutions in making their information accessible to machines and humans on the web.</p>
    <p>The goal of cooperation in the network is to increase the public value of the cultural heritage information by improving its visibility, usability and sustainability. A crucial part of this challenge is to improve the capabilities of institutions to share their information in the network and to integrate digital heritage information from various sources to build services for their audiences.</p>
-   <p>This document aims to initiate an open discussion and cooperation with the technical partners in the network. The final goal is to document practical solutions that are within reach of the various IT systems used by the institutions and developed by the IT suppliers actively cooperating with NDE. Where appropriate, formal specifications of these solutions will be proposed to the Architecture Board of the DERA to become part of the long term agreements within the cultural heritage domain.</p>
+   <p>This document aims to initiate an open discussion and cooperation with the technical partners in the network. The final goal is to document practical solutions that are within reach of the various IT systems used by the institutions and developed by the IT suppliers actively cooperating with NDE.</p>
    <h3 class="heading settled" data-level="1.1" id="relation-with-other-documentation"><span class="secno">1.1. </span><span class="content">Relation with other documentation</span><a class="self-link" href="#relation-with-other-documentation"></a></h3>
-   <p>This document builds upon the <a href="https://github.com/netwerk-digitaal-erfgoed/high-level-design">high-level functional design</a> for the network of cultural heritage information created earlier in the NDE program. In the high-level design, we define terms, building blocks and functions. The design in itself is based on the <a href="https://dera.netwerkdigitaalerfgoed.nl/">Dutch digital heritage reference architecture (DERA)</a> and the <a href="https://zenodo.org/record/4604654#.YNB8EjqxWCg">National Digital Heritage Strategy</a> (dutch).</p>
+   <p>This document builds upon the <a href="https://dera.netwerkdigitaalerfgoed.nl/">Dutch digital heritage reference architecture (DERA)</a> (dutch) and the <a href="https://zenodo.org/record/4604654#.YNB8EjqxWCg">National Digital Heritage Strategy</a> (dutch). Where appropriate, formal specifications of solutions developed in this document will be proposed to the Architecture Board of the DERA to become part of the long term agreements within the cultural heritage domain.</p>
    <h3 class="heading settled" data-level="1.2" id="overview"><span class="secno">1.2. </span><span class="content">Overview</span><a class="self-link" href="#overview"></a></h3>
    <p>The primary focus of the guidelines in this document is to improve the visibility and interoperability of the heritage collections. This document therefor follows the general practice for publishing <a href="https://en.wikipedia.org/wiki/Linked_data">Linked Data</a>. As stated in the <a href="https://dera.netwerkdigitaalerfgoed.nl/index.php/Linked_Data">reference architecture</a> (in Dutch) Linked Data is regarded as a key technology in the cultural heritage domain for integrating the huge amount of information resources within the network. Linked Data is the driver for providing and maintaining coherent digital services within the network.</p>
    <p>The information resources should be self-contained in respect to persistent identifiers, (see <a href="#adding-persistent-identifiers">this section</a>) and metadata (see <a href="#publishing-collection-information">this section</a>). This metadata should contain as many terms as possible (see <a href="#connecting-sources">this section</a>). Information resources can be combined and published in datasets. Each dataset should be described as a separate resource with a unique identifier and additional metadata describing the characteristics of the dataset (see <a href="#publishing-dataset-descriptions">this section</a>).</p>
@@ -1501,11 +1501,11 @@ Parts of this work may be from another specification document.  If so, those par
    <p>Publishing information resources as Linked Data can be done by transforming the internal data of the collection management system to a Linked Data format as described by the <a href="https://www.w3.org/TR/rdf11-concepts/">Resource Description Framework</a> (RDF). These guidelines describe how to create interoperability with Linked Data and do not prescribe which techniques must be used to store the data, let alone technology within the systems.</p>
    <p>Describing information resource by the Resource Description Framework means three things (watch <a href="https://www.ted.com/talks/tim_berners_lee_the_next_web">this TED-talk</a> by Tim Berners-Lee).</p>
    <h4 class="heading settled" data-level="1.3.1" id="all-conceptual-things-should-have-a-name-starting-with-http"><span class="secno">1.3.1. </span><span class="content">All conceptual things should have a name starting with HTTP.</span><a class="self-link" href="#all-conceptual-things-should-have-a-name-starting-with-http"></a></h4>
-   <p>This means that every <a class="property" data-link-type="propdesc">thing</a> you need to publish an information resource for, must have a web address, more precise a <a href="https://en.wikipedia.org/wiki/Uniform_Resource_Identifier">Uniform Resource Identifiers</a>. Information resources could be the metadata about a painting, a creator, a depicted location or a data set.</p>
+   <p>This means that every entity you want to publish an information resource for must have a web address, more precisely a so-called <a href="https://en.wikipedia.org/wiki/Uniform_Resource_Identifier">Uniform Resource Identifier</a>. Information resources could be the metadata about a painting, a creator, a depicted location or a data set.</p>
    <h4 class="heading settled" data-level="1.3.2" id="looking-up-an-http-name-should-return-useful-data-about-the-thing-in-question-in-a-standard-format"><span class="secno">1.3.2. </span><span class="content">Looking up an HTTP name should return useful data about the thing in question in a standard format.</span><a class="self-link" href="#looking-up-an-http-name-should-return-useful-data-about-the-thing-in-question-in-a-standard-format"></a></h4>
    <p>If you call the web address, the webserver must serve the metadata in RDF format. In the RDF format the metadata attributes are expressed. These attributes are for instance the title of a painting or the date of creation.</p>
    <h4 class="heading settled" data-level="1.3.3" id="anything-else-that-that-same-thing-has-a-relationship-with-through-its-data-should-also-be-given-a-name-beginning-with-http"><span class="secno">1.3.3. </span><span class="content">Anything else that that same thing has a relationship with through its data should also be given a name beginning with HTTP.</span><a class="self-link" href="#anything-else-that-that-same-thing-has-a-relationship-with-through-its-data-should-also-be-given-a-name-beginning-with-http"></a></h4>
-   <p>The best metadata relates the painting with, for instance, its creator by means of the URI of the creator instead of the label. This means that you are able to follow the link and use the web address of the creator to obtain the data about the creator. This way you can, for instance, know its living years.</p>
+   <p>In the best metadata, the painting is related with, for instance, its creator by means of the URI of the creator instead of the label. This means that you are able to follow the link and use the web address of the creator to obtain the data about the creator. This way you can, for instance, know its living years.</p>
    <h4 class="heading settled" data-level="1.3.4" id="more-information"><span class="secno">1.3.4. </span><span class="content">More information</span><a class="self-link" href="#more-information"></a></h4>
    <p>This section of document is not intended as a complete introduction into Linked Data. You can learn the basics of Linked Data</p>
    <ul>
@@ -1515,7 +1515,6 @@ Parts of this work may be from another specification document.  If so, those par
      <p><a href="https://open.hpi.de/courses/knowledgegraphs2020">in this online course</a>.</p>
    </ul>
    <h2 class="heading settled" data-level="2" id="adding-persistent-identifiers"><span class="secno">2. </span><span class="content">Adding persistent identifiers</span><a class="self-link" href="#adding-persistent-identifiers"></a></h2>
-   <p>Important</p>
    <p>TBD
 Use <a href="https://en.wikipedia.org/wiki/Uniform_Resource_Identifier">Uniform Resource Identifiers</a> for every information resource (eg. heritage objects, terms, datasets) you want to publish.</p>
    <h3 class="heading settled" data-level="2.1" id="persistent-identifiers"><span class="secno">2.1. </span><span class="content">Persistent Identifiers</span><a class="self-link" href="#persistent-identifiers"></a></h3>
