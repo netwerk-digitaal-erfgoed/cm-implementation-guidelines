@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:schema="http://schema.org/" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:schema="https://schema.org/" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
 
 <rdf:Description rdf:about="https://hdl.handle.net/21.12129/11135378" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdfs:label>De avonden : een winterverhaal / G.K. van het Reve</rdfs:label>
-  <rdf:type rdf:resource="http://schema.org/ArchiveComponent" />
+  <rdf:type rdf:resource="https://schema.org/ArchiveComponent" />
   <schema:url>https://LITtest.hosting.deventit.net/detail.php?id=11135378</schema:url>
     <!--schema:dateCreated></schema:dateCreated-->
     <!--schema:materialExtent>
