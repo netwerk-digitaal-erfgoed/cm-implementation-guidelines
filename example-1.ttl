@@ -3,7 +3,7 @@
 # but does not intend to be correct or complete
 @base <http://hdl.handle.net/10934/RM0001.COLLECT.221600> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix sdo: <http://schema.org/> .
+@prefix sdo: <https://schema.org/> .
 @prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
 @prefix cht:  <https://data.cultureelerfgoed.nl/term/id/cht/> .
 @prefix rkda: <https://data.rkd.nl/artists/> .

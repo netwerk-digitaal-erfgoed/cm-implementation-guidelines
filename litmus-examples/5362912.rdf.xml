@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:schema="http://schema.org/" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:schema="https://schema.org/" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
 
 <rdf:Description rdf:about="https://hdl.handle.net/21.12129/5362912" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdfs:label>Engelman, J.A.A.</rdfs:label>
-  <rdf:type rdf:resource="http://schema.org/ArchiveComponent" />
-  <rdf:type rdf:resource="http://schema.org/Collection" />
+  <rdf:type rdf:resource="https://schema.org/ArchiveComponent" />
+  <rdf:type rdf:resource="https://schema.org/Collection" />
   <schema:description>Brieven van Engelman</schema:description>
   <schema:url>https://LITtest.hosting.deventit.net/detail.php?id=5362912</schema:url>
     <schema:dateCreated>1927-1970</schema:dateCreated>
