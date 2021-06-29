@@ -27,32 +27,32 @@ This document builds upon the [Dutch digital heritage reference architecture (DE
 Overview
 --------------------
 
-The primary focus of the guidelines in this document is to improve the visibility and interoperability of the heritage collections. This document therefor follows the general practice for publishing [Linked Data](https://en.wikipedia.org/wiki/Linked_data). As stated in the [reference architecture](https://dera.netwerkdigitaalerfgoed.nl/index.php/Linked_Data) (in Dutch) Linked Data is regarded as a key technology in the cultural heritage domain for integrating the huge amount of information resources within the network.
+The primary focus of the guidelines in this document is to improve the visibility and interoperability of the heritage collections. This document, therefore, follows the general practice for publishing [Linked Data](https://en.wikipedia.org/wiki/Linked_data). As stated in the [reference architecture](https://dera.netwerkdigitaalerfgoed.nl/index.php/Linked_Data) (in Dutch) Linked Data is regarded as a key technology in the cultural heritage domain for integrating the huge amount of information resources within the network.
 
-The information resources should be self-contained in respect to persistent identifiers, (see [this section](#adding-persistent-identifiers)) and metadata (see [this section](#publishing-collection-information)). This metadata should contain as many terms as possible (see [this section](#connecting-sources)). Information resources can be combined and published in datasets. Each dataset should be described as a separate resource with a unique identifier and additional metadata describing the characteristics of the dataset (see [this section](#publishing-dataset-descriptions)).
+The information resources should be self-contained concerning persistent identifiers, (see [this section](#adding-persistent-identifiers)) and metadata (see [this section](#publishing-collection-information)). This metadata should contain as many terms as possible (see [this section](#connecting-sources)). Information resources can be combined and published in datasets. Each dataset should be described as a separate resource with a unique identifier and additional metadata describing the characteristics of the dataset (see [this section](#publishing-dataset-descriptions)).
 
 Linked Open Data Principles
 --------------------
 
 Publishing information resources as Linked Data can be done by transforming the internal data of the collection management system to a Linked Data format as described by the [Resource Description Framework](https://www.w3.org/TR/rdf11-concepts/) (RDF). These guidelines describe how to create interoperability with Linked Data and do not prescribe which techniques must be used to store the data, let alone technology within the systems.
 
-Describing information resources by the Resource Description Framework means three things, as is introduced by Tim Berners-Lee in [this TED-talk](https://www.ted.com/talks/tim_berners_lee_the_next_web).
+Describing information resources by the Resource Description Framework means three things, as is introduced by Tim Berners-Lee in [this TED talk](https://www.ted.com/talks/tim_berners_lee_the_next_web).
 
 ### All conceptual things should have a name starting with HTTP.
 
-This means that every entity you want to publish an information resource for, must have a web address, more precisely a so-called [Uniform Resource Identifier](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier). Information resources could for example be the metadata about a painting, a creator, a depicted location or a data set.
+This means that every entity you want to publish an information resource for must have a web address, more precisely a so-called [Uniform Resource Identifier](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier). Information resources could for example be the metadata about a painting, a creator, a depicted location or a data set.
 
 ### Looking up an HTTP name should return useful data about the thing in question in a standard format.
 
-If you call the web address, the webserver must serve the metadata in RDF format. In the RDF format the metadata attributes are expressed. These attributes are for instance the title of a painting or the date of creation.
+If you call the web address, the webserver must serve the metadata in RDF format. In the RDF format, the metadata attributes are expressed. These attributes are for instance the title of a painting or the date of creation.
 
 ### Anything else that that same thing has a relationship with through its data, should also be given a name beginning with HTTP.
 
-In the best metadata, the painting is related with, for instance, its creator by means of the URI of the creator (eg. [https://data.rkd.nl/artists/66219](https://data.rkd.nl/artists/66219)) instead of the label ("Rijn, Rembrandt van"). This means that you are able to follow the link and use the web address of the creator to obtain the data about the creator. This way you can, for instance, know its living years ("1606-1669"). Linking data like this results in a "Web of Data".
+In the best metadata, the painting is related with, for instance, its creator using the URI of the creator (eg. [https://data.rkd.nl/artists/66219](https://data.rkd.nl/artists/66219)) instead of the label ("Rijn, Rembrandt van"). This means that you can follow the link and use the web address of the creator to obtain the data about the creator. This way you can, for instance, know its living years ("1606-1669"). Linking data like this results in a "Web of Data".
 
 ### More information
 
-This document is not intended as a complete introduction into Linked Data. You can learn the basics of Linked Data
+This document is not intended as a complete introduction to Linked Data. You can learn the basics of Linked Data
 * [in this book](http://linkeddatabook.com/editions/1.0/)
 * [in this online course](https://open.hpi.de/courses/knowledgegraphs2020).
 
@@ -64,18 +64,18 @@ The first Linked Data principle, defined by Berners-Lee, is that every informati
 Persistent Identifiers
 --------------------
 
-It is important for users of the data to be able to trust that the identifier will not change. It is necessary to create a sustainable URI. A sustainable URI can be based on a unique number in the collection management database. This means that this number should never be changed, 
+Users of the data need to be able to trust that the identifier will not change. It is necessary to create a sustainable URI. A sustainable URI can be based on a unique number in the collection management database. This means that this number should never be changed, 
 * even if records are migrated into another version of the collection management system or another collection management in the future.
-* even if records are deleted: if possible the system should point to the new records for the same cultural heritage object. Otherwise it should result in a record that is marked 'obsolete'.
+* even if records are deleted: if possible the system should point to the new records for the same cultural heritage object. Otherwise, it should result in a record that is marked 'obsolete'.
 
-It is very convenient to have a complete URI as a unique identifier in the collection management database. This helps securing persistency, not only of the number, but of the URI as well. One common standard for publishing persistent web addresses is Handle. Handles can be used as URIs.
+It is very convenient to have a complete URI as a unique identifier in the collection management database. This helps to secure persistency, not only of the number but of the URI as well. One common standard for publishing persistent web addresses is Handle. Handles can be used as URIs.
 
 More information is available on [this website](https://www.pidwijzer.nl/en).
 
 Uniform Resource Identifiers Strategies
 --------------------
 
-As an institution you must decide on how your persistent URIs look like. Here are some examples by other (heritage) institutions.
+As an institution, you must decide on how your persistent URIs look like. Here are some examples from other (heritage) institutions.
 
 * [CONCEPT Nationale URI-Strategie voor Linked Data van de Nederlandse overheid](https://www.pldn.nl/wiki/Concept_URI-strategie) (Dutch)
 * [URI-beleid voor Linked Data [van de Koninklijke Bibliotheek](doc/URI-beleidLinkedData_1.1.2.pdf) (Dutch)
@@ -88,11 +88,11 @@ Publishing collection information {#publishing-collection-information}
 Data model {#data-model}
 --------------------
 
-After introducing URIs for the information resources you want to publish, you have to decide which set of properties you use for expressing the data. On the one hand, there is a more generic data model available, easy to use and combine. On the other hand a more precise but complicated domain specific model can be used. If triples are published in both the generic and the domain model they can all be included in the same information resource.
+After introducing URIs for the information resources you want to publish, you have to decide which set of properties you use for expressing the data. On the one hand, there is a more generic data model available, easy to use and combine. On the other hand, a more precise but complicated domain-specific model can be used. If triples are published in both the generic and the domain model they can all be included in the same information resource.
 
 ### Generic data model
 
-The main goal for publishing the object descriptions as Linked Data is to improve the data integration and visibility in the network. Because the heritage network spans institutions from the library, archive and museum domains, a generic data model that can support general visibility on the web is needed. In order to support broader visibility on the web outside the cultural heritage domain, data should be published with [Schema.org](https://schema.org/). Schema.org is a joint initiative of three major search engines, Bing, Google and Yahoo, with the aim of setting up a shared scheme to structure data. Vocabularies from Schema.org are developed through an open community process.
+The main goal for publishing the object descriptions as Linked Data is to improve the data integration and visibility in the network. Because the heritage network spans institutions from the library, archive and museum domains, a generic data model that can support general visibility on the web is needed. To support broader visibility on the web outside the cultural heritage domain, data should be published with [Schema.org](https://schema.org/). Schema.org is a joint initiative of three major search engines, Bing, Google and Yahoo, to set up a shared scheme to structure data. Vocabularies from Schema.org are developed through an open community process.
 
 Thanks to Europeana, most institutions and collection management systems are familiar with Dublin Core (DC). Based on DC, a generic data model for cultural heritage institutions has been defined, the Europeana Data Model (EDM). [Recent investigations](https://github.com/netwerk-digitaal-erfgoed/lod-aggregator) have shown that well-formed Schema.org data can be transformed to EDM without significant loss of detail. Schema.org contains properties that are very similar to Dublin Core properties. A complete mapping between Schema.org and Dublin Core can be found [here](https://dcmi.github.io/schema.org/).
 
@@ -140,9 +140,9 @@ Publishing Linked Data {#publishing-linked-data}
 Linked Data can be published in several ways. In this section, we will discuss four methods ranging in levels of complexity of implementation. User applications could prefer one of these methods to obtain the data for their purpose, so the publication methods should be offered in parallel.
 
 ### Basic level: Data dumps
-Although not a proper Linked Data implementation, publishing a file in RDF-format supports basic data services. This section describes requirements for such a data dump.
+Although not a proper Linked Data implementation, publishing a file in RDF format supports basic data services. This section describes the requirements for such a data dump.
 
-Most of the current collection management systems support XML-based export formats. In many cases, a conversion using XSLT Stylesheets is possible to generate a Linked Data dump. The system should support a workflow that can be operated by the system administrator in order to produce the dump. Remember that a new dump must be created if data is added or corrected. The dump should be described by a dataset description. The link pointing to the dump should be fit for automatic processing and therefore be accessible by HTTP clients, like [curl](https://en.wikipedia.org/wiki/CURL).
+Most of the current collection management systems support XML-based export formats. In many cases, a conversion using XSLT Stylesheets is possible to generate a Linked Data dump. The system should support a workflow that can be operated by the system administrator to produce the dump. Remember that a new dump must be created if data is added or corrected. The dump should be described by a dataset description. The link pointing to the dump should be fit for automatic processing and therefore be accessible by HTTP clients, like [curl](https://en.wikipedia.org/wiki/CURL).
 
 A dump could be either a zip file containing files for every information resource or one big file containing all the triples. NDE prefers a data dump in one file containing N-Triples because files with N-Triples from various sources can be easily combined and easily cut into pieces for processing.
 
@@ -170,16 +170,16 @@ Further exploration in the area of decentralized querying has to take place and 
 
 Linked Data in the core of the collection management systems is not an explicit requirement for NDE. In the future, it will become more important to reorganize the internal data structure of the systems so that it aligns with the Linked Data principles. This will make the transformation to Linked Data more straightforward and will offer more opportunities to profit from the reuse of external Linked Data. NDE welcomes cooperation with IT suppliers considering moving in this direction.
 
-The second area that needs further exploration is the handling of multiple layers of object descriptions, for example originating from different sources of other institutions, digital humanities research projects or crowdsourcing projects. Keeping track of the provenance of different versions or the ability to maintain and publish different (time) versions of the same resource descriptions (e.g. with [Memento](http://timetravel.mementoweb.org/about/), [Web Annotations](https://www.w3.org/TR/annotation-model/)) are other areas where exploration needs to be done. For these topics NDE seeks cooperation with IT suppliers and with the [CLARIAH-PLUS project](https://www.clariah.nl/), responsible for building research infrastructures in the Digital Humanities domain.
+The second area that needs further exploration is the handling of multiple layers of object descriptions, for example originating from different sources of other institutions, digital humanities research projects or crowdsourcing projects. Keeping track of the provenance of different versions or the ability to maintain and publish different (time) versions of the same resource descriptions (e.g. with [Memento](http://timetravel.mementoweb.org/about/), [Web Annotations](https://www.w3.org/TR/annotation-model/)) are other areas where exploration needs to be done. For these topics, NDE seeks cooperation with IT suppliers and with the [CLARIAH-PLUS project](https://www.clariah.nl/), responsible for building research infrastructures in the Digital Humanities domain.
 
-A third development is the concept of ['profile negotiation'](https://www.w3.org/TR/dx-prof-conneg/). In addition to content negotiation, profile negotiation enables a user to request data according to a certain data model. In our case the user could be able to choose between the generic data model or the domain data model.
+A third development is the concept of ['profile negotiation'](https://www.w3.org/TR/dx-prof-conneg/). In addition to content negotiation, profile negotiation enables a user to request data according to a certain data model. In our case, the user could be able to choose between the generic data model or the domain data model.
 
 Connecting sources {#connecting-sources}
 =====================
 
 "Connected sources" are sources that refer to each other and use each other's information. This is done using terms. Terms are descriptions of concepts or entities, such as subjects, people or places. Each term has a URI as an identifier. Because a URI is a unique web address it makes unambiguously clear which term is meant. Terms and their URIs are managed in terminology sources, such as thesauri, reference lists or classification systems. Examples are \[AAT](https://www.getty.edu/research/tools/vocabularies/aat/), [GeoNames](https://www.geonames.org/) or [WO2 Thesaurus](https://data.niod.nl/WO2_Thesaurus.html) (in Dutch).
 
-For connecting sources, it is important that institutions assign URIs of terms to the descriptions of their heritage objects. There are various options for this which are discussed below. The options are increasing in complexity – for example, they require changes to the collection management system – but also provide better functionality.
+For connecting sources, institutions must assign URIs of terms to the descriptions of their heritage objects. There are various options for this which are discussed below. The options are increasing in complexity – for example, they require changes to the collection management system – but also provide better functionality.
 
 Using your own terminology source {#using-your-own-terminology-source}
 --------------------
@@ -193,15 +193,15 @@ If a cultural heritage institute develops its own terminology source and uses th
 Using external terminology sources {#using-external-terminology-sources}
 --------------------
 
-Using terms that are not connected to the network of internationally standardized terminology sources reduces the ability to connect sources from different institutions. We recommend using as many standardized terminology sources as possible. These terms can be linked manually or imported in bulk. If you import an terminology source into the collection management system, a data curator can use a selection function to link to this terminology source. An imported terminology source must be updated frequently, so a more sustainable solution is to connect a terminology source with a real time connection on the web. The NDE facility Network of Terms can help you create one single connection for a larger collection of terminology sources.
+Using terms that are not connected to the network of internationally standardized terminology sources reduces the ability to connect sources from different institutions. We recommend using as many standardized terminology sources as possible. These terms can be linked manually or imported in bulk. If you import a terminology source into the collection management system, a data curator can use a selection function to link to this terminology source. An imported terminology source must be updated frequently, so a more sustainable solution is to connect a terminology source with a real-time connection on the web. The NDE facility Network of Terms can help you create one single connection for a larger collection of terminology sources.
 
 ### Manually searching a terminology source ### {#manually-searching-a-terminology-source}
 
-This is the simplest, low-tech approach to assign the URI of a term to the description of a heritage object. A collection manager goes to the online system of a terminology source and searches for a term, for example \'paintings' in AAT. The manager then copies the URI of the term, goes back to her collection management system and pastes the URI in a designated field. This approach requires few changes to the collection management system: a field has to be created in order to store the URI. On the other hand, this approach is cumbersome: a manager has to perform some actions manually.
+This is the simplest, low-tech approach to assign the URI of a term to the description of a heritage object. A collection manager goes to the online system of a terminology source and searches for a term, for example, \'paintings' in AAT. The manager then copies the URI of the term, goes back to her collection management system and pastes the URI in a designated field. This approach requires few changes to the collection management system: a field has to be created to store the URI. On the other hand, this approach is cumbersome: a manager has to perform some actions manually.
 
 ### Adding terms in bulk
 
-Instead of adding a (URI of a) term to an object description one-by-one, the curator could export the data from her system and add the terms and their URIs in bulk. This could be done with applications like [OpenRefine](https://openrefine.org/). For this approach, the collection management system must be able to export the data, for instance in CSV format, and import the new data with its additional link to the object.
+Instead of adding a (URI of a) term to an object description one by one, the curator could export the data from her system and add the terms and their URIs in bulk. This could be done with applications like [OpenRefine](https://openrefine.org/). For this approach, the collection management system must be able to export the data, for instance in CSV format, and import the new data with its additional link to the object.
 
 An existing field containing only a string of the data, for instance \'schilderij', can be used to derive a proper URI for a term. By using search-and-replace the link could be added in an extra field. This type of work is called *reconciliation*.
 
@@ -212,7 +212,7 @@ system of the source, as is the case when searching terms manually (see [this se
 
 ### Searching a terminology source in real-time
 
-An institution can query a terminology source in real-time in its collection management system. A collection manager first enters a search query in a search field. Next, her management system – in the background – queries the terminology source, retrieves the terms that correspond to the query and presents them to the manager. The manager then chooses the desired term and the management system stores its URI. This ensures that the institution works with current data. However, the implementation of this approach in the management system can entailsome difficulties: a connection must be established with  the source – or multiple connections if the institution wants to use multiple sources.
+An institution can query a terminology source in real-time in its collection management system. A collection manager first enters a search query in a search field. Next, her management system – in the background – queries the terminology source, retrieves the terms that correspond to the query and presents them to the manager. The manager then chooses the desired term and the management system stores its URI. This ensures that the institution works with current data. However, the implementation of this approach in the management system can entail some difficulties: a connection must be established with  the source – or multiple connections if the institution wants to use multiple sources.
 
 ### Using the Network of Terms
 
@@ -233,7 +233,7 @@ A terminology source can only be used if it meets a few conditions. Are you the 
 
 ### Authority
 
-Terms are not just ordinary words: they are official notations. The manager of a terminology source guarantees their quality. For example: terms must be accurate and current. Another example: the manager ensures that her terms are permanently available and can be used for a long time. This makes a terminology source an authority on which other institutions can build.
+Terms are not just ordinary words: they are official notations. The manager of a terminology source guarantees their quality. For example, terms must be accurate and current. Another example: the manager ensures that her terms are permanently available and can be used for a long time. This makes a terminology source an authority on which other institutions can build.
 
 ### Technology and data model ### {#technology-and-datamodel}
 
@@ -243,17 +243,17 @@ In addition, terms in the source must be searchable through a SPARQL endpoint. T
 
 ### Cooperation
 
-A terminology source is used by institutions. There is a good chance that these institutions do not use one, but several sources. In order to increase the ease of use of sources, the collaboration between source managers and collection managers is essential. For example about the way in which collection managers can propose changes to terms to sources: this could follow a uniform process. The collection management system should support these processes. Another example: it can happen that two sources define the same term (such as \'painting'). The sources should then jointly agree that these terms have the same meaning and refer to each other's terms – this clarifies the relationship between both terms for collection managers.
+A terminology source is used by institutions. There is a good chance that these institutions do not use one, but several sources. To increase the ease of use of sources, collaboration between source managers and collection managers is essential. For example about how collection managers can propose changes to terms to sources: this could follow a uniform process. The collection management system should support these processes. Another example: two sources may define the same term (such as \'painting'). The sources should then jointly agree that these terms have the same meaning and refer to each other's terms – this clarifies the relationship between both terms for collection managers.
 
 Publishing dataset descriptions {#publishing-dataset-descriptions}
 =====================
 
-To increase the findability of datasets of heritage institutions, it is important to publish the dataset descriptions according to a well-documented, machine-readable model. When dataset descriptions are used, the findability and use of datasets that heritage institutions make available, will improve. Publishing dataset descriptions should obey [these requirements](https://netwerk-digitaal-erfgoed.github.io/requirements-datasets/), which contains a more elaborate description of the publishing process.
+To increase the findability of datasets of heritage institutions, it is important to publish the dataset descriptions according to a well-documented, machine-readable model. When dataset descriptions are used, the findability and use of datasets that heritage institutions make available will improve. Publishing dataset descriptions should obey [these requirements](https://netwerk-digitaal-erfgoed.github.io/requirements-datasets/), which contains a more elaborate description of the publishing process.
 
 Publication model for dataset descriptions {#publication-model-for-dataset-descriptions}
 --------------------
 
-NDE has created a data model for the description of datasets based on Schema.org. For datasets, the class https://schema.org/Dataset has been developed. This class is based on W3C DCAT work and benefits from collaboration around the DCAT, ADMS and VoID vocabularies.
+NDE has created a data model for the description of datasets based on Schema.org. For datasets, the class https://schema.org/Dataset has been adopted.
 
 How to publish dataset descriptions {#how-to-publish-dataset-descriptions}
 --------------------
@@ -262,12 +262,12 @@ For good findability, every dataset description must be accessible via the web, 
 
 A user can obtain a dataset description with a sustainable URI as described in [this section](#adding-persistent-identifiers) and published as a resolvable URI as described in [this section](#web-compliancy-level-resolvable-uris).
 
-Most (automated) users expect to find the metadata in the page itself (inline). Spiders of search engines such as Google might not follow linked JSON-LD files. Even if the linked files (via JavaScript) are "injected" into the page, most spiders do not pick up on this. There are more serializations of RDF, such as RDF/XML and Turtle. Spiders of search engines such as Google currently only support microdata, RDFa and JSON-LD. Because search engine findability is an important driver, the use of inline JSON-LD is recommended. However, this does not prevent the publication of the dataset description in other serialization formats or a (content negotiation-based) separate resource.
+Most (automated) users expect to find the metadata inline in the human readable webpage itself. Spiders of search engines such as Google might not follow linked JSON-LD files. Even if the linked files (via JavaScript) are "injected" into the page, most spiders do not pick up on this. There are more serializations of RDF, such as RDF/XML and Turtle. Spiders of search engines such as Google currently only support microdata, RDFa and JSON-LD. Because search engine findability is an important driver, the use of inline JSON-LD is recommended. However, this does not prevent the publication of the dataset description directly (not in-lined) in other serialization formats via content-negotiation.
 
 Spreading the knowledge about datasets {#spreading-the-knowledge-about-datasets}
 --------------------
 
 The choice for Schema.org as a basis for the publication model for dataset descriptions comes with the benefit that this model is known (and used) by big search engines. By adding the dataset description pages to the sitemap of the website, search engines are likely to pick up the dataset description and make them available in tools like [Google Dataset Search](https://datasetsearch.research.google.com/).
 
-By registering the datasets with the NDE Register, the network of Dutch heritage institutions can easily find relevant datasets to link with. More generic (open) dataset registers, like data.overheid.nl, can also be used to promote the datasets of the institutions.
+By registering the datasets with the [NDE Register](https://datasetregister.netwerkdigitaalerfgoed.nl/), the network of Dutch heritage institutions can easily find relevant datasets to link with. More generic (open) dataset registers, like data.overheid.nl, can also be used to promote the datasets of the institutions. Collection Management systems could provide functions to register datasets on various platforms.
 
