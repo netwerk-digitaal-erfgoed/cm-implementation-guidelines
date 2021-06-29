@@ -203,7 +203,7 @@ This is the simplest, low-tech approach to assign the URI of a term to the descr
 
 Instead of adding a (URI of a) term to an object description one-by-one, the curator could export the data from her system and add the terms and their URIs in bulk. This could be done with applications like [OpenRefine](https://openrefine.org/). For this approach, the collection management system must be able to export the data, for instance in CSV format, and import the new data with its additional link to the object.
 
-The addition of a term can be based on an existing field containing only a string of the data, for instance \'schilderij'. By using search-and-replace kind of tricks the additional link could be added. This type of work is called *reconciliation*.
+An existing field containing only a string of the data, for instance \'schilderij', can be used to derive a proper URI for a term. By using search-and-replace the link could be added in an extra field. This type of work is called *reconciliation*.
 
 ### Importing a terminology source
 
@@ -220,14 +220,14 @@ An institution can use the [Network of Terms](https://termennetwerk.netwerkdigit
 
 ### Indexing data from the terminology source
 
-If (the URI of) a term is stored, collection managers might be interested to store related data, for instance, alternative labels, pseudonyms, or labels in different languages, in the collection management system as well. This helps the user of the collection management system to retrieve data from her system. As long as the web of data is not as decentralized as we'd wish (see [this section](#advanced-level-queryable-linked-data)), collection management systems could offer to obtain the needed data via resolving the URI (see [this section](#web-compliancy-level-resolvable-uris)) and store and index the extra data in the database. The related data must be synchronized periodically and the collection management user interface must have a function to force the synchronization. A collection manager that helps the editors of the standardized source to add or improve data, can then see her results quickly.
+If (the URI of) a term is stored, collection managers might be interested to store related data, for instance, alternative labels, pseudonyms, or labels in different languages, in the collection management system as well. This helps the user of the collection management system to retrieve data from her system. As long as the web of data is not as decentralized as we'd wish (see [this section](#advanced-level-queryable-linked-data)), collection management systems could offer to obtain the needed data via resolving the URI (see [this section](#web-compliancy-level-resolvable-uris)) and store and index the extra data in the database. The related data must be synchronized periodically and the collection management user interface must have a function to force the synchronization.
 
 Publishing terminology sources {#publishing-terminology-sources}
 --------------------
 
 "Published terminology sources" are sources that are important to the cooperating institutions in the Dutch Digital Heritage Network. It enables collection managers to find and use terms in the sources more easily when describing their heritage objects. And that makes digital heritage easier to find by users. Terminology sources should comply with [these requirements](https://netwerk-digitaal-erfgoed.github.io/requirements-terminologiebronnen/) (in Dutch).
 
-A terminology source is a dataset, with sustainable URIs as described in [this section](#adding-persistent-identifiers), described according to the guidelines in [this section](#publishing-dataset-descriptions), and published as a dump, with resolvable URIs and in a SPARQL endpoint as described in [this section](#publishing-collection-information).
+A terminology source is a dataset, with sustainable URIs as described in [this section](#adding-persistent-identifiers) and described according to the guidelines in [this section](#publishing-dataset-descriptions). A terminology source can be published as a dump, with resolvable URIs and in a SPARQL endpoint as described in [this section](#publishing-collection-information), but your terminology source can only be incorporated into the Network of Terms for others to be used if you create a SPARQL endpoint.
 
 A terminology source can only be used if it meets a few conditions. Are you the manager of a source and are you considering making it available to the network? Then take the following aspects into account.
 
@@ -237,13 +237,13 @@ Terms are not just ordinary words: they are official notations. The manager of a
 
 ### Technology and data model ### {#technology-and-datamodel}
 
-A terminology source is used by both humans and machines. For example, institutions' collection management systems must be able to connect to the source. To make this possible, the source must meet certain technological requirements. These requirements follow the Linked Data principles and best practices. This means, for example, that every term in the source gets a sustainable URI; when dereferencing this URI, metadata about the term is returned. This metadata must be expressed according to a specific RDF metadata model, for example, [Simple Knowledge Organization System (SKOS)](https://www.w3.org/2009/08/skos-reference/skos.html) or Schema.org. SKOS contains various types of relations, eg. skos:exactMatch, skos:closeMatch or skos:broader to store an alignment between your terminology source and standardized terminology sources.
+A terminology source is used by both humans and machines. For example, institutions' collection management systems must be able to connect to the source. To make this possible, the source must meet certain technological requirements. These requirements follow the Linked Data principles and best practices. This means, for example, that every term in the source gets a sustainable URI; when dereferencing this URI, metadata about the term is returned. This metadata must be expressed according to a specific RDF metadata model, for example, [Simple Knowledge Organization System (SKOS)](https://www.w3.org/2009/08/skos-reference/skos.html) or Schema.org. SKOS contains various types of relations, e.g. skos:exactMatch, skos:closeMatch or skos:broader, to store an alignment between your terminology source and terms defined in other terminology sources.
 
 In addition, terms in the source must be searchable through a SPARQL endpoint. This enables a connection to the Network of Terms.
 
 ### Cooperation
 
-A terminology source is used by institutions. There is a good chance that these institutions do not use one, but several sources. In order to increase the ease of use of sources, the collaboration between source managers and collection managers is essential. For example about the way in which collection managers can propose changes to terms to sources: this could follow a uniform process. Another example: it can happen that two sources define the same term (such as \'painting'). The sources should then jointly agree that these terms have the same meaning and refer to each other's terms – this clarifies the relationship between both terms for collection managers. The collection management system should support these processes.
+A terminology source is used by institutions. There is a good chance that these institutions do not use one, but several sources. In order to increase the ease of use of sources, the collaboration between source managers and collection managers is essential. For example about the way in which collection managers can propose changes to terms to sources: this could follow a uniform process. The collection management system should support these processes. Another example: it can happen that two sources define the same term (such as \'painting'). The sources should then jointly agree that these terms have the same meaning and refer to each other's terms – this clarifies the relationship between both terms for collection managers.
 
 Publishing dataset descriptions {#publishing-dataset-descriptions}
 =====================
@@ -253,9 +253,7 @@ To increase the findability of datasets of heritage institutions, it is importan
 Publication model for dataset descriptions {#publication-model-for-dataset-descriptions}
 --------------------
 
-NDE has created a publication model based on Schema.org. For datasets, the class https://schema.org/Dataset has been developed. This class is based on W3C DCAT work and benefits from collaboration around the DCAT, ADMS and VoID vocabularies.
-
-<!--TBD See [https://github.com/netwerk-digitaal-erfgoed/project-organisations-datasets/tree/master/publication-model](https://github.com/netwerk-digitaal-erfgoed/project-organisations-datasets/tree/master/publication-model) for the the complete specification of the publication model.-->
+NDE has created a data model for the description of datasets based on Schema.org. For datasets, the class https://schema.org/Dataset has been developed. This class is based on W3C DCAT work and benefits from collaboration around the DCAT, ADMS and VoID vocabularies.
 
 How to publish dataset descriptions {#how-to-publish-dataset-descriptions}
 --------------------
