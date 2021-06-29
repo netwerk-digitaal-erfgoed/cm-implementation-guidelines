@@ -22,7 +22,7 @@ This document aims to initiate an open discussion and cooperation with the techn
 Relation with other documentation
 --------------------
 
-This document builds upon the [Dutch digital heritage reference architecture (DERA)](https://dera.netwerkdigitaalerfgoed.nl/) (dutch) and the [National Digital Heritage Strategy](https://zenodo.org/record/4604654#.YNB8EjqxWCg) (dutch). Where appropriate, formal specifications of solutions developed in this document will be proposed to the Architecture Board of the DERA to become part of the long term agreements within the cultural heritage domain.
+This document builds upon the [Dutch digital heritage reference architecture (DERA)](https://dera.netwerkdigitaalerfgoed.nl/) (Dutch) and the [National Digital Heritage Strategy](https://zenodo.org/record/4604654#.YNB8EjqxWCg) (Dutch). Where appropriate, formal specifications of solutions developed in this document will be proposed to the Architecture Board of the DERA to become part of the long term agreements within the cultural heritage domain.
 
 Overview
 --------------------
@@ -36,46 +36,50 @@ Linked Open Data Principles
 
 Publishing information resources as Linked Data can be done by transforming the internal data of the collection management system to a Linked Data format as described by the [Resource Description Framework](https://www.w3.org/TR/rdf11-concepts/) (RDF). These guidelines describe how to create interoperability with Linked Data and do not prescribe which techniques must be used to store the data, let alone technology within the systems.
 
-Describing information resource by the Resource Description Framework means three things (watch [this TED-talk](https://www.ted.com/talks/tim_berners_lee_the_next_web) by Tim Berners-Lee).
+Describing information resources by the Resource Description Framework means three things, as is introduced by Tim Berners-Lee in [this TED-talk](https://www.ted.com/talks/tim_berners_lee_the_next_web).
 
 ### All conceptual things should have a name starting with HTTP.
 
-This means that every entity you want to publish an information resource for must have a web address, more precisely a so-called [Uniform Resource Identifier](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier). Information resources could be the metadata about a painting, a creator, a depicted location or a data set.
+This means that every entity you want to publish an information resource for, must have a web address, more precisely a so-called [Uniform Resource Identifier](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier). Information resources could for example be the metadata about a painting, a creator, a depicted location or a data set.
 
 ### Looking up an HTTP name should return useful data about the thing in question in a standard format.
 
 If you call the web address, the webserver must serve the metadata in RDF format. In the RDF format the metadata attributes are expressed. These attributes are for instance the title of a painting or the date of creation.
 
-### Anything else that that same thing has a relationship with through its data should also be given a name beginning with HTTP.
+### Anything else that that same thing has a relationship with through its data, should also be given a name beginning with HTTP.
 
-In the best metadata, the painting is related with, for instance, its creator by means of the URI of the creator instead of the label. This means that you are able to follow the link and use the web address of the creator to obtain the data about the creator. This way you can, for instance, know its living years.
+In the best metadata, the painting is related with, for instance, its creator by means of the URI of the creator (eg. [https://data.rkd.nl/artists/66219](https://data.rkd.nl/artists/66219)) instead of the label ("Rijn, Rembrandt van"). This means that you are able to follow the link and use the web address of the creator to obtain the data about the creator. This way you can, for instance, know its living years ("1606-1669"). Linking data like this results in a "Web of Data".
 
 ### More information
 
-This section of document is not intended as a complete introduction into Linked Data. You can learn the basics of Linked Data
+This document is not intended as a complete introduction into Linked Data. You can learn the basics of Linked Data
 * [in this book](http://linkeddatabook.com/editions/1.0/)
 * [in this online course](https://open.hpi.de/courses/knowledgegraphs2020).
 
 Adding persistent identifiers {#adding-persistent-identifiers}
 =====================
 
-TBD
-Use [Uniform Resource Identifiers](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier) for every information resource (eg. heritage objects, terms, datasets) you want to publish.
+The first Linked Data principle, defined by Berners-Lee, is that every information resource needs a web address. This address identifies the resource that you want to share on the Web of Data. Because this identifying role such a web address is called a [Uniform Resource Identifier](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier).
 
 Persistent Identifiers
 --------------------
 
-* Please inform yourselves about 'persistent identifiers' on [this website](https://www.pidwijzer.nl/en).
-* Handle
+It is important for users of the data to be able to trust that the identifier will not change. It is necessary to create a sustainable URI. A sustainable URI can be based on a unique number in the collection management database. This means that this number should never be changed, 
+* even if records are migrated into another version of the collection management system or another collection management in the future.
+* even if records are deleted: if possible the system should point to the new records for the same cultural heritage object. Otherwise it should result in a record that is marked 'obsolete'.
+
+It is very convenient to have a complete URI as a unique identifier in the collection management database. This helps securing persistency, not only of the number, but of the URI as well. One common standard for publishing persistent web addresses is Handle. Handles can be used as URIs.
+
+More information is available on [this website](https://www.pidwijzer.nl/en).
 
 Uniform Resource Identifiers Strategies
 --------------------
 
-As an institution you must decide on how your persistent URI's look like. Here are some examples by other (heritage) institutions.
+As an institution you must decide on how your persistent URIs look like. Here are some examples by other (heritage) institutions.
 
-* [CONCEPT Nationale URI-Strategie voor Linked Data van de Nederlandse overheid](https://www.pldn.nl/wiki/Concept_URI-strategie) (dutch)
-* [URI-beleid voor Linked Data [van de Koninklijke Bibliotheek](doc/URI-beleidLinkedData_1.1.2.pdf) (dutch)
-* [Duurzaam vindbaar op het web: URI-strategie Nationaal Archief; het gebruik van Handles en URI’s](doc/URI-strategie-Nationaal-Archief_v1_1_INTERN.pdf) (dutch)
+* [CONCEPT Nationale URI-Strategie voor Linked Data van de Nederlandse overheid](https://www.pldn.nl/wiki/Concept_URI-strategie) (Dutch)
+* [URI-beleid voor Linked Data [van de Koninklijke Bibliotheek](doc/URI-beleidLinkedData_1.1.2.pdf) (Dutch)
+* [Duurzaam vindbaar op het web: URI-strategie Nationaal Archief; het gebruik van Handles en URI’s](doc/URI-strategie-Nationaal-Archief_v1_1_INTERN.pdf) (Dutch)
 * [IISG URI Strategy](https://confluence.socialhistoryservices.org/display/DOC/IISG+URI+Strategy)
 
 Publishing collection information {#publishing-collection-information}
@@ -84,7 +88,7 @@ Publishing collection information {#publishing-collection-information}
 Data model {#data-model}
 --------------------
 
-After introducing URIs for the information resources we want to publish, we have to decide which set of properties we use for expressing the data. On the one hand, there is a more generic data model available, easy to use and combine. On the other hand a more precise but complicated domain specific model can be used. If triples are published in both the generic and the domain model they are all included in the same information resource.
+After introducing URIs for the information resources you want to publish, you have to decide which set of properties you use for expressing the data. On the one hand, there is a more generic data model available, easy to use and combine. On the other hand a more precise but complicated domain specific model can be used. If triples are published in both the generic and the domain model they can all be included in the same information resource.
 
 ### Generic data model
 
@@ -104,20 +108,15 @@ Some basic examples for:
 
 ### Domain data model
 
-The generic model described above will improve the general visibility of the cultural heritage objects, the terms describing the objects and the datasets in which the objects and terms are grouped. In many cases, this will lead to further exploration of these objects. For specific users or communities, a deeper understanding of the knowledge in the data will be important. Because of the open structure of Linked Data, there is no restriction to simply add another layer of description to the resource. See for [example](example-1.ttl) this object description. So institutions can add extra properties and class definitions to the Linked Data they publish. In general \[CIDOC-CRM](http://www.cidoc-crm.org/) (and its derivative [Linked Art](https://linked.art/model/)) can be appropriate for museums. For archives, the [RiC-O ontology](https://www.ica.org/standards/RiC/ontology) seems to be promising and for libraries, [RDA Elements](https://www.rdaregistry.info/Elements/) or \[BIBFRAME](https://www.loc.gov/bibframe/) could be relevant. It is up to the institutions in the separate domains to agree on the use and implementation of these shared standards. Best practices and information about actual implementations will be shared in the network. The Royal Library of The Netherlands uses Schema.org because this standard contains elaborate classes and properties for publications. How they use Schema.org as a domain model, can be studied [here](http://data.bibliotheken.nl/files/LRM2schema.pdf).
+The generic model described above will improve the general visibility of the cultural heritage objects, the terms describing the objects and the datasets in which the objects and terms are grouped. In many cases, this will lead to further exploration of these objects. For specific users or communities, a deeper understanding of the knowledge in the data will be important. Because of the open structure of Linked Data, there is no restriction to simply add another layer of description to the resource. See for [example](example-1.ttl) this object description. So institutions can add extra properties and class definitions to the Linked Data they publish. It is up to the institutions in the separate domains to agree on the use and implementation of these shared standards. Best practices and information about actual implementations will be shared in the network.
+
+In general \[CIDOC-CRM](http://www.cidoc-crm.org/) (and its derivative [Linked Art](https://linked.art/model/)) can be appropriate for museums. For archives, the [RiC-O ontology](https://www.ica.org/standards/RiC/ontology) seems to be promising and for libraries, [RDA Elements](https://www.rdaregistry.info/Elements/) or \[BIBFRAME](https://www.loc.gov/bibframe/) could be relevant. The Royal Library of The Netherlands uses Schema.org because this standard contains elaborate classes and properties for publications. How they use Schema.org as a domain model, can be studied [here](http://data.bibliotheken.nl/files/LRM2schema.pdf).
 
 See [Awesome Humanities Ontologies](https://github.com/CLARIAH/awesome-humanities-ontologies) for more options.
 
 ### Rights
 
-The DERA requires institutions to publish their metadata with an open license (for some institutions this requirement might still be a challenge). The actual access to the digital object, such as an image or audio file, can be restricted; additional license statements for use and reuse of the objects must be specified in the metadata.
-
-TBD:
-* use schema:license
-* differentiate license for
-	* dataset
-	* object metadata
-	* metadata reproduction
+The DERA requires institutions to publish their metadata with an open license (for some institutions this requirement might still be a challenge). The actual access to the digital object, such as an image or audio file, can be restricted; additional license statements for use and reuse of the objects must be specified in the metadata. You can use the [schema:license](https://schema.org/license) property to relate a license to an information resource. Remember that you have to relate a license to the dataset, the object metadata and the reproduction. The licenses might differ.
 
 RDF serialization {#rdf-serialization}
 --------------------
@@ -178,8 +177,7 @@ A third development is the concept of ['profile negotiation'](https://www.w3.org
 Connecting sources {#connecting-sources}
 =====================
 
-"Connected sources" are sources that refer to each other and use each other's information. This is done using terms.
-Terms are descriptions of concepts or entities, such as subjects, people or places. Each term has a URI as an identifier. Because a URI is a unique web address it makes unambiguously clear which term is meant. Terms and their URIs are managed in terminology sources, such as thesauri, reference lists or classification systems. Examples are \[AAT](https://www.getty.edu/research/tools/vocabularies/aat/), [GeoNames](https://www.geonames.org/) or [WO2 Thesaurus](https://data.niod.nl/WO2_Thesaurus.html) (in Dutch).
+"Connected sources" are sources that refer to each other and use each other's information. This is done using terms. Terms are descriptions of concepts or entities, such as subjects, people or places. Each term has a URI as an identifier. Because a URI is a unique web address it makes unambiguously clear which term is meant. Terms and their URIs are managed in terminology sources, such as thesauri, reference lists or classification systems. Examples are \[AAT](https://www.getty.edu/research/tools/vocabularies/aat/), [GeoNames](https://www.geonames.org/) or [WO2 Thesaurus](https://data.niod.nl/WO2_Thesaurus.html) (in Dutch).
 
 For connecting sources, it is important that institutions assign URIs of terms to the descriptions of their heritage objects. There are various options for this which are discussed below. The options are increasing in complexity – for example, they require changes to the collection management system – but also provide better functionality.
 
