@@ -253,7 +253,7 @@ To increase the findability of datasets of heritage institutions, it is importan
 Publication model for dataset descriptions {#publication-model-for-dataset-descriptions}
 --------------------
 
-NDE has created a data model for the description of datasets based on Schema.org. For datasets, the class https://schema.org/Dataset has been developed. This class is based on W3C DCAT work and benefits from collaboration around the DCAT, ADMS and VoID vocabularies.
+NDE has created a data model for the description of datasets based on Schema.org. For datasets, the class https://schema.org/Dataset has been adopted.
 
 How to publish dataset descriptions {#how-to-publish-dataset-descriptions}
 --------------------
@@ -262,12 +262,12 @@ For good findability, every dataset description must be accessible via the web, 
 
 A user can obtain a dataset description with a sustainable URI as described in [this section](#adding-persistent-identifiers) and published as a resolvable URI as described in [this section](#web-compliancy-level-resolvable-uris).
 
-Most (automated) users expect to find the metadata in the page itself (inline). Spiders of search engines such as Google might not follow linked JSON-LD files. Even if the linked files (via JavaScript) are "injected" into the page, most spiders do not pick up on this. There are more serializations of RDF, such as RDF/XML and Turtle. Spiders of search engines such as Google currently only support microdata, RDFa and JSON-LD. Because search engine findability is an important driver, the use of inline JSON-LD is recommended. However, this does not prevent the publication of the dataset description in other serialization formats or a (content negotiation-based) separate resource.
+Most (automated) users expect to find the metadata inline in the human readable webpage itself. Spiders of search engines such as Google might not follow linked JSON-LD files. Even if the linked files (via JavaScript) are "injected" into the page, most spiders do not pick up on this. There are more serializations of RDF, such as RDF/XML and Turtle. Spiders of search engines such as Google currently only support microdata, RDFa and JSON-LD. Because search engine findability is an important driver, the use of inline JSON-LD is recommended. However, this does not prevent the publication of the dataset description directly (not in-lined) in other serialization formats via content-negotiation.
 
 Spreading the knowledge about datasets {#spreading-the-knowledge-about-datasets}
 --------------------
 
 The choice for Schema.org as a basis for the publication model for dataset descriptions comes with the benefit that this model is known (and used) by big search engines. By adding the dataset description pages to the sitemap of the website, search engines are likely to pick up the dataset description and make them available in tools like [Google Dataset Search](https://datasetsearch.research.google.com/).
 
-By registering the datasets with the NDE Register, the network of Dutch heritage institutions can easily find relevant datasets to link with. More generic (open) dataset registers, like data.overheid.nl, can also be used to promote the datasets of the institutions.
+By registering the datasets with the [NDE Register](https://datasetregister.netwerkdigitaalerfgoed.nl/), the network of Dutch heritage institutions can easily find relevant datasets to link with. More generic (open) dataset registers, like data.overheid.nl, can also be used to promote the datasets of the institutions. Collection Management systems could provide functions to register datasets on various platforms.
 
