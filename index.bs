@@ -205,6 +205,9 @@ Instead of adding a (URI of a) term to an object description one by one, the cur
 
 An existing field containing only a string of the data, for instance \'schilderij', can be used to derive a proper URI for a term. By using search-and-replace the link could be added in an extra field. This type of work is called *reconciliation*.
 
+To reconcile against a terminology source, it needs to offer a reconciliation service.
+For sources that do not, you can use the [Network of Terms reconciliation service](https://termennetwerk.netwerkdigitaalerfgoed.nl/faq#reconciliation). 
+
 ### Importing a terminology source
 
 An institution can import one or more terminology sources into its collection management system. This makes it easy to use terms: the collection manager can search for terms in her management system, without having to switch to the
