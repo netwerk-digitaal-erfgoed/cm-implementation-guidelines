@@ -274,3 +274,21 @@ The choice for Schema.org as a basis for the publication model for dataset descr
 
 By registering the datasets with the [NDE Register](https://datasetregister.netwerkdigitaalerfgoed.nl/), the network of Dutch heritage institutions can easily find relevant datasets to link with. More generic (open) dataset registers, like data.overheid.nl, can also be used to promote the datasets of the institutions. Collection Management systems could provide functions to register datasets on various platforms.
 
+International Image Interoperability Framework (IIIF) {#iiif}
+=====================
+
+The [International Image Interoperability Framework](https://iiif.io/), abbreviated as IIIF and pronounced as "triple-eye-eff" is a set of standards and APIs designed to provide a consistent and interoperable way of delivering, navigating, and manipulating digital images and audio/visual files across different platforms and organizations. 
+
+Implementing IIIF offers several benefits that can enhance the accessibility, usability, and discoverability of digital collections. IIIF does not prescribe any particular software, but determines how different pieces of software communicate with each other. If this communication is standardized across organizations, the same viewer software can be used for displaying different types of digitized media.
+
+
+Image API
+--------------------
+Depending on the implementation level, the [IIIF Image API](https://iiif.io/api/image/3.0/) supports requests for specific parts, sizes and orientations of images based on a URL scheme. This can be compared to tiled web maps that split up large raster maps into small square tiles at various zoom levels. Viewers can request only those tiles needed for the current viewport and zoom level, and do not need to load the complete high resolution image. Different from maps, the coordinate system of IIIF is based on the original pixel dimensions of the image.
+
+Presentation API
+--------------------
+
+While the Image API provides access to individual images, it does not describe the relationship between groups of images, such as the individual images that make up the pages of a book. A IIIF manifest is a JSON-LD document that describes the structure and metadata of a digital object or collection of objects, such as images, audio, or video. It is based on the [IIIF Presentation API](https://iiif.io/api/presentation/3.0/) and comprises several key components, including pages, canvases, table of contents (ranges), and annotations. 
+
+The ability to overlay any IIIF-compliant map image on top of a standard web map with no specialized GIS software or file formats required (used in connecting historical maps to modern ones, also known as georeferencing) is described in [Georeference Extension specification](https://iiif.io/api/extension/georef/) as a extension on the Presentation API.
