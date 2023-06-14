@@ -1894,7 +1894,7 @@ dfn > a.self-link::before      { content: "#"; }
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">Implementation guidelines for NDE alignment of cultural heritage data management and publication infrastructure</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Living Standard, <time class="dt-updated" datetime="2023-03-23">23 March 2023</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Living Standard, <time class="dt-updated" datetime="2023-06-14">14 June 2023</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1908,7 +1908,7 @@ dfn > a.self-link::before      { content: "#"; }
    <div data-fill-with="warning"></div>
    <p class="copyright" data-fill-with="copyright"><a href="http://creativecommons.org/publicdomain/zero/1.0/" rel="license"><img alt="CC0" height="15" src="https://licensebuttons.net/p/zero/1.0/80x15.png" width="80"></a> To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 23 March 2023,
+In addition, as of 14 June 2023,
 the editors have made this specification available under the <a href="http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0" rel="license">Open Web Foundation Agreement Version 1.0</a>,
 which is available at http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.
 Parts of this work may be from another specification document.  If so, those parts are instead covered by the license of that specification document. </p>
@@ -1990,6 +1990,12 @@ Parts of this work may be from another specification document.  If so, those par
       <li><a href="#publication-model-for-dataset-descriptions"><span class="secno">5.1</span> <span class="content">Publication model for dataset descriptions</span></a>
       <li><a href="#how-to-publish-dataset-descriptions"><span class="secno">5.2</span> <span class="content">How to publish dataset descriptions</span></a>
       <li><a href="#spreading-the-knowledge-about-datasets"><span class="secno">5.3</span> <span class="content">Spreading the knowledge about datasets</span></a>
+     </ol>
+    <li>
+     <a href="#iiif"><span class="secno">6</span> <span class="content">International Image Interoperability Framework (IIIF)</span></a>
+     <ol class="toc">
+      <li><a href="#image-api"><span class="secno">6.1</span> <span class="content">Image API</span></a>
+      <li><a href="#presentation-api"><span class="secno">6.2</span> <span class="content">Presentation API</span></a>
      </ol>
     <li><a href="#conformance"><span class="secno"></span> <span class="content"> Conformance</span></a>
     <li>
@@ -2161,6 +2167,14 @@ system of the source, as is the case when searching terms manually (see <a href=
    <h3 class="heading settled" data-level="5.3" id="spreading-the-knowledge-about-datasets"><span class="secno">5.3. </span><span class="content">Spreading the knowledge about datasets</span><a class="self-link" href="#spreading-the-knowledge-about-datasets"></a></h3>
    <p>The choice for Schema.org as a basis for the publication model for dataset descriptions comes with the benefit that this model is known (and used) by big search engines. By adding the dataset description pages to the sitemap of the website, search engines are likely to pick up the dataset description and make them available in tools like <a href="https://datasetsearch.research.google.com/">Google Dataset Search</a>.</p>
    <p>By registering the datasets with the <a href="https://datasetregister.netwerkdigitaalerfgoed.nl/">NDE Register</a>, the network of Dutch heritage institutions can easily find relevant datasets to link with. More generic (open) dataset registers, like data.overheid.nl, can also be used to promote the datasets of the institutions. Collection Management systems could provide functions to register datasets on various platforms.</p>
+   <h2 class="heading settled" data-level="6" id="iiif"><span class="secno">6. </span><span class="content">International Image Interoperability Framework (IIIF)</span><a class="self-link" href="#iiif"></a></h2>
+   <p>The <a href="https://iiif.io/">International Image Interoperability Framework</a>, abbreviated as IIIF and pronounced as "triple-eye-eff" is a set of standards and APIs designed to provide a consistent and interoperable way of delivering, navigating, and manipulating digital images and audio/visual files across different platforms and organizations.</p>
+   <p>Implementing IIIF offers several benefits that can enhance the accessibility, usability, and discoverability of digital collections. IIIF does not prescribe any particular software, but determines how different pieces of software communicate with each other. If this communication is standardized across organizations, the same viewer software can be used for displaying different types of digitized media.</p>
+   <h3 class="heading settled" data-level="6.1" id="image-api"><span class="secno">6.1. </span><span class="content">Image API</span><a class="self-link" href="#image-api"></a></h3>
+    Depending on the implementation level, the <a href="https://iiif.io/api/image/3.0/">IIIF Image API</a> supports requests for specific parts, sizes and orientations of images based on a URL scheme. This can be compared to tiled web maps that split up large raster maps into small square tiles at various zoom levels. Viewers can request only those tiles needed for the current viewport and zoom level, and do not need to load the complete high resolution image. Different from maps, the coordinate system of IIIF is based on the original pixel dimensions of the image. 
+   <h3 class="heading settled" data-level="6.2" id="presentation-api"><span class="secno">6.2. </span><span class="content">Presentation API</span><a class="self-link" href="#presentation-api"></a></h3>
+   <p>While the Image API provides access to individual images, it does not describe the relationship between groups of images, such as the individual images that make up the pages of a book. A IIIF manifest is a JSON-LD document that describes the structure and metadata of a digital object or collection of objects, such as images, audio, or video. It is based on the <a href="https://iiif.io/api/presentation/3.0/">IIIF Presentation API</a> and comprises several key components, including pages, canvases, table of contents (ranges), and annotations.</p>
+   <p>The ability to overlay any IIIF-compliant map image on top of a standard web map with no specialized GIS software or file formats required (used in connecting historical maps to modern ones, also known as georeferencing) is described in <a href="https://iiif.io/api/extension/georef/">Georeference Extension specification</a> as a extension on the Presentation API.</p>
   </main>
   <div data-fill-with="conformance">
    <h2 class="no-ref no-num heading settled" id="conformance"><span class="content"> Conformance</span><a class="self-link" href="#conformance"></a></h2>
