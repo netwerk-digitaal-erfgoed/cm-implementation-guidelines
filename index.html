@@ -1894,7 +1894,7 @@ dfn > a.self-link::before      { content: "#"; }
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">Implementation guidelines for NDE alignment of cultural heritage data management and publication infrastructure</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Living Standard, <time class="dt-updated" datetime="2023-06-14">14 June 2023</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Living Standard, <time class="dt-updated" datetime="2023-06-16">16 June 2023</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1903,12 +1903,13 @@ dfn > a.self-link::before      { content: "#"; }
      <dd class="editor p-author h-card vcard"><span class="p-name fn"></span>
      <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:sjors@sjorsdevalk.nl">Sjors de Valk</a> (<a class="p-org org" href="https://www.netwerkdigitaalerfgoed.nl/en">Dutch Digital Heritage Network</a>)
      <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:ivo@zandhuis.nl">Ivo Zandhuis</a> (<a class="p-org org" href="https://www.netwerkdigitaalerfgoed.nl/en">Dutch Digital Heritage Network</a>)
+     <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:bob.coret@kb.nl">Bob Coret</a> (<a class="p-org org" href="https://www.netwerkdigitaalerfgoed.nl/en">Dutch Digital Heritage Network</a>)
     </dl>
    </div>
    <div data-fill-with="warning"></div>
    <p class="copyright" data-fill-with="copyright"><a href="http://creativecommons.org/publicdomain/zero/1.0/" rel="license"><img alt="CC0" height="15" src="https://licensebuttons.net/p/zero/1.0/80x15.png" width="80"></a> To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 14 June 2023,
+In addition, as of 16 June 2023,
 the editors have made this specification available under the <a href="http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0" rel="license">Open Web Foundation Agreement Version 1.0</a>,
 which is available at http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.
 Parts of this work may be from another specification document.  If so, those parts are instead covered by the license of that specification document. </p>
@@ -2035,15 +2036,17 @@ Parts of this work may be from another specification document.  If so, those par
    <h2 class="heading settled" data-level="2" id="adding-persistent-identifiers"><span class="secno">2. </span><span class="content">Adding persistent identifiers</span><a class="self-link" href="#adding-persistent-identifiers"></a></h2>
    <p>The first Linked Data principle, defined by Berners-Lee, is that every information resource needs a web address. This address identifies the resource that you want to share on the Web of Data. Because this identifying role such a web address is called a <a href="https://en.wikipedia.org/wiki/Uniform_Resource_Identifier">Uniform Resource Identifier</a>.</p>
    <h3 class="heading settled" data-level="2.1" id="persistent-identifiers"><span class="secno">2.1. </span><span class="content">Persistent Identifiers</span><a class="self-link" href="#persistent-identifiers"></a></h3>
-   <p>Users of the data need to be able to trust that the identifier will not change. It is necessary to create a sustainable URI. A sustainable URI can be based on a unique number in the collection management database. This means that this number should never be changed,</p>
+   <p>Users of the data need to be able to trust that the identifier will not change. A Persistent Identifier (PID) is a unique identification code attached to a digital object and registered at an agreed location. Using a PID, you can ensure that a link to a digital object keeps working:</p>
    <ul>
+    <li data-md>
+     <p>even when the organisation or object’s location or web address has changed.</p>
     <li data-md>
      <p>even if records are migrated into another version of the collection management system or another collection management in the future.</p>
     <li data-md>
-     <p>even if records are deleted: if possible the system should point to the new records for the same cultural heritage object. Otherwise, it should result in a record that is marked <a class="property css" data-link-type="property">obsolete</a>.</p>
+     <p>even if records are deleted: if possible the system should point to the new records for the same cultural heritage object. Otherwise, it should result in a record that is marked <a class="property css" data-link-type="property">obsolete</a>, so a <a class="property css" data-link-type="property">tombstone</a> page can be shown to the user (indicating a records used to exist, but doesn’t anymore).</p>
    </ul>
-   <p>It is very convenient to have a complete URI as a unique identifier in the collection management database. This helps to secure persistency, not only of the number but of the URI as well. One common standard for publishing persistent web addresses is Handle. Handles can be used as URIs.</p>
-   <p>More information is available on <a href="https://www.pidwijzer.nl/en">this website</a>.</p>
+   <p>There are multiple PID systems, such as Archival Resource Keys (ARKs), Digital Object Identifiers (DOIs), Handle, OpenURL, Persistent Uniform Resource Locators (PURLs) and Uniform Resource Names (URNs). Each system has its own particular properties, strengths and weaknesses. The <a href="https://www.pidwijzer.nl/en">PID Guide</a> helps heritage organisations learn and think about important PID subjects, and guides them into selecting a PID system.</p>
+   <p>IT suppliers should be able to offer integration with PID systems so PIDs can be created and should also be able to handle PIDs in the import/export process to maintain data durability.</p>
    <h3 class="heading settled" data-level="2.2" id="uniform-resource-identifiers-strategies"><span class="secno">2.2. </span><span class="content">Uniform Resource Identifiers Strategies</span><a class="self-link" href="#uniform-resource-identifiers-strategies"></a></h3>
    <p>As an institution, you must decide on how your persistent URIs look like. Here are some examples from other (heritage) institutions.</p>
    <ul>

@@ -7,6 +7,8 @@ URL: https://netwerk-digitaal-erfgoed.github.io/cm-implementation-guidelines/
 Editor:
     Sjors de Valk, Dutch Digital Heritage Network https://www.netwerkdigitaalerfgoed.nl/en, sjors@sjorsdevalk.nl
     Ivo Zandhuis, Dutch Digital Heritage Network https://www.netwerkdigitaalerfgoed.nl/en, ivo@zandhuis.nl
+    Bob Coret, Dutch Digital Heritage Network https://www.netwerkdigitaalerfgoed.nl/en, bob.coret@kb.nl
+
 Abstract: This document describes how IT suppliers can help the Dutch cultural heritage institutions to become more compliant with the principles for cooperation in the Dutch Digital Heritage Network (NDE).
 </pre>
 
@@ -64,13 +66,14 @@ The first Linked Data principle, defined by Berners-Lee, is that every informati
 Persistent Identifiers
 --------------------
 
-Users of the data need to be able to trust that the identifier will not change. It is necessary to create a sustainable URI. A sustainable URI can be based on a unique number in the collection management database. This means that this number should never be changed, 
+Users of the data need to be able to trust that the identifier will not change. A Persistent Identifier (PID) is a unique identification code attached to a digital object and registered at an agreed location. Using a PID, you can ensure that a link to a digital object keeps working:
+* even when the organisation or object’s location or web address has changed.
 * even if records are migrated into another version of the collection management system or another collection management in the future.
-* even if records are deleted: if possible the system should point to the new records for the same cultural heritage object. Otherwise, it should result in a record that is marked 'obsolete'.
+* even if records are deleted: if possible the system should point to the new records for the same cultural heritage object. Otherwise, it should result in a record that is marked 'obsolete', so a 'tombstone' page can be shown to the user (indicating a records used to exist, but doesn't anymore).
 
-It is very convenient to have a complete URI as a unique identifier in the collection management database. This helps to secure persistency, not only of the number but of the URI as well. One common standard for publishing persistent web addresses is Handle. Handles can be used as URIs.
+There are multiple PID systems, such as Archival Resource Keys (ARKs), Digital Object Identifiers (DOIs), Handle, OpenURL, Persistent Uniform Resource Locators (PURLs) and Uniform Resource Names (URNs). Each system has its own particular properties, strengths and weaknesses. The [PID Guide](https://www.pidwijzer.nl/en) helps heritage organisations learn and think about important PID subjects, and guides them into selecting a PID system.
 
-More information is available on [this website](https://www.pidwijzer.nl/en).
+IT suppliers should be able to offer integration with PID systems so PIDs can be created and should also be able to handle PIDs in the import/export process to maintain data durability.
 
 Uniform Resource Identifiers Strategies
 --------------------
