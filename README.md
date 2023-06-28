@@ -12,7 +12,7 @@ Requirements are written in Markdown and transformed to HTML using the
 
 ![](images/step-1.png)
 
-2. Fill in the necessary respotitory information.
+2. Fill in the necessary repository information.
 
 ![](images/step-2.png)
    
