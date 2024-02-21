@@ -29,7 +29,7 @@ jobs:
         with:
           VALIDATE_MARKUP: false
 
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v3
         with:
           name: spec-prod-result
 
