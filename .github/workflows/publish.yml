@@ -38,6 +38,4 @@ jobs:
           path: '.'
 
       - id: deployment
-        uses: actions/deploy-pages@v3
-        with:
-          artifact_name: spec-prod-result
+        uses: actions/deploy-pages@v4
