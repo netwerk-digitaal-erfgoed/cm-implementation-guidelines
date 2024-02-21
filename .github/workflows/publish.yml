@@ -21,12 +21,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: actions/configure-pages@v4
+
       - name: Build and validate
         uses: w3c/spec-prod@v2
         with:
           VALIDATE_MARKUP: false
-
-      - uses: actions/configure-pages@v4
 
       - id: deployment
         uses: actions/deploy-pages@v4
