@@ -24,7 +24,7 @@ This document aims to initiate an open discussion and cooperation with the techn
 Relation with other documentation
 --------------------
 
-This document builds upon the [Dutch digital heritage reference architecture (DERA)](https://dera.netwerkdigitaalerfgoed.nl/) (Dutch) and the [National Digital Heritage Strategy](https://zenodo.org/record/4604654#.YNB8EjqxWCg) (Dutch). Where appropriate, formal specifications of solutions developed in this document will be proposed to the Architecture Board of the DERA to become part of the long term agreements within the cultural heritage domain.
+This document builds upon the [Dutch digital heritage reference architecture (DERA)](https://dera.netwerkdigitaalerfgoed.nl/) (Dutch) and the [National Digital Heritage Strategy](https://doi.org/10.5281/zenodo.4604653) (Dutch). Where appropriate, formal specifications of solutions developed in this document will be proposed to the Architecture Board of the DERA to become part of the long term agreements within the cultural heritage domain.
 
 Overview
 --------------------
