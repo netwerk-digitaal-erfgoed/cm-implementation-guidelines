@@ -40,15 +40,15 @@ Publishing information resources as Linked Data can be done by transforming the 
 
 Describing information resources by the Resource Description Framework means three things, as is introduced by Tim Berners-Lee in [this TED talk](https://www.ted.com/talks/tim_berners_lee_the_next_web).
 
-### All conceptual things should have a name starting with HTTP.
+### All conceptual things should have a name starting with HTTP(S).
 
 This means that every entity you want to publish an information resource for must have a web address, more precisely a so-called [Uniform Resource Identifier](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier). Information resources could for example be the metadata about a painting, a creator, a depicted location or a data set.
 
-### Looking up an HTTP name should return useful data about the thing in question in a standard format.
+### Looking up an HTTP(S) name should return useful data about the thing in question in a standard format.
 
 If you call the web address, the webserver must serve the metadata in RDF format. In the RDF format, the metadata attributes are expressed. These attributes are for instance the title of a painting or the date of creation.
 
-### Anything else that that same thing has a relationship with through its data, should also be given a name beginning with HTTP.
+### Anything else that that same thing has a relationship with through its data, should also be given a name beginning with HTTP(S).
 
 In the best metadata, the painting is related with, for instance, its creator using the URI of the creator (eg. [https://data.rkd.nl/artists/66219](https://data.rkd.nl/artists/66219)) instead of the label ("Rijn, Rembrandt van"). This means that you can follow the link and use the web address of the creator to obtain the data about the creator. This way you can, for instance, know its living years ("1606-1669"). Linking data like this results in a "Web of Data".
 
